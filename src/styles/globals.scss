@@ -1,9 +1,66 @@
+@font-face {
+    font-family: 'Nexa Text-Trial';
+    src: url('/fonts/NexaText-Trial-Regular.woff2') format('woff2'),
+        url('/fonts/NexaText-Trial-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nexa-Trial';
+    src: url('/fonts/Nexa-Trial-Heavy.woff2') format('woff2'),
+        url('/fonts/Nexa-Trial-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nexa-Trial';
+    src: url('/fonts/Nexa-Trial-Black.woff2') format('woff2'),
+        url('/fonts/Nexa-Trial-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nexa-Trial';
+    src: url('/fonts/Nexa-Trial-Bold.woff2') format('woff2'),
+        url('/fonts/Nexa-Trial-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nexa-Trial';
+    src: url('/fonts/Nexa-Trial-Light.woff2') format('woff2'),
+        url('/fonts/Nexa-Trial-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nexa-Trial Extra';
+    src: url('/fonts/Nexa-Trial-ExtraBold.woff2') format('woff2'),
+        url('/fonts/Nexa-Trial-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 :root {
     --body-fs: 22px;
     --body-lh:1;
     --p-lh:43px;
     --body-color:#656565;
 }
+
+
 
 body { color: var(--body-color); font-size: var(--body-fs);}
 p { font-size: var(--body-fs); line-height: var(--p-lh);}
@@ -44,7 +101,7 @@ p { font-size: var(--body-fs); line-height: var(--p-lh);}
 
 
 .site-header {
-  padding: 30px 0 0 0; position: fixed; width: 100%; left: 0; top: 0; transition: all .3s;
+  padding: 30px 0 0 0; position: fixed; width: 100%; left: 0; top: 0; transition: all .3s; z-index: 997;
   &.fixed { background-color: #fff;}
   .brand { max-width: 200px; margin-right: 70px;
 img { max-width: 100%;}
@@ -161,7 +218,8 @@ ul{
     --text-fs:22px;
     --text-color:#656565;
     --text-lh:36px;
-    padding: var(--p); margin: var(--m); border-radius: var(--radius);
+    --border: none;
+    padding: var(--p); margin: var(--m); border-radius: var(--radius); background: var(--bg); border: var(--border);
     .card-title { font-size: var(--title-fs); color:var(--title-color); line-height:var(--title-lh); font-weight: 900;}
     .card-text { font-size: var(--text-fs); color:var(--text-color); line-height:var(--text-lh); }
 }
@@ -251,6 +309,7 @@ padding: var(--p);
     --color:#fff;
     --colorh:#fff;
     --borderh: 1px solid #666666;
+    --fs:24px;
     --p: 20px 25px;
     --radius: 10px;
     --border: 1px solid #222;
@@ -262,6 +321,7 @@ padding: var(--p);
         border: var(--border);
         height: var(--height);
         transition: all .3s;
+        font-size: var(--fs);
         &:hover {
             background: var(--bgh);
         color: var(--colorh);
@@ -292,3 +352,33 @@ padding: var(--p);
 .price-duration-choose { display: flex; justify-content: center; align-items: center; margin-bottom: 25px;}
 
 .home-page-banner { padding-top: 145px; z-index: 99; background-color: #E5ECF2; background-image: url(/header-bg-mask.png); background-position: 50% 0; background-repeat: no-repeat;}
+
+
+/* Login */
+.user-auth-left-card { background: #E5ECF2; text-align: center; display: flex; align-items: center; justify-content: center;
+    min-height: 100vh;
+.card {
+    --p:56px 0;
+    --m:0;
+    --title-fs: 32px;
+    --text-fs:20px;
+.card-text { max-width: calc(100% - 7vw); margin: 0 auto;}
+    .brand { margin-bottom: 50px;}
+}
+.card-img {     max-height: 54vh;
+    width: auto;
+    max-width: 100%;}
+
+}
+
+.user-rorm-card {
+    padding: 0 60px; display: flex; align-items: center; justify-content: center;
+    .form-wrap { max-width: calc(100% - 7vw); margin: 0 auto; text-align: center;}
+    .card-title {font-family: 'Nexa-Trial', 'Arial'; font-size: 32px;}
+}
+
+
+.card-title { font-family: 'Nexa-Trial', 'Arial' ; font-weight: 900; color: #222;}
+.user-auth-left-card .card .brand img {
+    max-width: 150px;
+}

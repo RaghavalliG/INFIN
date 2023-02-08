@@ -4,6 +4,7 @@ import Faq from '@/components/home-components/faq'
 import HighlightProcess from '@/components/home-components/highlightProcess'
 import PriceList from '@/components/home-components/priceLists'
 import Testimonials from '@/components/home-components/testimonials'
+import Layout from '@/components/layout/layout'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -15,6 +16,7 @@ export default function Home() {
         <meta name="description" content="infin" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Layout>
       {/** Home hero section */}
       <ContentBlock img="hero-image.png" imgpos="right" calssnames="home-page-banner">
   <h1 className="primary-title fw-bold">
@@ -72,6 +74,7 @@ export default function Home() {
       <Faq />
       <Contact />
       <Testimonials />
+      </Layout>
     </>
   )
 }
