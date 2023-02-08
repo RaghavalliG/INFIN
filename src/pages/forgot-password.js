@@ -41,9 +41,9 @@ export default function Password() {
                            
                         </div>
   
-                        <div className="row actions">
+                        <div className="row actions mt-5">
                             <div className="col">
-                            <Button>
+                            <Button className="mb-3 submit-btn">
                             Reset Password
     </Button>
     <p>Already have an account?  <a href="">Login</a></p>
