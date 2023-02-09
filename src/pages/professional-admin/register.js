@@ -22,7 +22,7 @@ export default function Register() {
                         <h1 className="card-title">All in one workspace</h1>
                         <p className="card-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
                         <div className="card-image">
-                            <img src="login-left-bg.png" alt="" className="card-img" />
+                            <img src="../login-left-bg.png" alt="" className="card-img" />
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ export default function Register() {
                             <Button className="submit-btn mb-3">
                             Register
     </Button>
-    <p>Already have an account?  <a href="">Login</a></p>
+    <p>Already have an account?  <a href="/login">Login</a></p>
     <p>Privacy Policy and Terms of Service</p>
                             </div>
                         </div>

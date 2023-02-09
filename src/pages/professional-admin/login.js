@@ -1,31 +1,72 @@
+import { Button, Checkbox, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from '@mantine/form';
-import { PasswordInput, TextInput, Button } from '@mantine/core';
-
-export default function PRsLogin() {
+export default function Login() {
     const form = useForm({
-        initialValues: { email: '', password: '' },
-
-        // functions will be used to validate values at corresponding key
-        validate: {
-            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+        initialValues: {
+          email: '',
+          password: '',
         },
-    });
- const onSubmit = (e) => {
-     e.preventDefault();
-    console.log(e);
- }
-    return (
-        <form onSubmit={onSubmit}>
-            <TextInput mt="sm" label="Email" placeholder="Email" {...form.getInputProps('email')} />
-            <PasswordInput
-                placeholder="Password"
-                label="Password"
-                withAsterisk
-                {...form.getInputProps('password')}
-            />
-            <Button type="submit" mt="sm">
-                Submit
-            </Button>
-        </form>
-    );
+    
+        validate: {
+          email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+        },
+      });
+    return <div className="user-auth-pages">
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-lg-6 user-auth-left-card">
+                    <div className="card">
+                        <div className="brand"><a href=""><img src="/logo.png" alt="" /></a></div>
+                        <h1 className="card-title">All in one workspace</h1>
+                        <p className="card-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                        <div className="card-image">
+                            <img src="../login-left-bg.png" alt="" className="card-img" />
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-6 user-rorm-card">
+                <div className="form-wrap">
+                    <h2 className="card-title">Login</h2>
+                    <form onSubmit={form.onSubmit((values) => console.log(values))}>
+                        <div className="row">
+                            <div className="col-lg-12">
+                            <TextInput
+                                withAsterisk
+                                placeholder="Email ID"
+                                {...form.getInputProps('email')}
+                                />
+
+                            </div>
+                            <div className="col-lg-12">
+                            <PasswordInput
+                            placeholder="Password"
+                            withAsterisk
+                            {...form.getInputProps('password')}
+                            />
+
+                            </div>
+                        </div>
+                        <div className="row pb-5">
+                            <div className="col forget_check_link">
+                                <Checkbox
+      label="Remember me"
+    />
+    <a href="">Forget password?</a>
+    </div>
+                        </div>
+                        <div className="row actions mt-5">
+                            <div className="col ">
+                            <Button className="mb-3 submit-btn">
+      Submit
+    </Button>
+    <p>Don’t have an account? <a href="register">Register</a></p>
+    <p>Privacy Policy and Terms of Service</p>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
