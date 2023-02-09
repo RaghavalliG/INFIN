@@ -1,6 +1,6 @@
 import { Button, Checkbox, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from '@mantine/form';
-export default function Login() {
+export default function Register() {
     const form = useForm({
         initialValues: {
           email: '',
