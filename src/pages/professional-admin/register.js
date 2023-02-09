@@ -3,16 +3,16 @@ import { useForm } from '@mantine/form';
 export default function Register() {
     const form = useForm({
         initialValues: {
-          email: '',
-          password: '',
-          confirmPassword: ''
+            email: '',
+            password: '',
+            confirmPassword: ''
         },
-    
+
         validate: {
-          email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-          confirmPassword: (value, values) =>  value !== values.password ? 'Passwords did not match' : null,
+            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+            confirmPassword: (value, values) => value !== values.password ? 'Passwords did not match' : null,
         },
-      });
+    });
     return <div className="user-auth-pages">
         <div className="container-fluid">
             <div className="row">
@@ -28,77 +28,77 @@ export default function Register() {
                 </div>
                 <div className="col-lg-6 user-rorm-card">
                     <div className="form-wrap">
-                    <h2 className="card-title">Registration</h2>
-                    <form onSubmit={form.onSubmit((values) => console.log(values))}>
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <TextInput
-                                withAsterisk
-                                
-                                placeholder="First name"
-                                {...form.getInputProps('first_name')}
-                                />
+                        <h2 className="card-title">Registration</h2>
+                        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <TextInput
+                                        withAsterisk
 
-                            </div>
-                            <div className="col-lg-6">
-                            <TextInput
-                                withAsterisk
-                                
-                                placeholder="Last name"
-                                {...form.getInputProps('last_name')}
-                                />
+                                        placeholder="First name"
+                                        {...form.getInputProps('first_name')}
+                                    />
 
+                                </div>
+                                <div className="col-lg-6">
+                                    <TextInput
+                                        withAsterisk
+
+                                        placeholder="Last name"
+                                        {...form.getInputProps('last_name')}
+                                    />
+
+                                </div>
+                                <div className="col-lg-12">
+                                    <TextInput
+                                        withAsterisk
+
+                                        placeholder="Contact number"
+                                        {...form.getInputProps('contact_number')}
+                                    />
+                                </div>
+                                <div className="col-lg-12">
+                                    <TextInput
+                                        withAsterisk
+
+                                        placeholder="Membership number"
+                                        {...form.getInputProps('membership_number')}
+                                    />
+                                </div>
+                                <div className="col-lg-12">
+                                    <TextInput
+                                        withAsterisk
+
+                                        placeholder="Contact Address"
+                                        {...form.getInputProps('contact_address')}
+                                    />
+                                </div>
+                                <div className="col-lg-12">
+                                    <PasswordInput
+                                        placeholder="Create password"
+                                        withAsterisk
+                                        {...form.getInputProps('password')}
+                                    />
+                                </div>
+                                <div className="col-lg-12">
+                                    <PasswordInput
+                                        placeholder="Confrm password"
+                                        withAsterisk
+                                        {...form.getInputProps('confirmPassword')}
+                                    />
+                                </div>
                             </div>
-                            <div className="col-lg-12">
-                            <TextInput
-                                withAsterisk
-                                
-                                placeholder="Contact number"
-                                {...form.getInputProps('contact_number')}
-                                />
+
+                            <div className="row actions mt-5">
+                                <div className="col">
+                                    <Button type="submit" className="submit-btn mb-3">
+                                        Register
+                                    </Button>
+                                    <p>Already have an account?  <a href="login">Login</a></p>
+                                    <p>Privacy Policy and Terms of Service</p>
+                                </div>
                             </div>
-                            <div className="col-lg-12">
-                            <TextInput
-                                withAsterisk
-                                
-                                placeholder="Membership number"
-                                {...form.getInputProps('membership_number')}
-                                />
-                            </div>
-                            <div className="col-lg-12">
-                            <TextInput
-                                withAsterisk
-                               
-                                placeholder="Contact Address"
-                                {...form.getInputProps('contact_address')}
-                                />
-                            </div>
-                            <div className="col-lg-12">
-                                <PasswordInput
-                                placeholder="Create password"
-                                withAsterisk
-                                {...form.getInputProps('password')}
-                                />
-                            </div>
-                            <div className="col-lg-12">
-                            <PasswordInput
-                                placeholder="Confrm password"
-                                withAsterisk
-                                {...form.getInputProps('confirmPassword')}
-                                />
-                            </div>
-                        </div>
-  
-                        <div className="row actions mt-5">
-                            <div className="col">
-                            <Button className="submit-btn mb-3">
-                            Register
-    </Button>
-    <p>Already have an account?  <a href="/login">Login</a></p>
-    <p>Privacy Policy and Terms of Service</p>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
                     </div>
                 </div>
             </div>
