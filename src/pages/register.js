@@ -5,10 +5,12 @@ export default function Login() {
         initialValues: {
           email: '',
           password: '',
+          confirmPassword: ''
         },
     
         validate: {
           email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+          confirmPassword: (value, values) =>  value !== values.password ? 'Passwords did not match' : null,
         },
       });
     return <div className="user-auth-pages">
@@ -25,13 +27,14 @@ export default function Login() {
                     </div>
                 </div>
                 <div className="col-lg-6 user-rorm-card">
+                    <div className="form-wrap">
                     <h2 className="card-title">Registration</h2>
                     <form onSubmit={form.onSubmit((values) => console.log(values))}>
                         <div className="row">
                             <div className="col-lg-6">
                                 <TextInput
                                 withAsterisk
-                                label="First name"
+                                
                                 placeholder="First name"
                                 {...form.getInputProps('first_name')}
                                 />
@@ -40,7 +43,7 @@ export default function Login() {
                             <div className="col-lg-6">
                             <TextInput
                                 withAsterisk
-                                label="Last name"
+                                
                                 placeholder="Last name"
                                 {...form.getInputProps('last_name')}
                                 />
@@ -49,48 +52,46 @@ export default function Login() {
                             <div className="col-lg-12">
                             <TextInput
                                 withAsterisk
-                                label="First name"
-                                placeholder="First name"
-                                {...form.getInputProps('first_name')}
+                                
+                                placeholder="Contact number"
+                                {...form.getInputProps('contact_number')}
                                 />
                             </div>
                             <div className="col-lg-12">
                             <TextInput
                                 withAsterisk
-                                label="First name"
-                                placeholder="First name"
-                                {...form.getInputProps('first_name')}
+                                
+                                placeholder="Membership number"
+                                {...form.getInputProps('membership_number')}
                                 />
                             </div>
                             <div className="col-lg-12">
                             <TextInput
                                 withAsterisk
-                                label="First name"
-                                placeholder="First name"
-                                {...form.getInputProps('first_name')}
+                               
+                                placeholder="Contact Address"
+                                {...form.getInputProps('contact_address')}
                                 />
                             </div>
                             <div className="col-lg-12">
-                            <TextInput
+                                <PasswordInput
+                                placeholder="Create password"
                                 withAsterisk
-                                label="First name"
-                                placeholder="First name"
-                                {...form.getInputProps('first_name')}
+                                {...form.getInputProps('password')}
                                 />
                             </div>
                             <div className="col-lg-12">
-                            <TextInput
+                            <PasswordInput
+                                placeholder="Confrm password"
                                 withAsterisk
-                                label="First name"
-                                placeholder="First name"
-                                {...form.getInputProps('first_name')}
+                                {...form.getInputProps('confirmPassword')}
                                 />
                             </div>
                         </div>
   
-                        <div className="row actions">
+                        <div className="row actions mt-5">
                             <div className="col">
-                            <Button>
+                            <Button className="submit-btn mb-3">
                             Register
     </Button>
     <p>Already have an account?  <a href="">Login</a></p>
@@ -98,6 +99,7 @@ export default function Login() {
                             </div>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
