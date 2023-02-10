@@ -3,13 +3,18 @@ import { useForm } from '@mantine/form';
 export default function Register() {
     const form = useForm({
         initialValues: {
-            email: '',
+            first_name: '',
+            last_name: '',
+            contact_number: '',
+            membership_number: '',
+            contact_address: '',
+            // email: '',
             password: '',
             confirmPassword: ''
         },
 
         validate: {
-            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+            // email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
             confirmPassword: (value, values) => value !== values.password ? 'Passwords did not match' : null,
         },
     });
