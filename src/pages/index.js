@@ -40,7 +40,7 @@ export default function Home() {
                 </div>
     </ContentBlock>
     {/** second content block */}
-      <ContentBlock img="content-img-2.png" calssnames="bg-white mt-5" >
+      <ContentBlock img="content-img-2.png" calssnames="bg-white mt-5 home-about-sec" >
         <h2 className="secondary-title fw-bold">
           We make life Easier for our clients
         </h2>

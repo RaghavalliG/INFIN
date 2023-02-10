@@ -4,7 +4,7 @@ export default function Faq() {
     return <div className="faq-sec">
         <div className="container">
         <h2 className="secondary-title text-center">Frequently Asked Questions</h2>
-        <Accordion defaultValue="customization">
+        <Accordion defaultValue="customization" className='home-accordion-faq'>
       <Accordion.Item value="customization">
         <Accordion.Control>What is Incorpd?</Accordion.Control>
         <Accordion.Panel>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</Accordion.Panel>

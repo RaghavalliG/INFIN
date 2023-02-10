@@ -1,0 +1,36 @@
+.site-header {
+    padding: 30px 0 0 0; position: fixed; width: 100%; left: 0; top: 0; transition: all .3s; z-index: 997;
+    &.fixed { background-color: #fff;}
+    .brand { max-width: 200px; margin-right: 70px;
+  img { max-width: 100%;}
+  
+  }
+    header .actions { margin-left: auto;}
+  }
+
+  /* menu */
+  .main-navi {
+    --fs:24px;
+    --lh:36px;
+    --color:#000000;
+    --colorh::#fff;
+    --p:10px 15px;
+    --m:5px 15px;
+    --border-color: transparent;
+    --border-colorh:#000000;
+    .nav-link { font-size: var(--fs); line-height: var(--lh); color: var(--color); padding: var(--p); margin: var(--m); border-bottom: 2px solid ; border-color: var(--border-color);
+        &:hover {
+            border-color: var(--border-colorh);
+        }
+    }
+}
+
+.home-contact { background-color: #fff; padding: 100px 0;}
+.mantine-Drawer-root {
+  .main-navi { flex-direction: column;
+    li { margin: 0;
+      a { margin: 0 0 0 -8px;}
+    }
+  }
+}
+

@@ -1,9 +1,22 @@
 import ContentBlock from "./contentBlock";
 import { useWindowScroll } from '@mantine/hooks';
+import Menu from "./menu";
+import { Avatar, Drawer } from "@mantine/core";
+import { useState } from "react";
 export default function Header() {
-  
+  const [isLogin, setIsLogin] = useState(false);
+  const [menuOpened, setMenuOpened] = useState(false);
   const [scroll, scrollTo] = useWindowScroll();
     return <>
+    <Drawer
+        opened={menuOpened}
+        onClose={() => setMenuOpened(false)}
+        title="Menu"
+        padding="xl"
+        size="lg"
+      >
+        <Menu />
+      </Drawer>
     <div className={`site-header ${scroll.y > 50 ? 'fixed' : ''}`}>
     <div className="container">
     <header className="d-flex flex-wrap align-items-center mb-4">
@@ -13,35 +26,29 @@ export default function Header() {
     >
       <img src="/logo.png" className="logo" />
     </a>
-    <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 main-navi">
-      <li>
-        <a href="#" className="nav-link px-2 link-dark">
-          Features
-        </a>
-      </li>
-      <li>
-        <a href="#" className="nav-link px-2 link-dark">
-          Pricing
-        </a>
-      </li>
-      <li>
-        <a href="#" className="nav-link px-2 link-dark">
-          FAQs
-        </a>
-      </li>
-      <li>
-        <a href="#" className="nav-link px-2 link-dark">
-        Blog
-        </a>
-      </li>
-    </ul>
-    <div className="col-md-3 text-end actions">
-      <button type="button" className="btn btn-outline-primary me-2">
+    <Menu />
+    <div className="col-auto text-end actions">
+      {isLogin ? (
+        <Avatar radius="xl" />
+      ) : (
+        <>
+        <div className="header-login-btns">
+        <button type="button" className="btn btn-outline-primary me-2">
       Signin
       </button>
       <button type="button" className="btn btn-primary outline">
         Sign up
       </button>
+      </div>
+        </>
+      )}
+      
+      
+      <a href="#" onClick={(e)=>{e.preventDefault(); setMenuOpened(true)} } className="btn menu-switch-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg>
+       <span className="label">Menu</span></a>
     </div>
   </header>
   </div>

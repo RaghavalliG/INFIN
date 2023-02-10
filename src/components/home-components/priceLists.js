@@ -3,7 +3,7 @@ export default function PriceList() {
     return <div className="price-list">
         <div className="container">
         <div className="price-duration-choose">
-        <div position="price-dur-btn">
+        <div className="price-dur-btn">
         <a href='' className='btn btn-primary outline'
           onClick={(event) => event.preventDefault()}
         >
