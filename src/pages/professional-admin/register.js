@@ -1,6 +1,11 @@
 import { Button, Checkbox, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from '@mantine/form';
+import { handleSignup } from "store/actions/professionalAdminAction";
+import { useDispatch, useSelector } from 'react-redux';
+
 export default function Register() {
+    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const form = useForm({
         initialValues: {
             first_name: '',
@@ -8,13 +13,13 @@ export default function Register() {
             contact_number: '',
             membership_number: '',
             contact_address: '',
-            // email: '',
+            email: '',
             password: '',
             confirmPassword: ''
         },
 
         validate: {
-            // email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
             confirmPassword: (value, values) => value !== values.password ? 'Passwords did not match' : null,
         },
     });
@@ -34,7 +39,7 @@ export default function Register() {
                 <div className="col-lg-6 user-rorm-card">
                     <div className="form-wrap">
                         <h2 className="card-title">Registration</h2>
-                        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+                        <form onSubmit={form.onSubmit((values) => dispatch(handleSignup(values)))}>
                             <div className="row">
                                 <div className="col-lg-6">
                                     <TextInput
@@ -61,6 +66,9 @@ export default function Register() {
                                         placeholder="Contact number"
                                         {...form.getInputProps('contact_number')}
                                     />
+                                </div>
+                                <div className="col-lg-12">
+                                    <TextInput placeholder="Email" {...form.getInputProps('email')} />
                                 </div>
                                 <div className="col-lg-12">
                                     <TextInput
