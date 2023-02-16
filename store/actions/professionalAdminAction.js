@@ -1,4 +1,7 @@
 import {
+  AUTH_LOGIN_START,
+  AUTH_LOGIN,
+  AUTH_ERROR,
   PROFESSIONAL_ADMIN_SIGNUP,
   PROFESSIONAL_ADMIN_SIGNUP_ERROR,
   PROFESSIONAL_ADMIN_DETAILS,
@@ -7,6 +10,51 @@ import {
   DASHBOARD_CLIENT_LIST_ERRORS,
 } from "../types";
 import axios from "axios";
+
+
+export const handleLogin = (e) => async (dispatch) => {
+  console.log(e);
+  dispatch({
+    type: AUTH_LOGIN_START,
+  });
+  try {
+    let data = {
+      "email": e.email,
+      "password": e.password
+    };
+    var config = {
+      method: "post",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/auth/signin`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data
+    };
+    const res = await axios(config);
+    const  {jwt}  = res.data;
+    if (jwt) {
+      localStorage.setItem("token_key", res.data.accessToken);
+      localStorage.setItem("id", res.data.id);
+      // toast.success(res.data?.message, {
+      //   onClose: () => Router.push("/"),
+      // });
+
+      dispatch({
+        type: AUTH_LOGIN,
+        payload: jwt,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: AUTH_ERROR,
+      payload: error.response,
+    });
+
+    // toast.error(error.response.data.error.message, {
+    //   // onClose: () => location.reload(),
+    // });
+  }
+};
 
 export const handleSignup = (e) => async (dispatch) => {
   console.log(e);

@@ -1,4 +1,7 @@
 import {
+  AUTH_LOGIN_START,
+  AUTH_LOGIN,
+  AUTH_ERROR,
   PROFESSIONAL_ADMIN_SIGNUP,
   PROFESSIONAL_ADMIN_SIGNUP_ERROR,
   PROFESSIONAL_ADMIN_DETAILS,
@@ -27,6 +30,27 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case AUTH_LOGIN_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case AUTH_LOGIN:
+      return {
+        ...state,
+        isLoggedIn: !!localStorage.getItem("token_key"),
+        token: action.payload,
+        success: true,
+        loading: false,
+      };
+    case AUTH_ERROR:
+      return {
+        ...state,
+        isLoggedIn: false,
+        token: "",
+        authError: true,
+        authErrorMsg: action.payload,
+      };
     case PROFESSIONAL_ADMIN_SIGNUP:
       return {
         ...state,
@@ -62,13 +86,13 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };
-      case DASHBOARD_CLIENT_LIST:
+    case DASHBOARD_CLIENT_LIST:
       return {
         ...state,
         dashboardClientlist: action.payload,
         loading: false,
       };
-      case DASHBOARD_CLIENT_LIST_ERRORS:
+    case DASHBOARD_CLIENT_LIST_ERRORS:
       return {
         ...state,
         loading: true,

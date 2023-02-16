@@ -1,7 +1,11 @@
 import { useForm } from '@mantine/form';
 import { PasswordInput, TextInput, Button, Checkbox } from '@mantine/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleLogin } from 'store/actions/professionalAdminAction';
+
 
 export default function PRsLogin() {
+    const dispatch = useDispatch();
     const form = useForm({
         initialValues: { email: '', password: '' },
 
@@ -29,7 +33,7 @@ export default function PRsLogin() {
                     <div className="col-lg-6 user-rorm-card">
                         <div className="form-wrap">
                             <h2 className="card-title">Login</h2>
-                            <form onSubmit={form.onSubmit(console.log)}>
+                            <form onSubmit={form.onSubmit((values) => dispatch(handleLogin(values)))}>
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <TextInput placeholder="Email" {...form.getInputProps('email')} />
