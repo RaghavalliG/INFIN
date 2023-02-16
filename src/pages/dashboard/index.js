@@ -1,4 +1,17 @@
+import { professionalAdminFrofileDetails } from "store/actions/professionalAdminAction";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
+
 export default function Dashboard() {
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(professionalAdminFrofileDetails());
+    })
+    const result = useSelector((state) => state.professionalAdminReducer.professionalAdminData)
+    console.log(result,"=====");
+
     return <div className="dashboard-wrap">
         <div className="container dashboard-container">
         <div className="sidebar">
