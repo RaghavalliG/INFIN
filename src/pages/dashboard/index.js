@@ -8,7 +8,7 @@ export default function Dashboard() {
 
     useEffect(()=>{
         dispatch(professionalAdminFrofileDetails());
-    })
+    },[])
     const result = useSelector((state) => state.professionalAdminReducer.professionalAdminData)
     console.log(result,"=====");
 
@@ -59,17 +59,16 @@ export default function Dashboard() {
             <div className="block-content-box bg-primary profile-info-card">
                 <div className="avatar"></div>
                 <div className="info">
-                    <h2 className="card-title">Rahul Chaudhri</h2>
+                    <h2 className="card-title">{result.name}</h2>
                     <p className="card-text">CEO</p>
                 </div>
             </div>
             <div className="block-content-box profile-info-details-card">
                 <div className="key-val-items">
-                <div className="item"><span className="key">Contact Number:</span><span className="val">1234 5678 910</span></div>
-                <div className="item"><span className="key">Email address: :</span><span className="val">demomail@gmail.com</span></div>
-                <div className="item"><span className="key">Membership number:</span><span className="val">ABC123456 ASC</span></div>
-                <div className="item"><span className="key">Contact address: </span><span className="val">Ap285-7193 Ullamcorper Avenue
-                                  Amesbury HI 93373</span></div>
+                <div className="item"><span className="key">Contact Number: </span><span className="val">{result.mobile}</span></div>
+                <div className="item"><span className="key">Email address: </span><span className="val">{result.email}</span></div>
+                <div className="item"><span className="key">Membership number: </span><span className="val">{result.membershipNumber}</span></div>
+                <div className="item"><span className="key">Contact address: </span><span className="val">{result.contactAddress}</span></div>
                                   </div>
                                   <div className="action">
                                     <a href="" className="btn btn-primary-light">Back to Home</a>
