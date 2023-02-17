@@ -6,8 +6,8 @@ import {
   PROFESSIONAL_ADMIN_SIGNUP_ERROR,
   PROFESSIONAL_ADMIN_DETAILS,
   PROFESSIONAL_ADMIN_DETAILS_ERROR,
-  PROFESSIONAL_CLIENT_DETAILS,
-  PROFESSIONAL_CLIENT_DETAILS_ERRORS,
+  ADMIN_CLIENT_DETAILS,
+  ADMIN_CLIENT_DETAILS_ERRORS,
   DASHBOARD_CLIENT_LIST,
   DASHBOARD_CLIENT_LIST_ERRORS,
 } from "../types";
@@ -23,7 +23,7 @@ const initialState = {
   success: false,
   loading: false,
   professionalAdminData: {},
-  professionalClientData: {},
+  adminClientData: {},
   dashboardClientlist: {},
 
 };
@@ -75,13 +75,13 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };
-    case PROFESSIONAL_CLIENT_DETAILS:
+    case ADMIN_CLIENT_DETAILS:
       return {
         ...state,
-        professionalClientData: action.payload,
+        adminClientData: action.payload,
         loading: false,
       };
-    case PROFESSIONAL_CLIENT_DETAILS_ERRORS:
+    case ADMIN_CLIENT_DETAILS_ERRORS:
       return {
         ...state,
         loading: true,

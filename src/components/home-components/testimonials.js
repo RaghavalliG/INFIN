@@ -3,7 +3,7 @@ export default function Testimonials() {
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <h2 class="secondary-title text-center">Testimonials</h2>
+                    <h2 className="secondary-title text-center">Testimonials</h2>
                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
                 </div>
             </div>

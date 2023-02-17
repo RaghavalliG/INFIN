@@ -1,11 +1,19 @@
 import { Avatar, Menu } from "@mantine/core";
 import DownloadIcon from "@/components/icon/download";
 import VerticalDot from "@/components/icon/vertical-dot";
-export default function ProfessionalManagerCard() {
+export default function ClientAdminCard() {
+
+  const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(adminclientProfileDetails());
+    },[])
+    const result = useSelector((state) => state.adminClientData.adminClientData)
+    console.log(result,"=====");
     return <div className="card admin-card-wedget">
     <div className="card-head">
         <div className="card-image">
-        <Avatar src="avatar_img.png" alt="Some alt text" size={78} />
+        <Avatar src="/avatar_img.png" alt="Some alt text" size={78} />
         
         
         </div>

@@ -8,8 +8,11 @@ import {
   PROFESSIONAL_ADMIN_DETAILS_ERROR,
   DASHBOARD_CLIENT_LIST,
   DASHBOARD_CLIENT_LIST_ERRORS,
+  ADMIN_CLIENT_DETAILS,
+  ADMIN_CLIENT_DETAILS_ERRORS
 } from "../types";
 import axios from "axios";
+import Router from "next/router";
 
 
 export const handleLogin = (e) => async (dispatch) => {
@@ -31,10 +34,11 @@ export const handleLogin = (e) => async (dispatch) => {
       data: data
     };
     const res = await axios(config);
-    const  {jwt}  = res.data;
+    const { jwt } = res.data;
     if (jwt) {
       localStorage.setItem("token_key", res.data.accessToken);
       localStorage.setItem("id", res.data.id);
+      Router.push("/")
       // toast.success(res.data?.message, {
       //   onClose: () => Router.push("/"),
       // });
@@ -108,9 +112,17 @@ export const handleSignup = (e) => async (dispatch) => {
   }
 };
 
-export const professionalAdminFrofileDetails = (e) => async (dispatch) => {
+export const handleLogout = (e) => async (dispatch) => {
+  localStorage.clear();
+  sessionStorage.clear();
+  // toast.success("logged out succesfully", {
+  //     onClose: () => Router.push("/"),
+  //   });
+
+}
+export const professionalAdminProfileDetails = (e) => async (dispatch) => {
   try {
-    console.log("funciton call");
+    // console.log("funciton call");
     var config = {
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/professional-admin-profile-detail`,
@@ -137,13 +149,15 @@ export const professionalAdminFrofileDetails = (e) => async (dispatch) => {
   }
 };
 
-export const professionalclientFrofileDetails = (e) => async () => {
+export const adminclientProfileDetails = (e) => async (dispatch) => {
   try {
     var config = {
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/client-admin-profile-detail/3`,
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+
         // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
       },
     };
@@ -151,26 +165,28 @@ export const professionalclientFrofileDetails = (e) => async () => {
     const res = await axios(config);
     if (res.data) {
       dispatch({
-        type: PROFESSIONAL_CLIENT_DETAILS,
+        type: ADMIN_CLIENT_DETAILS,
         payload: res.data,
       });
     }
   } catch (error) {
     console.log(error, "professional clinet details error");
     dispatch({
-      type: PROFESSIONAL_CLIENT_DETAILS_ERRORS,
+      type: ADMIN_CLIENT_DETAILS_ERRORS,
       payload: error?.response?.error?.message,
     });
   }
 };
 
-export const dashboardClientList = (e) => async ()=>{
+export const dashboardClientList = (e) => async () => {
   try {
     var config = {
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/client`,
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+
         // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
       },
     };
