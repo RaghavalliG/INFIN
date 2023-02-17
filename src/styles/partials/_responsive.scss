@@ -70,3 +70,113 @@
         justify-content: center !important;
     }
 }
+
+img { max-width: 100%;}
+.menu-switch-btn {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.6em;
+        text-transform: uppercase;
+        gap: 2px;
+        min-width: auto !important;
+        max-width: 66px;
+        padding: 7px 15px;
+        border-radius: 999px;
+    
+    svg { width: 35px; height: 35px;}
+}
+.header-login-btns { display: flex;}
+@media screen and (max-width: 1600px) {
+    :root { --body-fs: 19px; --p-lh:38px}
+    .container { max-width: 1400px;}
+    .site-header .brand {
+        max-width: 162px;
+        margin-right: 47px;
+    }
+    .main-navi { --m: 12px 15px 5px; --fs: 20px}
+    .site-header header .actions .btn { min-width: 150px;}
+    .home-page-banner .container > .py-5 { padding-top: 26px !important;}
+    .primary-title { --fs:47px; --lh: 60px; --m : 0 0 20px 0;}
+    .home-page-banner .actions { margin-top: 45px; }
+    .home-page-banner .actions .btn { font-size: 1em;}
+    .secondary-title {--fs:42px; --lh: 45px;}
+    .image_bullets li { 
+        &:before { width: 30px; height: 30px; background-size: 30px;}
+    }
+    .price-list-wrap .card {    --title-fs: 31px; --p: 50px 25px; --text-lh: 1.3; --text-fs: 18px}
+    .admin-sidebar {
+        width: 330px;
+    }
+    .admin-content-area .admin-header { padding: 20px 38px; border-radius: 15px; }
+    .admin-header .card-text { line-height: 1; }
+    .admin-sidebar {
+        padding: 40px 25px 30px;
+    }
+    .admin-sidebar .brand-logo {
+        max-width: 133px;
+        margin: 0 auto 46px auto;
+    }
+    .admin-menus .mantine-NavLink-root {
+        margin: 16px 0;
+        padding: 17px 5px;
+    }
+    .admin-card-wedget {
+        padding: 28px 37px;
+        border-radius: 16px;
+    }
+    .admin-card-wedget .card-image .mantine-Avatar-root {
+        width: 65px;
+        height: 65px;
+        min-width: 65px;
+        border: 5px solid #47b6f5;
+        border-radius: 999px;
+    }
+    .admin-card-wedget .card-text, .btn-light-blue, .pill-light-blue, .key-val-lists .item {
+        font-size: 20px;
+    }
+    .admin-card-wedget .card-title {
+        font-size: 20px; line-height: 1;
+    }
+    .admin-card-wedget .card-head .three-dot-btn svg {
+        width: 5px;
+    }
+    .btn-light-blue .icon svg { width: 18px;}
+}
+
+@media screen and (max-width: 992px) {
+    .site-header  .main-navi { display: none;}
+    .dashboard-wrap .sidebar {max-width: 100%;}
+    .dashboard-container { flex-wrap: wrap;}
+    .menu-switch-btn { display: flex;}
+    .header-login-btns { display: none;}
+    .image-content-sec {
+        .img-col { text-align: center; margin: 0 auto 35px auto;}
+        .text-col { text-align: center;}
+        .actions {
+            justify-content: center !important;
+        }
+    }
+    .image_bullets li { display: inline-block;
+        justify-content: center;
+        &:before { margin-right: 10px;}
+    }
+    .image_bullets li:before {
+        margin-right: 10px;
+        vertical-align: text-top;
+        margin-top: 0;
+    }
+    .price-list-wrap { flex-direction: column;}
+    .footer-top {
+        .row { flex-direction: column; text-align: center; align-items: center;}
+        .footer-menu { justify-content: center; margin-top: 15px;}
+    }
+    .footer-bot { text-align: center;}
+    .social-icon-w {
+  margin-top: 15px;
+        justify-content: center !important;
+    }
+}
+

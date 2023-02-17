@@ -5,6 +5,89 @@
 @import 'partials/header';
 @import 'partials/footer';
 @import 'partials/components';
+a { color: #47B6F4; text-decoration: none;}
+a:hover {color: #2b93d0;}
+.admin_wrap { display: flex; gap: 15px; gap: 15px; padding: 52px 72px;}
+.admin-content-area { flex: 1;}
+.admin-sidebar { padding: 50px 35px 25px; background-color: #fff; border-radius: 15px; width: 400px; display: flex; flex-direction: column; text-align: center;
+}
+.admin-sidebar .brand-logo { max-width: 155px; margin: 0 auto 80px auto;}
+.admin-menu-bottom { margin-top: auto;}
+
+.admin-menus .mantine-NavLink-root, .admin-menu-bottom .mantine-NavLink-root { text-align: center; justify-content: center; 
+    align-items: center; border-radius: 10px; color: #A8A8A8;  }
+    .admin-menus .mantine-NavLink-root {margin: 20px 0;}
+.admin-menus .mantine-NavLink-body, .admin-menu-bottom .mantine-NavLink-body { flex: 0 0 auto; }
+ .admin-menus .mantine-NavLink-root:hover {background-color: #47B6F4;}
+.admin-menus  .mantine-NavLink-label, .admin-menu-bottom .mantine-NavLink-label {font-size: 22px;}
+.admin-menus .mantine-NavLink-root svg path { fill: #A8A8A8;}
+.admin-menus .mantine-NavLink-root:hover .mantine-NavLink-label { color: #fff;}
+.admin-menus .mantine-NavLink-root:hover svg path { fill: #fff;}
+
+/* admin-content-area */
+.admin-content-area .admin-header { background-color: #47B6F4; border-radius: 20px; padding: 20px; margin-bottom: 20px;}
+.admin-content-area .admin-header .page-title { font-size: 24px; color: #fff; margin: 0 0 3px 0; line-height: 1.3;}
+.admin-header .card-text { color: #fff;}
+.admin-header a { color: #fff;}
+.admin-header .row { align-items: center;}
+
+/* admin-wedget */
+.admin-wedget {background-color: #fff; border-radius: 10px; padding: 35px; margin-bottom: 20px; display: flex; flex-direction: column;}
+.admin-wedget.content-center { text-align: center; justify-content: center; align-items: center;}
+.mantine-RingProgress-label .label { font-size: 35px; color: #47B6F4; letter-spacing: 0.01em; font-weight: 600;}
+.mantine-RingProgress-label .label.green {color: #9DCB55; }
+.card-title { font-size: 24px; font-weight: 600; color: #222222; margin-bottom: 12px;}
+.card-text, .admin-wedget p { font-size: 20px; font-weight: 400; color: #656565; margin-bottom: 12px;}
+.dashboard-widget-wrap .row { gap: 10px 30px; padding: 0 15px;}
+.admin-wedget.col-lg-6 { max-width: calc(50% - 20px);}
+
+.chart_wrap, .chart_wrap canvas { max-width: 100% !important; width: 100% !important; height: auto !important;}
+
+
+/* footer */
+.site-footer { text-align: center; color: #656565;}
+
+/* admin-card-wedget */
+.admin-card-wedget { padding: 34px 34px; 
+    background: #FFFFFF;
+border-radius: 20px;
+border: none; margin-bottom: 20px;
+    .card-head { display: flex; flex-wrap: wrap; width: 100%; padding-right: 35px; position: relative; gap: 20px; margin-bottom: 15px;
+    .three-dot-btn { position: absolute; top: 0; right: 0; cursor: pointer;}
+    }
+    .card-title { font-size: 24px; color: #222222;}
+    .card-text { font-size: 22px; color: #656565;}
+    .card-body { padding: 0;}
+}
+.btn-light-blue, .pill-light-blue { background-color: #E2F0F8; padding: 11px 15px; border-radius: 7px; color: #47B6F4; 
+    font-weight: 500; display: inline-flex; gap: 15px; line-height: 1; border: none;
+    font-size: 24px; align-items: center;
+    &:hover{
+        background-color: #47B6F4;
+        color: #fff;
+    }
+}
+
+.key-val-lists {
+    gap:14px 0 !important; padding: 0 !important;
+    .item { font-weight: 400; 
+        font-size: 24px; color: #656565;}
+}
+
+.admin-card-wedget .row.side-gap-0 { gap:10px 0;}
+
+
+
+.social-icon-w { display: flex; gap: 10px; }
+.social-icon { display: flex; gap: 15px;}
+
+.price-duration-choose { display: flex; justify-content: center; align-items: center; margin-bottom: 25px; gap: 10px;}
+
+.home-page-banner { padding-top: 140px; z-index: 99; background-color: #E5ECF2; background-image: url(/header-bg-mask.png); background-position: 50% 0; background-repeat: no-repeat;}
+
+
+
+
 @import 'partials/responsive';
 
 
@@ -27,16 +110,6 @@
 
 
 
-
-
-
-
-.social-icon-w { display: flex; gap: 10px; }
-.social-icon { display: flex; gap: 15px;}
-
-.price-duration-choose { display: flex; justify-content: center; align-items: center; margin-bottom: 25px; gap: 10px;}
-
-.home-page-banner { padding-top: 140px; z-index: 99; background-color: #E5ECF2; background-image: url(/header-bg-mask.png); background-position: 50% 0; background-repeat: no-repeat;}
 
 
 

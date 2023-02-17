@@ -118,7 +118,7 @@ ul{
     --height: 56px;
     --fs: 18px;
     --pcolor:#656565;
-    .mantine-TextInput-input, .mantine-Textarea-input, .mantine-PasswordInput-input  { 
+    .mantine-TextInput-input, .mantine-Textarea-input, .mantine-PasswordInput-input, .mantine-NativeSelect-input  { 
         background: var(--bg);
         color: var(--color);
         padding: var(--p);
@@ -126,6 +126,7 @@ ul{
         border: var(--border);
         height: 56px;
         font-size: var(--fs);
+        line-height: 1;
         &::placeholder {
             color: var(--pcolor);
         }
@@ -182,6 +183,12 @@ a { font-size: 18px;  text-decoration: none;}
     p { font-size: 18px;}
 }
 .submit-btn { min-width: 200px;}
+.file-select-input {
+    background: #FFFFFF;
+border: 2px dashed #A8A8A8;
+border-radius: 10px; min-height: 220px; display: flex; align-items: center; justify-content: center;
+.file-load-btn { background-color: transparent; border: none; display: flex; flex-direction: column; align-items: center; gap: 15px;}
+}
 
 
 /* Card */
