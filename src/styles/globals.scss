@@ -5,6 +5,7 @@
 @import 'partials/header';
 @import 'partials/footer';
 @import 'partials/components';
+.admin_root_wrap {background-color: #E5ECF2; min-height: 100vh;}
 a { color: #47B6F4; text-decoration: none;}
 a:hover {color: #2b93d0;}
 .admin_wrap { display: flex; gap: 15px; gap: 15px; padding: 52px 72px;}
@@ -45,7 +46,9 @@ a:hover {color: #2b93d0;}
 
 
 /* footer */
-.site-footer { text-align: center; color: #656565;}
+.site-footer { text-align: center; color: #656565; padding-bottom: 15px;
+ p { margin-bottom: 0;}
+}
 
 /* admin-card-wedget */
 .admin-card-wedget { padding: 34px 34px; 
