@@ -1,7 +1,10 @@
 import { Box, NavLink } from '@mantine/core';
 import Dashboard from '@/components/icon/dashboard';
 import Bag from './icon/bag';
+import { handleLogout } from 'store/actions/professionalAdminAction';
+import { useDispatch, useSelector } from 'react-redux';
 export default function SideMenu() {
+    const dispatch = useDispatch();
     return <Box className="admin-sidebar">
         <div className='brand-logo'><img src="/logo.png" alt='' /></div>
         <div className='admin-menus'>
@@ -18,7 +21,7 @@ export default function SideMenu() {
         </NavLink>
         </div>
         <div className='admin-menu-bottom'>
-        <NavLink label="Logout" component='a' href="https://mantine.dev/core/nav-link/" icon={<Dashboard color="#000" />} />
+        <NavLink label="Logout" component='a' onClick={()=> dispatch(handleLogout())} icon={<Dashboard color="#000" />} />
         </div>
   </Box>
   }

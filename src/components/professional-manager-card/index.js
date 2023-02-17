@@ -1,7 +1,8 @@
 import { Avatar, Menu } from "@mantine/core";
 import DownloadIcon from "@/components/icon/download";
 import VerticalDot from "@/components/icon/vertical-dot";
-export default function ProfessionalManagerCard() {
+export default function ProfessionalManagerCard(props) {
+  console.log(props);
     return <div className="card admin-card-wedget">
     <div className="card-head">
         <div className="card-image">

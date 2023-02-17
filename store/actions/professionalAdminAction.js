@@ -178,7 +178,7 @@ export const adminclientProfileDetails = (e) => async (dispatch) => {
   }
 };
 
-export const dashboardClientList = (e) => async () => {
+export const dashboardClientList = (e) => async (dispatch) => {
   try {
     var config = {
       method: "GET",
