@@ -34,14 +34,15 @@ export const handleLogin = (e) => async (dispatch) => {
       data: data
     };
     const res = await axios(config);
-    const { jwt } = res.data;
+    const  jwt  = res.data;
+    console.log(jwt);
     if (jwt) {
       localStorage.setItem("token_key", res.data.accessToken);
       localStorage.setItem("id", res.data.id);
-      Router.push("/")
-      // toast.success(res.data?.message, {
-      //   onClose: () => Router.push("/"),
-      // });
+      // Router.push("/")
+      toast.success("login successfull", {
+        onClose: () => Router.push("/"),
+      });
 
       dispatch({
         type: AUTH_LOGIN,

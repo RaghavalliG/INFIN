@@ -8,14 +8,12 @@ export default function ComingSoon() {
             <div className="site-wrap">
                 <Header />
                 <h3 style={{ margin: 150 }}>Coming Soon...</h3>
-                <div className="action">
+                {/* <div className="action">
                     <a href="/" className="btn btn-primary-light">Back to Home</a>
-                </div>
+                </div> */}
 
             </div>
-            {/* <Header />
-    <p>Coming Soon</p>
-    <Footer /> */}
+    
 
         </>
     )

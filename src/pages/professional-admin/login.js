@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleLogin } from 'store/actions/professionalAdminAction';
 
 
-export default function PRsLogin() {
+export default function Login() {
     const dispatch = useDispatch();
     const form = useForm({
         initialValues: { email: '', password: '' },
@@ -51,7 +51,7 @@ export default function PRsLogin() {
                                     <Checkbox
                                         label="Remember me"
                                     />
-                                    <a href="">Forget password?</a>
+                                    <a href="/professional-admin/forget-password">Forget password?</a>
                                 </div>
                             </div>
                             <div className="row actions mt-5">
