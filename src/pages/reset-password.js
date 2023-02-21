@@ -1,16 +1,24 @@
 import React, { useState, useContext } from "react";
-import { TextInput, Button } from '@mantine/core';
+import { TextInput, Button, PasswordInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { resetPassword } from "store/actions/professionalAdminAction";
+import { useRouter } from 'next/router'
 
 import { useDispatch } from "react-redux";
 
 export default function Reset() {
     const dispatch = useDispatch();
+    const router = useRouter()
+  console.log(router.query.token);
+  const pwd_token = router.query.token;
+    
 
     const form = useForm({
         initialValues: { token: '', password: '' },
 
+        validate: {
+            confirmPassword: (value, values) => value !== values.password ? 'Passwords did not match' : null,
+        },
 
     });
 
@@ -34,14 +42,24 @@ export default function Reset() {
                             <h2 className="card-title">Reset Password</h2>
                             <p>Confirm your email address and we’ll send the instructions.</p>
 
-                            <form onSubmit={form.onSubmit((values) => dispatch(resetPassword(values)))}>
+                            <form onSubmit={form.onSubmit((values) => {values.token = pwd_token; dispatch(resetPassword(values))})}>
                                 <div className="row">
-                                    <div className="col-lg-12">
+                                    {/* <div className="col-lg-12">
                                         <TextInput placeholder="Enter token" {...form.getInputProps('token')} />
+                                    </div> */}
+                                    <div className="col-lg-12">
+                                        <PasswordInput 
+                                        placeholder="Enter new password" 
+                                        withAsterisk 
+                                        {...form.getInputProps('password')} />
                                     </div>
                                     <div className="col-lg-12">
-                                        <TextInput placeholder="Enter new password" {...form.getInputProps('password')} />
-                                    </div>
+                                    <PasswordInput
+                                        placeholder="Confrm password"
+                                        withAsterisk
+                                        {...form.getInputProps('confirmPassword')}
+                                    />
+                                </div>
 
                                 </div>
                                 <div className="row actions mt-5">

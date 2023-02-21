@@ -39,15 +39,17 @@ export const handleLogin = (e) => async (dispatch) => {
       data: data
     };
     const res = await axios(config);
-    const  jwt  = res.data;
+    const jwt = res.data;
     console.log(jwt);
     if (jwt) {
       localStorage.setItem("token_key", res.data.accessToken);
       localStorage.setItem("id", res.data.id);
-      Router.push("/professional-admin")
-      // toast.success("login successfull", {
-      //   onClose: () => Router.push("/dashboard"),
-      // });
+      if (res.data.roles[0] == '"ROLE_PROFESSIONAL_ADMIN"') {
+        Router.push("/professional-admin")
+      }
+      toast.success("login successfull", {
+        onClose: () => Router.push("/professional-admin"),
+      });
 
       dispatch({
         type: AUTH_LOGIN,
@@ -122,7 +124,7 @@ export const handleSignup = (e) => async (dispatch) => {
 export const handleLogout = (e) => async (dispatch) => {
   localStorage.clear();
   sessionStorage.clear();
-  Router.push("/professional-admin/login")
+  Router.push("/login")
   // toast.success("logged out succesfully", {
   //     onClose: () => Router.push("/"),
   //   });
@@ -147,7 +149,7 @@ export const forgetPassword = (e) => async (dispatch) => {
 
     const res = await axios(config);
     if (res.data) {
-      Router.push("/professional-admin/token");
+      Router.push("/token");
       dispatch({
         type: FORGET_PASSWORD,
         payload: res.data,
@@ -174,12 +176,12 @@ export const verifyToken = (e) => async (dispatch) => {
         // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
         // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
       },
-    
+
     };
 
     const res = await axios(config);
     if (res.data) {
-      Router.push("/professional-admin/reset-password");
+      Router.push("/reset-password");
       dispatch({
         type: VERIFY_TOKEN,
         payload: res.data,
@@ -210,12 +212,12 @@ export const resetPassword = (e) => async (dispatch) => {
         // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
       },
       data: data
-    
+
     };
 
     const res = await axios(config);
     if (res.data) {
-      Router.push("/professional-admin/login");
+      Router.push("/login");
       dispatch({
         type: VERIFY_TOKEN,
         payload: res.data,
