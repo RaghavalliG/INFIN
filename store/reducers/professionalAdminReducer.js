@@ -10,6 +10,10 @@ import {
   ADMIN_CLIENT_DETAILS_ERRORS,
   DASHBOARD_CLIENT_LIST,
   DASHBOARD_CLIENT_LIST_ERRORS,
+  FORGET_PASSWORD,
+  FORGET_PASSWORD_ERROR,
+  VERIFY_TOKEN,
+  VERIFY_TOKEN_ERROR,
 } from "../types";
 
 const ISSERVER = typeof window === "undefined";
@@ -21,6 +25,8 @@ if (!ISSERVER) {
 const initialState = {
   isLoggedIn: localValue,
   success: false,
+  authError: false,
+  authErrorMsg: "",
   loading: false,
   professionalAdminData: {},
   adminClientData: {},
@@ -97,6 +103,17 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };
+    case FORGET_PASSWORD:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FORGET_PASSWORD_ERROR:
+      return {
+        ...state,
+        authError: true,
+        authErrorMsg: action.payload,
+      }
     default:
       return state;
   }

@@ -9,10 +9,15 @@ import {
   DASHBOARD_CLIENT_LIST,
   DASHBOARD_CLIENT_LIST_ERRORS,
   ADMIN_CLIENT_DETAILS,
-  ADMIN_CLIENT_DETAILS_ERRORS
+  ADMIN_CLIENT_DETAILS_ERRORS,
+  FORGET_PASSWORD,
+  FORGET_PASSWORD_ERROR,
+  VERIFY_TOKEN,
+  VERIFY_TOKEN_ERROR,
 } from "../types";
 import axios from "axios";
 import Router from "next/router";
+import { toast } from "react-toastify";
 
 
 export const handleLogin = (e) => async (dispatch) => {
@@ -39,10 +44,10 @@ export const handleLogin = (e) => async (dispatch) => {
     if (jwt) {
       localStorage.setItem("token_key", res.data.accessToken);
       localStorage.setItem("id", res.data.id);
-      // Router.push("/")
-      toast.success("login successfull", {
-        onClose: () => Router.push("/"),
-      });
+      Router.push("/professional-admin")
+      // toast.success("login successfull", {
+      //   onClose: () => Router.push("/dashboard"),
+      // });
 
       dispatch({
         type: AUTH_LOGIN,
@@ -99,6 +104,7 @@ export const handleSignup = (e) => async (dispatch) => {
     };
     const res = await axios(config);
     if (res.data) {
+      Router.push("/professional-admin");
       dispatch({
         type: PROFESSIONAL_ADMIN_SIGNUP,
         payload: res.data,
@@ -116,11 +122,114 @@ export const handleSignup = (e) => async (dispatch) => {
 export const handleLogout = (e) => async (dispatch) => {
   localStorage.clear();
   sessionStorage.clear();
+  Router.push("/professional-admin/login")
   // toast.success("logged out succesfully", {
   //     onClose: () => Router.push("/"),
   //   });
 
 }
+export const forgetPassword = (e) => async (dispatch) => {
+  try {
+    let data = {
+      "email": e.email,
+    };
+    // console.log("funciton call");
+    var config = {
+      method: "POST",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/password/forget-password`,
+      headers: {
+        "Content-Type": "application/json",
+        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+      data: data,
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      Router.push("/professional-admin/token");
+      dispatch({
+        type: FORGET_PASSWORD,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "forget password error");
+    dispatch({
+      type: FORGET_PASSWORD_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+}
+
+export const verifyToken = (e) => async (dispatch) => {
+  try {
+    let token = e.token
+    // console.log("funciton call");
+    var config = {
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/password/verify-reset-token/${token}`,
+      headers: {
+        "Content-Type": "application/json",
+        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+    
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      Router.push("/professional-admin/reset-password");
+      dispatch({
+        type: VERIFY_TOKEN,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "verify token error");
+    dispatch({
+      type: VERIFY_TOKEN_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+}
+
+export const resetPassword = (e) => async (dispatch) => {
+  try {
+    let data = {
+      resetToken: e.token,
+      password: e.password,
+    }
+    // console.log("funciton call");
+    var config = {
+      method: "POST",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/password/update-new-password`,
+      headers: {
+        "Content-Type": "application/json",
+        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+      data: data
+    
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      Router.push("/professional-admin/login");
+      dispatch({
+        type: VERIFY_TOKEN,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "verify token error");
+    dispatch({
+      type: VERIFY_TOKEN_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+}
+
 export const professionalAdminProfileDetails = (e) => async (dispatch) => {
   try {
     // console.log("funciton call");

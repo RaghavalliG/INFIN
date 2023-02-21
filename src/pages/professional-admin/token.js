@@ -1,20 +1,16 @@
 import React, { useState, useContext } from "react";
 import { TextInput, Button } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { forgetPassword } from "store/actions/professionalAdminAction";
+import { verifyToken } from "store/actions/professionalAdminAction";
 
 import { useDispatch } from "react-redux";
 
-export default function Email() {
+export default function Token() {
     const dispatch = useDispatch();
 
     const form = useForm({
-        initialValues: { email: '' },
+        initialValues: { token: '' },
 
-        // functions will be used to validate values at corresponding key
-        validate: {
-            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-        },
 
     });
 
@@ -38,10 +34,10 @@ export default function Email() {
                             <h2 className="card-title">Reset Password</h2>
                             <p>Confirm your email address and we’ll send the instructions.</p>
 
-                            <form onSubmit={form.onSubmit((values) => dispatch(forgetPassword(values)))}>
+                            <form onSubmit={form.onSubmit((values) => dispatch(verifyToken(values)))}>
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <TextInput placeholder="Email" {...form.getInputProps('email')} />
+                                        <TextInput placeholder="Enter Token" {...form.getInputProps('token')} />
                                     </div>
 
                                 </div>

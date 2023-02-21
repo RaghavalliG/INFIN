@@ -20,9 +20,10 @@ export default function Header() {
   }
   useEffect(() => {
     if (!(token)) {
-      router.push('/login')
+      router.push('/professional-admin/login')
     }else{
       setIsLogin(true)
+      router.push('/')
     }
   }, [token, router])
 
