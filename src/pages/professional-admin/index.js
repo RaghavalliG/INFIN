@@ -87,7 +87,7 @@ export default function ProfessionalAdminDetail() {
                     </div>
                     <div className="action">
                         <a href="/" className="btn btn-primary-light">Back to Home</a>
-                        <a href="/change Password" className="btn btn-primary-light">Change Password</a>
+                        <a href="/change-password" className="btn btn-primary-light">Change Password</a>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,9 @@ import {
   VERIFY_TOKEN,
   VERIFY_TOKEN_ERROR,
   PROFESSIONAL_ADMIN_EDIT,
-  PROFESSIONAL_ADMIN_EDIT_ERRORS
+  PROFESSIONAL_ADMIN_EDIT_ERRORS,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR,
 } from "../types";
 import axios from "axios";
 import Router from "next/router";
@@ -234,6 +236,44 @@ export const resetPassword = (e) => async (dispatch) => {
   }
 }
 
+export const changePassword = (e) => async (dispatch) => {
+  try {
+    let data = {
+      "oldPassword": e.oldPassword,
+      "newPassword": e.newPassword,
+    };
+    // console.log("funciton call");
+    var config = {
+      method: "POST",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/change-password`,
+      headers: {
+        "Content-Type": "application/json",
+        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+      data: data,
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      toast.success("Changed Password successfull", {         
+        onClose: () => Router.push("/login"),
+      });
+      // Router.push("/token");
+      dispatch({
+        type: CHANGE_PASSWORD,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "forget password error");
+    dispatch({
+      type: CHANGE_PASSWORD_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+}
+
 export const professionalAdminProfileDetails = (e) => async (dispatch) => {
   try {
     // console.log("funciton call");
@@ -292,7 +332,50 @@ export const adminclientProfileDetails = (e) => async (dispatch) => {
   }
 };
 
+export const updateProfessionalAdmin = (e) => async (dispatch) => {
+  const professionalAdminDetail = {
+    professionalAdminDetailId: e.professionalAdminDetailId,
+    membershipNumber: e.membershipNumber,
+    contactAddress: e.contactAddress,
+  };
+  
+  const data = {
+    name: e.fname + " " + e.lname,
+    mobile: e.mobile,
+    professionalAdminDetail: professionalAdminDetail,
+  };
+  console.log(data);
+  try {
+    var config = {
+      method: "POST",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/update-profile`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
 
+        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
+      },
+      data: data,
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      toast.success("Updated successfull", {         
+        onClose: () => Router.push("/professional-admin"),
+      });
+      dispatch({
+        type: PROFESSIONAL_ADMIN_EDIT,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "professional admin edit error");
+    dispatch({
+      type: PROFESSIONAL_ADMIN_EDIT_ERRORS,
+      payload: error?.response?.error?.message,
+    });
+  }
+}
 
 
 export const dashboardClientList = (e) => async (dispatch) => {

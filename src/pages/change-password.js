@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { PasswordInput, Button } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { forgetPassword } from "store/actions/professionalAdminAction";
+import { changePassword } from "store/actions/professionalAdminAction";
 
 import { useDispatch } from "react-redux";
 
@@ -9,11 +9,11 @@ export default function ChangePassword() {
     const dispatch = useDispatch();
 
     const form = useForm({
-        initialValues: { email: '' },
+        initialValues: { oldPassword: '' ,newPassword: '',confirmPassword: ''},
 
         // functions will be used to validate values at corresponding key
         validate: {
-            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+            confirmPassword: (value, values) => { value !== values.newpassword ? 'Passwords did not match' : null},
         },
 
     });

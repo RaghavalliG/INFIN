@@ -15,7 +15,9 @@ import {
   VERIFY_TOKEN,
   VERIFY_TOKEN_ERROR,
   PROFESSIONAL_ADMIN_EDIT,
-  PROFESSIONAL_ADMIN_EDIT_ERRORS
+  PROFESSIONAL_ADMIN_EDIT_ERRORS,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR,
 } from "../types";
 
 const ISSERVER = typeof window === "undefined";
@@ -88,6 +90,16 @@ export default function (state = initialState, action) {
         ...state,
 
       }
+      case CHANGE_PASSWORD:
+      return {
+        ...state,
+
+      }
+      case CHANGE_PASSWORD_ERROR:
+        return {
+          ...state,
+  
+        }
       case PROFESSIONAL_ADMIN_EDIT_ERRORS:
       return {
         ...state,
