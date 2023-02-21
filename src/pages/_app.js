@@ -5,6 +5,9 @@ import Script from 'next/script'
 
 import { store } from '../../store/store';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+// import toast from "../Toast"
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function App({ Component, pageProps }) {
@@ -15,6 +18,17 @@ export default function App({ Component, pageProps }) {
   </Head>
   <Provider store={store}>
     <Component {...pageProps} />
+    <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        draggable={false}
+        pauseOnVisibilityChange
+        closeOnClick
+        pauseOnHover
+     
+      /> 
   </Provider>
   </> 
 }

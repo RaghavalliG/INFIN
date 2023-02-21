@@ -19,7 +19,7 @@ import axios from "axios";
 import Router from "next/router";
 import { toast } from "react-toastify";
 
-
+   // create action for sign in
 export const handleLogin = (e) => async (dispatch) => {
   console.log(e);
   dispatch({
@@ -32,7 +32,7 @@ export const handleLogin = (e) => async (dispatch) => {
     };
     var config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_URL}api/auth/signin`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/auth/signin`,  // api calling
       headers: {
         "Content-Type": "application/json",
       },
@@ -42,12 +42,12 @@ export const handleLogin = (e) => async (dispatch) => {
     const jwt = res.data;
     console.log(jwt);
     if (jwt) {
-      localStorage.setItem("token_key", res.data.accessToken);
+      localStorage.setItem("token_key", res.data.accessToken); //store the token to the localhost
       localStorage.setItem("id", res.data.id);
-      if (res.data.roles[0] == '"ROLE_PROFESSIONAL_ADMIN"') {
+      if (res.data.roles[0] == "ROLE_PROFESSIONAL_ADMIN") {
         Router.push("/professional-admin")
       }
-      toast.success("login successfull", {
+      toast.success("login successfull", {         
         onClose: () => Router.push("/professional-admin"),
       });
 
@@ -67,7 +67,7 @@ export const handleLogin = (e) => async (dispatch) => {
     // });
   }
 };
-
+  //creating action for sign up 
 export const handleSignup = (e) => async (dispatch) => {
   console.log(e);
 
