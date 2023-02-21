@@ -14,6 +14,8 @@ import {
   FORGET_PASSWORD_ERROR,
   VERIFY_TOKEN,
   VERIFY_TOKEN_ERROR,
+  PROFESSIONAL_ADMIN_EDIT,
+  PROFESSIONAL_ADMIN_EDIT_ERRORS
 } from "../types";
 import axios from "axios";
 import Router from "next/router";
@@ -289,6 +291,9 @@ export const adminclientProfileDetails = (e) => async (dispatch) => {
     });
   }
 };
+
+
+
 
 export const dashboardClientList = (e) => async (dispatch) => {
   try {

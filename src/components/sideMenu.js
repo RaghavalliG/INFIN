@@ -3,10 +3,14 @@ import Dashboard from '@/components/icon/dashboard';
 import Bag from './icon/bag';
 import { handleLogout } from 'store/actions/professionalAdminAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 
 export default function SideMenu() {
     const dispatch = useDispatch();
+    const Router = useRouter();
+    var path = Router.pathname.split('/');
+    console.log(path);
 
     const logout = () => {
         console.log('logout');

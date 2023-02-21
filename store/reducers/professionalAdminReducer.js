@@ -14,6 +14,8 @@ import {
   FORGET_PASSWORD_ERROR,
   VERIFY_TOKEN,
   VERIFY_TOKEN_ERROR,
+  PROFESSIONAL_ADMIN_EDIT,
+  PROFESSIONAL_ADMIN_EDIT_ERRORS
 } from "../types";
 
 const ISSERVER = typeof window === "undefined";
@@ -81,6 +83,17 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };
+    case PROFESSIONAL_ADMIN_EDIT:
+      return {
+        ...state,
+
+      }
+      case PROFESSIONAL_ADMIN_EDIT_ERRORS:
+      return {
+        ...state,
+        loading: true,
+      }
+    
     case ADMIN_CLIENT_DETAILS:
       return {
         ...state,
