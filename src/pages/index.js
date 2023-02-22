@@ -25,7 +25,8 @@ export default function Home() {
       setIsLogin(true)
       router.push('/')
     }
-  }, [token, router])
+  }, [])
+
   return (
     <>
       <Head>

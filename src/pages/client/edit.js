@@ -47,9 +47,9 @@ export default function ClientAdminEdit() {
     });
 
 
-    useEffect(() => {
-        form.setValues((prev) => ({ ...prev, ...professionalAdmin_data }));
-    }, [professionalAdmin_data])
+    // useEffect(() => {
+    //     form.setValues((prev) => ({ ...prev, ...professionalAdmin_data }));
+    // }, [professionalAdmin_data])
 
 
     const openRef = useRef(null);
@@ -61,8 +61,7 @@ export default function ClientAdminEdit() {
                 <div className="dashboard-widget-wrap">
                     <div className="card admin-card-wedget">
                         <form onSubmit={form.onSubmit((values) =>{
-                            values.professionalAdminDetailId = professionalAdmin_data.professionalAdminDetailId;
-                            console.log(values)
+                            
                             })}>
                             <div className="card-body p-0">
                                 <div className="row side-gap-0">
@@ -82,14 +81,14 @@ export default function ClientAdminEdit() {
                                     </div>
                                     <div className="col-lg-12">
                                         <TextInput
-                                            value={professionalAdmin_data.email}
+                                            // value={professionalAdmin_data.email}
                                             placeholder="Email address"
                                             {...form.getInputProps('email')}
                                         />
                                     </div>
                                     <div className="col-lg-12">
                                         <TextInput
-                                            value={professionalAdmin_data.mobile}
+                                            // value={professionalAdmin_data.mobile}
                                             placeholder="Contact number"
                                             {...form.getInputProps('mobile')}
 
@@ -97,7 +96,7 @@ export default function ClientAdminEdit() {
                                     </div>
                                     <div className="col-lg-12">
                                         <TextInput
-                                            value={professionalAdmin_data.membershipNumber}
+                                            // value={professionalAdmin_data.membershipNumber}
                                             placeholder="Membership number"
                                             {...form.getInputProps('membershipNumber')}
 
@@ -105,7 +104,7 @@ export default function ClientAdminEdit() {
                                     </div>
                                     <div className="col-lg-12">
                                         <TextInput
-                                            value={professionalAdmin_data.contactAddress}
+                                            // value={professionalAdmin_data.contactAddress}
                                             placeholder="Location"
                                             {...form.getInputProps('contactAddress')}
 

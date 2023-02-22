@@ -91,14 +91,6 @@ export const handleSignup = (e) => async (dispatch) => {
   console.log(data);
 
   try {
-    //   var formData = new FormData();
-    //   formData.append('name', e.first_name + ' ' +e.last_name);
-    //   formData.append('email', e.email);
-    //   formData.append('password', e.password);
-    //   formData.append('mobile', e.contact_number);
-    //   formData.append('role', "professional-admin");
-    //   formData.append('professionalAdminDetail', professionalAdminDetail);
-    //   console.log(formData);
     var config = {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/signup`,
@@ -110,7 +102,10 @@ export const handleSignup = (e) => async (dispatch) => {
     };
     const res = await axios(config);
     if (res.data) {
-      Router.push("/professional-admin");
+      toast.success("Registered successfull", {         
+        onClose: () => Router.push("/login")
+      });
+      
       dispatch({
         type: PROFESSIONAL_ADMIN_SIGNUP,
         payload: res.data,
@@ -275,6 +270,7 @@ export const changePassword = (e) => async (dispatch) => {
 }
 
 export const professionalAdminProfileDetails = (e) => async (dispatch) => {
+  var token = localStorage.getItem("token_key");
   try {
     // console.log("funciton call");
     var config = {
@@ -282,8 +278,8 @@ export const professionalAdminProfileDetails = (e) => async (dispatch) => {
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/professional-admin-profile-detail`,
       headers: {
         "Content-Type": "application/json",
-        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+        'Authorization': `Bearer ${token}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
       },
     };
 
@@ -304,10 +300,12 @@ export const professionalAdminProfileDetails = (e) => async (dispatch) => {
 };
 
 export const adminclientProfileDetails = (e) => async (dispatch) => {
+
+  let clientid = e.clientid;
   try {
     var config = {
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/client-admin-profile-detail/3`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/client-admin-profile-detail/${clientid}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`

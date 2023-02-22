@@ -117,7 +117,7 @@ export default function ProfessionalAdminEdit() {
 
                                         />
                                     </div>
-                                    <div className="col-lg-12">
+                                    {/* <div className="col-lg-12">
                                         <Dropzone
                                             openRef={openRef}
                                             onDrop={(files) => { console.log('accepted files', files) }}
@@ -132,13 +132,13 @@ export default function ProfessionalAdminEdit() {
                                             </span>Upload documents/ID</button>
 
                                         </Dropzone>
-                                    </div>
-                                    <div className="col-lg-12">
+                                    </div> */}
+                                    {/* <div className="col-lg-12">
                                         <NativeSelect
                                             data={['Assign client/Task', 'submenu 1', 'submenu 2', 'submenu 3']}
                                             withAsterisk
                                         />
-                                    </div>
+                                    </div> */}
                                     <div className="col-lg-12 actions place-center mt-5">
                                         <Button type="submit">
                                             Edit Details

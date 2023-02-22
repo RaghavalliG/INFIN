@@ -23,11 +23,11 @@ export default function SideMenu() {
         <NavLink label="Professional Admin" component='a' href= '/professional-admin' icon={<Bag color="#000" />} />
         <NavLink label="Professional Manager" component='a' href= '/professional-manager' icon={<Dashboard color="#000" />} />
         <NavLink label="Professional User" component='a' href= '/coming-soon'  icon={<Dashboard color="#000" />} />
-        <NavLink label="Client Admin" icon={<Dashboard color="#000" />} />
-        <NavLink label="Client User" icon={<Dashboard color="#000" />} />
+        <NavLink label="Client Admin" component='a' href= '/client' icon={<Dashboard color="#000" />} />
+        <NavLink label="Client User" component='a' href= '/coming-soon' icon={<Dashboard color="#000" />} />
         <NavLink label="Custom Menu" icon={<Dashboard color="#000" />}>
-            <NavLink label="Sub item" icon={<Dashboard color="#000" />}>
-            <NavLink label="Sub item" icon={<Dashboard color="#000" />}></NavLink>
+            <NavLink label="Sub item" component='a' href= '/coming-soon' icon={<Dashboard color="#000" />}>
+            <NavLink label="Sub item" component='a' href= '/coming-soon' icon={<Dashboard color="#000" />}></NavLink>
             </NavLink>
         </NavLink>
         </div>

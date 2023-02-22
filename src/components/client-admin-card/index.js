@@ -1,6 +1,7 @@
 import { Avatar, Menu } from "@mantine/core";
 import DownloadIcon from "@/components/icon/download";
 import VerticalDot from "@/components/icon/vertical-dot";
+
 export default function ClientAdminCard(props) {
 console.log(props.client_list );
   // const dispatch = useDispatch();
@@ -27,8 +28,8 @@ console.log(props.client_list );
           <div className="three-dot-btn"><VerticalDot /></div>
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Item icon={<VerticalDot />}>View</Menu.Item>
-          <Menu.Item icon={<VerticalDot />}>Edit</Menu.Item>
+          <Menu.Item component='a' href= {`/client/${props.client_list.id}`} icon={<VerticalDot />}>View</Menu.Item>
+          <Menu.Item component='a' href= {`/client/edit/`} icon={<VerticalDot />}>Edit</Menu.Item>
           <Menu.Item icon={<VerticalDot />}>Delete</Menu.Item>
 
         </Menu.Dropdown>
