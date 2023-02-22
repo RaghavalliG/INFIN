@@ -3,7 +3,9 @@ import { Dropzone } from "@mantine/dropzone";
 import { useRef } from "react";
 
 export default function CreateManager() {
-    const openRef = useRef(null);
+
+    //to access a DOM element directly
+    const openRef = useRef(null);    
     return <div className="card admin-card-wedget">
 
         <div className="card-body p-0">

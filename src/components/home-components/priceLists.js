@@ -4,11 +4,14 @@ export default function PriceList() {
         <div className="container">
         <div className="price-duration-choose">
         <div className="price-dur-btn">
+
+          {/* Monthly subscription */}
         <a href='' className='btn btn-primary outline'
           onClick={(event) => event.preventDefault()}
         >
           Monthly
         </a>
+        {/* yearly subscription */}
         <a className='btn btn-primary'
           onClick={(event) => event.preventDefault()}
         >

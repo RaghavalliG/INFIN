@@ -2,19 +2,23 @@ import { professionalAdminProfileDetails } from "store/actions/professionalAdmin
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { handleLogout } from "store/actions/professionalAdminAction";
+import Link from "next/link";
 
 
 export default function Dashboard() {
     const dispatch = useDispatch();
-
+          
+    // logout action  calling
     const logout = () => {
         dispatch(handleLogout());
     }
-
+     //calling the action 
     useEffect(() => {
         dispatch(professionalAdminProfileDetails());
     }, [])
-    const result = useSelector((state) => state.professionalAdminData.professionalAdminData)
+
+    //access state from redux store
+    const result = useSelector((state) => state.professionalAdminData.professionalAdminData) 
 
     return <div className="dashboard-wrap">
         <div className="container dashboard-container">
@@ -75,7 +79,7 @@ export default function Dashboard() {
                         <div className="item"><span className="key">Contact address: </span><span className="val">{result.contactAddress}</span></div>
                     </div>
                     <div className="action">
-                        <a href="/" className="btn btn-primary-light">Back to Home</a>
+                        <Link href="/" className="btn btn-primary-light">Back to Home</Link>
                     </div>
                 </div>
             </div>

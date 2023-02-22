@@ -46,6 +46,7 @@ export default function Contact() {
             <div className="row home-contact-form-wrap mt-5">
                 <div className="col-lg-6"><img src="/contact-img.png" alt="" className='img-fluid' /></div>
                 <div className="col-lg-6">
+                    {/* onSubmit funciton */}
                 <form onSubmit={form.onSubmit(console.log)}>
       <TextInput placeholder="Name" {...form.getInputProps('name')} />
       <TextInput mt="sm"  placeholder="Email" {...form.getInputProps('email')} />
