@@ -18,14 +18,14 @@ export default function Header() {
   if (typeof window !== 'undefined') {
     var token = localStorage.getItem("token_key");
   }
-  useEffect(() => {
-    if (!(token)) {
-      router.push('/login')
-    }else{
-      setIsLogin(true)
-      router.push('/')
-    }
-  }, [token, router])
+  // useEffect(() => {
+  //   if (!(token)) {
+  //     router.push('/login')
+  //   }else{
+  //     setIsLogin(true)
+  //     router.push('/')
+  //   }
+  // }, [token, router])
 
     return <>
     <Drawer
