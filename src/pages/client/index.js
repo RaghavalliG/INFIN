@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dashboardClientList } from "store/actions/professionalAdminAction";
 
 
-export default function ProfessionalManager() {
+export default function ClientList() {
   const dispatch = useDispatch();
 
   useEffect(()=>{

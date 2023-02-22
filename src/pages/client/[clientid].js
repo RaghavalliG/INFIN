@@ -2,15 +2,21 @@ import { adminclientProfileDetails } from "store/actions/professionalAdminAction
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { handleLogout } from "store/actions/professionalAdminAction";
+import { useRouter } from "next/router";
 
 
 export default function ClientAdminDetail() {
+    const Router = useRouter();
+    const clientid = Router.query.clientid;
+    console.log(clientid);
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(adminclientProfileDetails());
-    },[])
-    const clientlist = useSelector((state) => state.dashboardClientlist.dashboardClientlist)
+        if (clientid) {
+        dispatch(adminclientProfileDetails({ clientid: clientid }));
+        }
+    },[clientid, dispatch])
+    const clientlist = useSelector((state) => state.adminClientData.adminClientData)
     console.log(clientlist,"=====");
 
     return <div className="dashboard-wrap">
@@ -60,16 +66,16 @@ export default function ClientAdminDetail() {
             <div className="block-content-box bg-primary profile-info-card">
                 <div className="avatar"></div>
                 <div className="info">
-                    <h2 className="card-title">{result.name}</h2>
+                    <h2 className="card-title">{clientlist.name}</h2>
                     <p className="card-text">CEO</p>
                 </div>
             </div>
             <div className="block-content-box profile-info-details-card">
                 <div className="key-val-items">
-                <div className="item"><span className="key">Contact Number: </span><span className="val">{result.mobile}</span></div>
-                <div className="item"><span className="key">Email address: </span><span className="val">{result.email}</span></div>
-                <div className="item"><span className="key">Membership number: </span><span className="val">{result.membershipNumber}</span></div>
-                <div className="item"><span className="key">Contact address: </span><span className="val">{result.contactAddress}</span></div>
+                <div className="item"><span className="key">Contact Number: </span><span className="val">{clientlist.mobile}</span></div>
+                <div className="item"><span className="key">Email address: </span><span className="val">{clientlist.email}</span></div>
+                <div className="item"><span className="key">Membership number: </span><span className="val">{clientlist.membershipNumber}</span></div>
+                <div className="item"><span className="key">Contact address: </span><span className="val">{clientlist.contactAddress}</span></div>
                                   </div>
                                   <div className="action">
                                     <a href="" className="btn btn-primary-light">Back to Home</a>

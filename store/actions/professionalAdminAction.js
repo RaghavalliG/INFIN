@@ -14,6 +14,10 @@ import {
   FORGET_PASSWORD_ERROR,
   VERIFY_TOKEN,
   VERIFY_TOKEN_ERROR,
+  PROFESSIONAL_ADMIN_EDIT,
+  PROFESSIONAL_ADMIN_EDIT_ERRORS,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR,
 } from "../types";
 import axios from "axios";
 import Router from "next/router";
@@ -87,14 +91,6 @@ export const handleSignup = (e) => async (dispatch) => {
   console.log(data);
 
   try {
-    //   var formData = new FormData();
-    //   formData.append('name', e.first_name + ' ' +e.last_name);
-    //   formData.append('email', e.email);
-    //   formData.append('password', e.password);
-    //   formData.append('mobile', e.contact_number);
-    //   formData.append('role', "professional-admin");
-    //   formData.append('professionalAdminDetail', professionalAdminDetail);
-    //   console.log(formData);
     var config = {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/signup`,  //api calling
@@ -106,7 +102,10 @@ export const handleSignup = (e) => async (dispatch) => {
     };
     const res = await axios(config);
     if (res.data) {
-      Router.push("/professional-admin");
+      toast.success("Registered successfull", {         
+        onClose: () => Router.push("/login")
+      });
+      
       dispatch({
         type: PROFESSIONAL_ADMIN_SIGNUP,
         payload: res.data,
@@ -239,9 +238,46 @@ export const resetPassword = (e) => async (dispatch) => {
   }
 }
 
-//creating action for getting the Professional admin profile details 
+export const changePassword = (e) => async (dispatch) => {
+  try {
+    let data = {
+      "oldPassword": e.oldPassword,
+      "newPassword": e.newPassword,
+    };
+    // console.log("funciton call");
+    var config = {
+      method: "POST",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/change-password`,
+      headers: {
+        "Content-Type": "application/json",
+        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+      data: data,
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      toast.success("Changed Password successfull", {         
+        onClose: () => Router.push("/login"),
+      });
+      // Router.push("/token");
+      dispatch({
+        type: CHANGE_PASSWORD,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "forget password error");
+    dispatch({
+      type: CHANGE_PASSWORD_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+}
 
 export const professionalAdminProfileDetails = (e) => async (dispatch) => {
+  var token = localStorage.getItem("token_key");
   try {
     // console.log("funciton call");
     var config = {
@@ -249,8 +285,8 @@ export const professionalAdminProfileDetails = (e) => async (dispatch) => {
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/professional-admin-profile-detail`,
       headers: {
         "Content-Type": "application/json",
-        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+        'Authorization': `Bearer ${token}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
       },
     };
 
@@ -274,10 +310,12 @@ export const professionalAdminProfileDetails = (e) => async (dispatch) => {
 //creating action for getting the client admin profile details 
 
 export const adminclientProfileDetails = (e) => async (dispatch) => {
+
+  let clientid = e.clientid;
   try {
     var config = {
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/client-admin-profile-detail/3`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/client-admin-profile-detail/${clientid}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
@@ -302,7 +340,51 @@ export const adminclientProfileDetails = (e) => async (dispatch) => {
   }
 };
 
-//creating action for getting the dashboard client list 
+export const updateProfessionalAdmin = (e) => async (dispatch) => {
+  const professionalAdminDetail = {
+    professionalAdminDetailId: e.professionalAdminDetailId,
+    membershipNumber: e.membershipNumber,
+    contactAddress: e.contactAddress,
+  };
+  
+  const data = {
+    name: e.fname + " " + e.lname,
+    mobile: e.mobile,
+    professionalAdminDetail: professionalAdminDetail,
+  };
+  console.log(data);
+  try {
+    var config = {
+      method: "POST",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/update-profile`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+
+        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
+      },
+      data: data,
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      toast.success("Updated successfull", {         
+        onClose: () => Router.push("/professional-admin"),
+      });
+      dispatch({
+        type: PROFESSIONAL_ADMIN_EDIT,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "professional admin edit error");
+    dispatch({
+      type: PROFESSIONAL_ADMIN_EDIT_ERRORS,
+      payload: error?.response?.error?.message,
+    });
+  }
+}
+
 
 export const dashboardClientList = (e) => async (dispatch) => {
   try {

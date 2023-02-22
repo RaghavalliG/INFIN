@@ -14,6 +14,10 @@ import {
   FORGET_PASSWORD_ERROR,
   VERIFY_TOKEN,
   VERIFY_TOKEN_ERROR,
+  PROFESSIONAL_ADMIN_EDIT,
+  PROFESSIONAL_ADMIN_EDIT_ERRORS,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR,
 } from "../types";
 
 //define window
@@ -94,8 +98,27 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };
+    case PROFESSIONAL_ADMIN_EDIT:
+      return {
+        ...state,
 
-    // reducer for admin client details
+      }
+      case CHANGE_PASSWORD:
+      return {
+        ...state,
+
+      }
+      case CHANGE_PASSWORD_ERROR:
+        return {
+          ...state,
+  
+        }
+      case PROFESSIONAL_ADMIN_EDIT_ERRORS:
+      return {
+        ...state,
+        loading: true,
+      }
+    
     case ADMIN_CLIENT_DETAILS:
       return {
         ...state,

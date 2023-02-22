@@ -7,8 +7,26 @@ import Testimonials from '@/components/home-components/testimonials'
 import Layout from '@/components/layout/layout'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from "react";
+
+import { useRouter } from "next/router";
+
 
 export default function Home() {
+  const router = useRouter();
+  const [isLogin, setIsLogin] = useState(false);
+  if (typeof window !== 'undefined') {
+    var token = localStorage.getItem("token_key");
+  }
+  useEffect(() => {
+    if (!(token)) {
+      router.push('/login')
+    }else{
+      setIsLogin(true)
+      router.push('/')
+    }
+  }, [])
+
   return (
     <>
       <Head>

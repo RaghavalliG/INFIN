@@ -27,7 +27,6 @@ export default function Header() {
       setIsLogin(true)
       router.push('/')    //routing to the home  page fro logged user 
     }
-  // }, [token, router])
   }, [])
 
     return <>
