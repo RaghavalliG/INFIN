@@ -6,7 +6,7 @@ export default function AdminHeader() {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-auto">
-                    <Avatar color="cyan" radius="xl">MK</Avatar>
+                <div className="avatar" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80)'}}></div>
                 </div>
                 <div className="col-auto"><h1 className="page-title">Dashboard</h1>
                     <p className="card-text">CEO</p>

@@ -19,7 +19,10 @@ a:hover {color: #2b93d0;}
     align-items: center; border-radius: 10px; color: #A8A8A8;  }
     .admin-menus .mantine-NavLink-root {margin: 20px 0;}
 .admin-menus .mantine-NavLink-body, .admin-menu-bottom .mantine-NavLink-body { flex: 0 0 auto; }
- .admin-menus .mantine-NavLink-root:hover {background-color: #47B6F4;}
+.admin-menus .mantine-NavLink-root:hover, .admin-menus .mantine-NavLink-root.active {background-color: #47B6F4; color: #fff;
+    svg path { fill: #fff;}
+    .mantine-NavLink-label { color: #fff;}
+}
 .admin-menus  .mantine-NavLink-label, .admin-menu-bottom .mantine-NavLink-label {font-size: 22px;}
 .admin-menus .mantine-NavLink-root svg path { fill: #A8A8A8;}
 .admin-menus .mantine-NavLink-root:hover .mantine-NavLink-label { color: #fff;}
@@ -38,9 +41,10 @@ a:hover {color: #2b93d0;}
 .mantine-RingProgress-label .label { font-size: 35px; color: #47B6F4; letter-spacing: 0.01em; font-weight: 600;}
 .mantine-RingProgress-label .label.green {color: #9DCB55; }
 .card-title { font-size: 24px; font-weight: 600; color: #222222; margin-bottom: 12px;}
-.card-text, .admin-wedget p { font-size: 20px; font-weight: 400; color: #656565; margin-bottom: 12px;}
+.card-text, .admin-wedget p { font-size: 20px; font-weight: 400; color: #656565; margin-bottom: 12px; line-height: 1;}
+.admin-wedget p { line-height: 1.4;}
 .dashboard-widget-wrap .row { gap: 10px 30px; padding: 0 15px;}
-.admin-wedget.col-lg-6 { max-width: calc(50% - 20px);}
+.admin-wedget.col-lg-6 { max-width: calc(50% - 16px);}
 
 .chart_wrap, .chart_wrap canvas { max-width: 100% !important; width: 100% !important; height: auto !important;}
 
@@ -74,7 +78,9 @@ border: none; margin-bottom: 20px;
 .key-val-lists {
     gap:14px 0 !important; padding: 0 !important;
     .item { font-weight: 400; 
-        font-size: 24px; color: #656565;}
+        font-size: 24px; color: #656565;
+        .key { color: #222222; font-weight: 600;}
+    }
 }
 
 .admin-card-wedget .row.side-gap-0 { gap:10px 0;}
