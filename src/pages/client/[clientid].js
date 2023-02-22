@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { handleLogout } from "store/actions/professionalAdminAction";
 import { useRouter } from "next/router";
+import SideMenu from "@/components/sideMenu";
 
 
 export default function ClientAdminDetail() {
@@ -22,11 +23,12 @@ export default function ClientAdminDetail() {
     return <div className="dashboard-wrap">
         <div className="container dashboard-container">
         <div className="sidebar">
-            <div className="brand">
+            {/* <div className="brand">
                 <img src="/logo.png" alt="" className="" width="200" />
-            </div>
+            </div> */}
             <div className="sidebar-menus-card">
-                <ul>
+                <SideMenu />
+                {/* <ul>
                     <li><a href=""><span className="icon"><svg width="27" height="35" viewBox="0 0 27 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.5 17.5C15.2306 17.5 16.9223 16.9868 18.3612 16.0254C19.8002 15.0639 20.9217 13.6973 21.5839 12.0985C22.2462 10.4996 22.4195 8.7403 22.0819 7.04296C21.7443 5.34563 20.9109 3.78653 19.6872 2.56282C18.4635 1.33911 16.9044 0.505753 15.207 0.168133C13.5097 -0.169488 11.7504 0.00379125 10.1515 0.666058C8.55267 1.32832 7.1861 2.44983 6.22464 3.88876C5.26318 5.32769 4.75 7.01942 4.75 8.75C4.75232 11.0699 5.67493 13.2942 7.31537 14.9346C8.95582 16.5751 11.1801 17.4977 13.5 17.5ZM13.5 2.91667C14.6537 2.91667 15.7815 3.25879 16.7408 3.89976C17.7001 4.54074 18.4478 5.45178 18.8893 6.51768C19.3308 7.58359 19.4463 8.75648 19.2212 9.88803C18.9962 11.0196 18.4406 12.059 17.6248 12.8748C16.809 13.6906 15.7696 14.2462 14.638 14.4713C13.5065 14.6963 12.3336 14.5808 11.2677 14.1393C10.2018 13.6978 9.29074 12.9501 8.64976 11.9908C8.00879 11.0315 7.66667 9.90373 7.66667 8.75C7.66667 7.20291 8.28125 5.71918 9.37521 4.62521C10.4692 3.53125 11.9529 2.91667 13.5 2.91667ZM13.5 20.4167C10.0202 20.4205 6.68407 21.8046 4.22349 24.2652C1.76291 26.7257 0.37886 30.0619 0.375 33.5417C0.375 33.9284 0.528645 34.2994 0.802136 34.5729C1.07563 34.8464 1.44656 35 1.83333 35C2.22011 35 2.59104 34.8464 2.86453 34.5729C3.13802 34.2994 3.29167 33.9284 3.29167 33.5417C3.29167 30.8343 4.36718 28.2377 6.28162 26.3233C8.19605 24.4089 10.7926 23.3333 13.5 23.3333C16.2074 23.3333 18.8039 24.4089 20.7184 26.3233C22.6328 28.2377 23.7083 30.8343 23.7083 33.5417C23.7083 33.9284 23.862 34.2994 24.1355 34.5729C24.409 34.8464 24.7799 35 25.1667 35C25.5534 35 25.9244 34.8464 26.1979 34.5729C26.4714 34.2994 26.625 33.9284 26.625 33.5417C26.6211 30.0619 25.2371 26.7257 22.7765 24.2652C20.3159 21.8046 16.9798 20.4205 13.5 20.4167Z" fill="currentColor"/>
 </svg>
@@ -59,7 +61,7 @@ export default function ClientAdminDetail() {
 <path d="M33.3475 14.4066L26.6596 7.71865C26.5251 7.57936 26.3642 7.46826 26.1863 7.39184C26.0083 7.31541 25.817 7.27518 25.6233 7.27349C25.4297 7.27181 25.2377 7.30871 25.0584 7.38203C24.8792 7.45536 24.7164 7.56365 24.5795 7.70057C24.4425 7.8375 24.3343 8.00033 24.2609 8.17955C24.1876 8.35877 24.1507 8.55081 24.1524 8.74444C24.1541 8.93808 24.1943 9.12944 24.2707 9.30736C24.3472 9.48529 24.4583 9.64621 24.5975 9.78073L30.813 15.9976L8.74984 16.0414C8.36306 16.0414 7.99213 16.195 7.71864 16.4685C7.44515 16.742 7.2915 17.1129 7.2915 17.4997C7.2915 17.8865 7.44515 18.2574 7.71864 18.5309C7.99213 18.8044 8.36306 18.958 8.74984 18.958L30.899 18.9128L24.5946 25.2186C24.4553 25.3532 24.3442 25.5141 24.2678 25.692C24.1914 25.8699 24.1512 26.0613 24.1495 26.2549C24.1478 26.4486 24.1847 26.6406 24.258 26.8198C24.3313 26.9991 24.4396 27.1619 24.5766 27.2988C24.7135 27.4357 24.8763 27.544 25.0555 27.6173C25.2348 27.6907 25.4268 27.7276 25.6204 27.7259C25.8141 27.7242 26.0054 27.684 26.1833 27.6075C26.3613 27.5311 26.5222 27.42 26.6567 27.2807L33.3446 20.5928C34.1652 19.7728 34.6265 18.6604 34.627 17.5003C34.6276 16.3402 34.1673 15.2274 33.3475 14.4066Z" fill="currentColor"/>
 </svg>
 </span>Logout</a></li>
-                </ul>
+                </ul> */}
             </div>
         </div>
         <div className="dashboard-content-area">
@@ -74,11 +76,11 @@ export default function ClientAdminDetail() {
                 <div className="key-val-items">
                 <div className="item"><span className="key">Contact Number: </span><span className="val">{clientlist.mobile}</span></div>
                 <div className="item"><span className="key">Email address: </span><span className="val">{clientlist.email}</span></div>
-                <div className="item"><span className="key">Membership number: </span><span className="val">{clientlist.membershipNumber}</span></div>
-                <div className="item"><span className="key">Contact address: </span><span className="val">{clientlist.contactAddress}</span></div>
+                <div className="item"><span className="key">Membership number: </span><span className="val">{clientlist.gstNumber}</span></div>
+                <div className="item"><span className="key">Contact address: </span><span className="val">{clientlist.communicationAddress}</span></div>
                                   </div>
                                   <div className="action">
-                                    <a href="" className="btn btn-primary-light">Back to Home</a>
+                                    <a href="/dashboard" className="btn btn-primary-light">Back to Home</a>
                                   </div>
             </div>
         </div>

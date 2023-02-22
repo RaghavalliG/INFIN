@@ -18,21 +18,26 @@ export default function ProfessionalAdminEdit() {
         dispatch(professionalAdminProfileDetails());
     }, [])
     const professionalAdmin_data = useSelector((state) => state.professionalAdminData.professionalAdminData)
-    console.log(professionalAdmin_data, "=====");
+    // console.log(professionalAdmin_data, "=====");
     if (professionalAdmin_data?.name !== '') {
-        const fullname = professionalAdmin_data.name;
-        console.log(fullname);
-        // const name = fullname.split(" ");
+        let fullname = professionalAdmin_data.name;
+        // console.log(fullname);
+        var space = fullname?.indexOf(" ");
+        var fname = fullname?.substring(0, space);
+        var lname = fullname?.substring(space + 1);
+        // const name = fullname.split('');
+        // console.log(fname);
         // const fname = name[0];
         // // const lname_list = name.shift();
         // // const lname = lname_list.join(" ");
-        // console.log(name);
+        // console.log(lname);
     }
     const form = useForm({
         //Set the Initial Values
         initialValues: {
             email: '',
-            name: '',
+            fname: '',
+            lname: '',
             mobile: '',
             membershipNumber: '',
             contactAddress: '',
@@ -46,9 +51,12 @@ export default function ProfessionalAdminEdit() {
 
     });
 
-
+    // professionalAdmin_data.fname =fname;
+    // professionalAdmin_data.lname=lname;
     useEffect(() => {
-        form.setValues((prev) => ({ ...prev, ...professionalAdmin_data }));
+        form.setValues((prev) => ({ ...prev, ...professionalAdmin_data,fname,lname }));
+        // form.setFieldValue('fname', fname);
+        // form.setFieldValue('lname', lname);
     }, [professionalAdmin_data])
 
 
@@ -60,14 +68,15 @@ export default function ProfessionalAdminEdit() {
                 <AdminHeader />
                 <div className="dashboard-widget-wrap">
                     <div className="card admin-card-wedget">
-                        <form onSubmit={form.onSubmit((values) =>{
+                        <form onSubmit={form.onSubmit((values) => {
                             values.professionalAdminDetailId = professionalAdmin_data.professionalAdminDetailId;
                             dispatch(updateProfessionalAdmin(values))
-                            })}>
+                        })}>
                             <div className="card-body p-0">
                                 <div className="row side-gap-0">
                                     <div className="col-lg-6">
                                         <TextInput
+                                            // value={professionalAdmin_data.fname}
                                             placeholder="First name"
                                             {...form.getInputProps('fname')}
 
@@ -75,6 +84,7 @@ export default function ProfessionalAdminEdit() {
                                     </div>
                                     <div className="col-lg-6">
                                         <TextInput
+                                            // value={professionalAdmin_data.lname}
                                             placeholder="Last name"
                                             {...form.getInputProps('lname')}
 
@@ -82,14 +92,14 @@ export default function ProfessionalAdminEdit() {
                                     </div>
                                     <div className="col-lg-12">
                                         <TextInput
-                                            value={professionalAdmin_data.email}
+                                            // value={professionalAdmin_data.email}
                                             placeholder="Email address"
                                             {...form.getInputProps('email')}
                                         />
                                     </div>
                                     <div className="col-lg-12">
                                         <TextInput
-                                            value={professionalAdmin_data.mobile}
+                                            // value={professionalAdmin_data.mobile}
                                             placeholder="Contact number"
                                             {...form.getInputProps('mobile')}
 
@@ -97,7 +107,7 @@ export default function ProfessionalAdminEdit() {
                                     </div>
                                     <div className="col-lg-12">
                                         <TextInput
-                                            value={professionalAdmin_data.membershipNumber}
+                                            // value={professionalAdmin_data.membershipNumber}
                                             placeholder="Membership number"
                                             {...form.getInputProps('membershipNumber')}
 
@@ -105,7 +115,7 @@ export default function ProfessionalAdminEdit() {
                                     </div>
                                     <div className="col-lg-12">
                                         <TextInput
-                                            value={professionalAdmin_data.contactAddress}
+                                            // value={professionalAdmin_data.contactAddress}
                                             placeholder="Location"
                                             {...form.getInputProps('contactAddress')}
 

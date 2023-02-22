@@ -2,6 +2,7 @@ import { professionalAdminProfileDetails } from "store/actions/professionalAdmin
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogout } from "store/actions/professionalAdminAction";
+import SideMenu from "@/components/sideMenu";
 
 export default function ProfessionalAdminDetail() {
   const dispatch = useDispatch();
@@ -22,7 +23,8 @@ export default function ProfessionalAdminDetail() {
             <img src="/logo.png" alt="" className="" width="200" />
           </div>
           <div className="sidebar-menus-card">
-            <ul>
+            <SideMenu />
+            {/* <ul>
               <li>
                 <a href="">
                   <span className="icon">
@@ -144,7 +146,7 @@ export default function ProfessionalAdminDetail() {
                 </span>
                 Logout
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className="dashboard-content-area">

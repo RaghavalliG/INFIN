@@ -10,16 +10,16 @@ export default function SideMenu() {
     const dispatch = useDispatch();
     const Router = useRouter();
     var path = Router.pathname.split('/');
-    console.log(path);
+    // console.log(path);
 
     const logout = () => {
-        console.log('logout');
+        // console.log('logout');
         dispatch(handleLogout());
     }
     return <Box className="admin-sidebar">
         <div className='brand-logo'><img src="/logo.png" alt='' /></div>
         <div className='admin-menus'>
-        <NavLink label="Dashboard" component='a' href= '/dashboard' icon={<Dashboard color="#000" />} />
+        <NavLink className={path[1]=='dashboard'? 'active': ''} label="Dashboard" component='a' href= '/dashboard' icon={<Dashboard color="#000" />} />
         <NavLink label="Professional Admin" component='a' href= '/professional-admin' icon={<Bag color="#000" />} />
         <NavLink label="Professional Manager" component='a' href= '/professional-manager' icon={<Dashboard color="#000" />} />
         <NavLink label="Professional User" component='a' href= '/coming-soon'  icon={<Dashboard color="#000" />} />

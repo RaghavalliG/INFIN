@@ -14,7 +14,7 @@ export default function Reset() {
     
 
     const form = useForm({
-        initialValues: { token: '', password: '' }, // initialize values
+        initialValues: { token: '', password: '',confirmPassword: '' }, // initialize values
          
         //validation of confirmpassword
         validate: {

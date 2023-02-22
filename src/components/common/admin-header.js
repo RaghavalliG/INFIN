@@ -1,14 +1,23 @@
 import { Avatar } from "@mantine/core";
+import { professionalAdminProfileDetails } from "store/actions/professionalAdminAction";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function AdminHeader() {
     // admin Header section
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(professionalAdminProfileDetails());
+    }, [])
+    const professionalAdmin_data = useSelector((state) => state.professionalAdminData.professionalAdminData)
+
     return <div className="admin-header">
         <div className="container-fluid">
             <div className="row">
                 <div className="col-auto">
                 <div className="avatar" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80)'}}></div>
                 </div>
-                <div className="col-auto"><h1 className="page-title">Dashboard</h1>
+                <div className="col-auto"><h1 className="page-title">{professionalAdmin_data.name}</h1>
                     <p className="card-text">CEO</p>
                 </div>
                 <div className="col-auto ms-auto">

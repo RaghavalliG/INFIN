@@ -53,10 +53,10 @@ export const handleLogin = (e) => async (dispatch) => {
       localStorage.setItem("token_key", res.data.accessToken); //store the token to the localhost
       localStorage.setItem("id", res.data.id);
       if (res.data.roles[0] == "ROLE_PROFESSIONAL_ADMIN") {
-        Router.push("/professional-admin")
+        Router.push("/dashboard")
       }
       toast.success("login successfull", {
-        onClose: () => Router.push("/professional-admin"),
+        onClose: () => Router.push("/dashboard"),
       });
 
       dispatch({
@@ -236,9 +236,7 @@ export const resetPassword = (e) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error(error.response.data.message, {
-      onClose: () =>  location.reload(),
-    });
+    toast.error(error.response.data.message);
     dispatch({
       type: VERIFY_TOKEN_ERROR,
       payload: error?.response?.error?.message,
