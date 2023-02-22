@@ -2,11 +2,14 @@ import { Button, Checkbox, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from '@mantine/form';
 export default function Password() {
     const form = useForm({
+
+        //initial values 
         initialValues: {
           email: '',
           password: '',
         },
-    
+      
+        //validate email 
         validate: {
           email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
         },
@@ -28,9 +31,12 @@ export default function Password() {
                     <div className="form-wrap">
                     <h2 className="card-title">Reset Password</h2>
                     <p>Confirm your email address and we’ll send the instructions.</p>
+                    
+                     {/* onsubmit function */}
                     <form onSubmit={form.onSubmit((values) => console.log(values))}>
                         <div className="row">
                             <div className="col-lg-12">
+                                {/* email field */}
                             <TextInput
                                 withAsterisk
                                 placeholder="Email ID"

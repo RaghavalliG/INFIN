@@ -6,10 +6,10 @@ import { verifyToken } from "store/actions/professionalAdminAction";
 import { useDispatch } from "react-redux";
 
 export default function Token() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); //action dispathcher 
 
     const form = useForm({
-        initialValues: { token: '' },
+        initialValues: { token: '' },   //initialize token 
 
 
     });
@@ -33,7 +33,7 @@ export default function Token() {
                         <div className="form-wrap">
                             <h2 className="card-title">Reset Password</h2>
                             <p>Confirm your email address and we’ll send the instructions.</p>
-
+                                       {/* submit functon */}
                             <form onSubmit={form.onSubmit((values) => dispatch(verifyToken(values)))}>
                                 <div className="row">
                                     <div className="col-lg-12">
@@ -43,6 +43,7 @@ export default function Token() {
                                 </div>
                                 <div className="row actions mt-5">
                                     <div className="col ">
+                                        
                                         <Button type="submit" className="mb-3 submit-btn">
                                             Submit
                                         </Button>

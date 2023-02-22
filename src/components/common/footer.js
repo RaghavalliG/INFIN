@@ -1,4 +1,7 @@
 export default function Footer() {
+
+    // render footer section
+    
     return <footer className="site-footer">
         <div className="footer-top">
             <div className="container">

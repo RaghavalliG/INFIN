@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import professionalAdminReducer from "./professionalAdminReducer";
 
 
-
+//combined reducer
 export default combineReducers({
     professionalAdminReducer: professionalAdminReducer,
     professionalAdminData: professionalAdminReducer,

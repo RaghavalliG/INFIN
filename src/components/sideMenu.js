@@ -32,6 +32,7 @@ export default function SideMenu() {
         </NavLink>
         </div>
         <div className='admin-menu-bottom'>
+            {/* Logout */}
         <NavLink label="Logout" component='a' onClick={()=> logout()} icon={<Dashboard color="#000" />} />
         </div>
   </Box>
