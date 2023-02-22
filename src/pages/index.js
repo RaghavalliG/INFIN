@@ -12,14 +12,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 
+
 export default function Home() {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   if (typeof window !== 'undefined') {
     var token = localStorage.getItem("token_key");
   }
+
   useEffect(() => {
-    if (!(token)) {
+    if (!(token )) {
       router.push('/login')
     }else{
       setIsLogin(true)
@@ -93,6 +95,8 @@ export default function Home() {
       <Contact />
       <Testimonials />
       </Layout>
+
+     
     </>
   )
 }
