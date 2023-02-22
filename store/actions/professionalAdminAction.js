@@ -43,6 +43,12 @@ export const handleLogin = (e) => async (dispatch) => {
     };
     const res = await axios(config);
     const jwt = res.data;
+    // console.log(jwt);
+    if(res.data.success == false){
+      toast.success(res.data.message, {
+        onClose: () => location.reload(),
+      });
+    }
     if (jwt) {
       localStorage.setItem("token_key", res.data.accessToken); //store the token to the localhost
       localStorage.setItem("id", res.data.id);
@@ -59,7 +65,8 @@ export const handleLogin = (e) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error(error.response.data.message, {
+    // console.log(error);
+    toast.error(error.response?.data?.message, {
       onClose: () => location.reload(),
     });
     dispatch({
@@ -281,7 +288,6 @@ export const changePassword = (e) => async (dispatch) => {
 export const professionalAdminProfileDetails = (e) => async (dispatch) => {
   var token = localStorage.getItem("token_key");
   try {
-    // console.log("funciton call");
     var config = {
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/professional-admin-profile-detail`,
@@ -294,7 +300,9 @@ export const professionalAdminProfileDetails = (e) => async (dispatch) => {
 
     const res = await axios(config);
     if (res.data) {
-      toast.success("Professional Admin profile detail");
+      // toast.success("Professional Admin profile detail",{
+      // onClose: () => Router.push("/professional-admin"),
+      // });
       dispatch({
         type: PROFESSIONAL_ADMIN_DETAILS,
         payload: res.data,
