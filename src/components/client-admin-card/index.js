@@ -19,7 +19,7 @@ export default function ClientAdminCard(props) {
         </div>
 
         {/* download detail */}
-        <div className="btns my-auto">
+        <div className="btns ms-auto">
           <a href="" className="btn btn-sm btn-light-blue">
             <span className="icon">
               <DownloadIcon />
