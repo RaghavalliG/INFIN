@@ -5,6 +5,7 @@ import { Avatar, Drawer } from "@mantine/core";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 // import Router from 'next/router';
 
@@ -58,12 +59,12 @@ export default function Header() {
       <div className={`site-header ${scroll.y > 50 ? "fixed" : ""}`}>
         <div className="container">
           <header className="d-flex flex-wrap align-items-center mb-4">
-            <a
+            <Link
               href="/"
               className="d-flex align-items-center col-auto mb-2 mb-md-0 text-dark text-decoration-none brand"
             >
-              <img src="/logo.png" className="logo" />
-            </a>
+              <Image src="/logo.png" className="logo" />
+            </Link>
             <Menu />
             <div className="col-auto text-end actions">
               {isLogin ? (
@@ -97,7 +98,7 @@ export default function Header() {
               )}
 
               {/* mobile view */}
-              <a
+              <Link
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -118,7 +119,7 @@ export default function Header() {
                   />
                 </svg>
                 <span className="label">Menu</span>
-              </a>
+              </Link>
             </div>
           </header>
         </div>

@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogout } from "store/actions/professionalAdminAction";
 import SideMenu from "@/components/sideMenu";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function ProfessionalAdminDetail() {
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ export default function ProfessionalAdminDetail() {
       <div className="container dashboard-container">
         <div className="sidebar">
           <div className="brand">
-            <img src="/logo.png" alt="" className="" width="200" />
+            <Image src="/logo.png" alt="" className="" width="200" />
           </div>
           <div className="sidebar-menus-card">
             <SideMenu />
@@ -181,9 +183,9 @@ export default function ProfessionalAdminDetail() {
               </div>
             </div>
             <div className="action">
-              <a href="/" className="btn btn-primary-light">
+              <Link href="/" className="btn btn-primary-light">
                 Back to Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function Testimonials() {
     return <div className="testimonial-wrap py-5">
         <div className="container">
@@ -11,7 +12,7 @@ export default function Testimonials() {
                 <div className="col-lg-4">
                     <div className="card">
                         <div className="card-thumb">
-                            <img src="/testimonial-img.png" alt="" className="card-img" />
+                            <Image src="/testimonial-img.png" alt="" className="card-img" />
                         </div>
                         <div className="info">
                             <h2 className="card-title">Miller Davis <span className="icon"><svg width={29} height={20} viewBox="0 0 29 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +25,7 @@ export default function Testimonials() {
                 <div className="col-lg-4 active">
                     <div className="card">
                         <div className="card-thumb">
-                            <img src="/testimonial-img.png" alt="" className="card-img" />
+                            <Image src="/testimonial-img.png" alt="" className="card-img" />
                         </div>
                         <div className="info">
                             <h2 className="card-title">Miller Davis <span className="icon"><svg width={29} height={20} viewBox="0 0 29 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +38,7 @@ export default function Testimonials() {
                 <div className="col-lg-4">
                     <div className="card">
                         <div className="card-thumb">
-                            <img src="/testimonial-img.png" alt="" className="card-img" />
+                            <Image src="/testimonial-img.png" alt="" className="card-img" />
                         </div>
                         <div className="info">
                             <h2 className="card-title">Miller Davis <span className="icon"><svg width={29} height={20} viewBox="0 0 29 20" fill="none" xmlns="http://www.w3.org/2000/svg">

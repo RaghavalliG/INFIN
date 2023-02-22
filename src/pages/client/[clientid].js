@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleLogout } from "store/actions/professionalAdminAction";
 import { useRouter } from "next/router";
 import SideMenu from "@/components/sideMenu";
+import Link from "next/link";
 
 
 export default function ClientAdminDetail() {
@@ -80,7 +81,7 @@ export default function ClientAdminDetail() {
                 <div className="item"><span className="key">Contact address: </span><span className="val">{clientlist.communicationAddress}</span></div>
                                   </div>
                                   <div className="action">
-                                    <a href="/dashboard" className="btn btn-primary-light">Back to Home</a>
+                                    <Link href="/dashboard" className="btn btn-primary-light">Back to Home</Link>
                                   </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ export default function Faq() {
         <Accordion defaultValue="customization" className='home-accordion-faq'>
       <Accordion.Item value="customization">
         <Accordion.Control>What is Incorpd?</Accordion.Control>
-        <Accordion.Panel>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</Accordion.Panel>
+        <Accordion.Panel>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&apos;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&apos;t anything embarrassing hidden in the middle of text.</Accordion.Panel>
       </Accordion.Item>
 
       <Accordion.Item value="flexibility">

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { PasswordInput, Button } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import Image from "next/image";
 import { changePassword } from "store/actions/professionalAdminAction";
 
 import { useDispatch } from "react-redux";
@@ -25,11 +26,11 @@ export default function ChangePassword() {
                 <div className="row">
                     <div className="col-lg-6 user-auth-left-card">
                         <div className="card">
-                            <div className="brand"><a href=""><img src="/logo.png" alt="" /></a></div>
+                            <div className="brand"><a href=""><Image src="/logo.png" alt="" /></a></div>
                             <h1 className="card-title">All in one workspace</h1>
                             <p className="card-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
                             <div className="card-image">
-                                <img src="/login-left-bg.png" alt="" className="card-img" />
+                                <Image src="/login-left-bg.png" alt="" className="card-img" />
                             </div>
                         </div>
                     </div>

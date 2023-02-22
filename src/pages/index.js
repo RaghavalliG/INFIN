@@ -65,7 +65,8 @@ export default function Home() {
           We make life Easier for our clients
         </h2>
         <p>
-          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.</p>
+          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&apos;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn
+          &apos;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.</p>
         <p>making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.
         </p>
         <div className="d-grid gap-2 d-md-flex justify-content-md-start actions">
@@ -85,7 +86,7 @@ export default function Home() {
       <div className="site-price-plan pt-5 pb-5 bg-white">
         <div className="container">
           <h3 className="secondary-title text-center">Let’s get started.</h3>
-          <div className="subtext-wrap text-center"><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p></div>
+          <div className="subtext-wrap text-center"><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&apos;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&apos;t anything embarrassing hidden in the middle of text.</p></div>
         </div>
         <PriceList />
       </div>

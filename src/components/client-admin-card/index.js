@@ -33,7 +33,7 @@ export default function ClientAdminCard(props) {
         </Menu.Target>
         <Menu.Dropdown>
           <Menu.Item component='a' href= {`/client/${props.client_list.id}`} icon={<VerticalDot />}>View</Menu.Item>
-          <Menu.Item component='a' href= {`/client/edit/${props.client_list.id}`} icon={<VerticalDot />}>Edit</Menu.Item>
+          <Menu.Item component='a' href= {`/client/edit`} icon={<VerticalDot />}>Edit</Menu.Item>
           <Menu.Item icon={<VerticalDot />}>Delete</Menu.Item>
 
         </Menu.Dropdown>

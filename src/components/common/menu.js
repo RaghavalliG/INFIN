@@ -1,28 +1,30 @@
+import Link from "next/link";
+
 export default function Menu() {
     return <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 main-navi">
       {/* Features */}
     <li>
-      <a href="/coming-soon" className="nav-link px-2 link-dark">
+      <Link href="/coming-soon" className="nav-link px-2 link-dark">
         Features
-      </a>
+      </Link>
     </li>
     {/* pricing */}
     <li>
-      <a href="/coming-soon" className="nav-link px-2 link-dark">
+      <Link href="/coming-soon" className="nav-link px-2 link-dark">
         Pricing
-      </a>
+      </Link>
     </li>
      {/* FAQ */}
     <li>
-      <a href="/coming-soon" className="nav-link px-2 link-dark">
+      <Link href="/coming-soon" className="nav-link px-2 link-dark">
         FAQs
-      </a>
+      </Link>
     </li>
     {/* blog */}
     <li>
-      <a href="/coming-soon" className="nav-link px-2 link-dark">
+      <Link href="/coming-soon" className="nav-link px-2 link-dark">
       Blog
-      </a>
+      </Link>
     </li>
   </ul>
   }

@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function Footer() {
 
     // render footer section
@@ -6,7 +8,7 @@ export default function Footer() {
         <div className="footer-top">
             <div className="container">
                 <div className="row">
-                    <div className="footer-brand col-md-3"><a href=""><img src="/logo.png" className="" /></a></div>
+                    <div className="footer-brand col-md-3"><a href=""><Image src="/logo.png" className="" /></a></div>
                     <div className="footer-brand col-md-9">
                         <ul className="footer-menu">                                        
                             <li><a href="">About</a></li>

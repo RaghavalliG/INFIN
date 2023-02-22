@@ -2,6 +2,8 @@ import { useForm } from "@mantine/form";
 import { PasswordInput, TextInput, Button, Checkbox } from "@mantine/core";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogin } from "store/actions/professionalAdminAction";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -21,9 +23,9 @@ export default function Login() {
           <div className="col-lg-6 user-auth-left-card">
             <div className="card">
               <div className="brand">
-                <a href="">
-                  <img src="/logo.png" alt="" />
-                </a>
+                <Link href="">
+                  <Image src="/logo.png" alt="" />
+                </Link>
               </div>
               <h1 className="card-title">All in one workspace</h1>
               <p className="card-text">
@@ -31,7 +33,7 @@ export default function Login() {
                 but the majority have suffered alteration.
               </p>
               <div className="card-image">
-                <img src="../login-left-bg.png" alt="" className="card-img" />
+                <Image src="../login-left-bg.png" alt="" className="card-img" />
               </div>
             </div>
           </div>
@@ -65,7 +67,7 @@ export default function Login() {
                     <Checkbox label="Remember me" />
 
                     {/* redirect to forgrt password page  */}
-                    <a href="/forget-password">Forget password?</a>
+                    <Link href="/forget-password">Forget password?</Link>
                   </div>
                 </div>
                 <div className="row actions mt-5">
@@ -74,7 +76,7 @@ export default function Login() {
                       Submit
                     </Button>
                     <p>
-                      Don’t have an account? <a href="register">Register</a>
+                      Don’t have an account? <Link href="register">Register</Link>
                     </p>
                     <p>Privacy Policy and Terms of Service</p>
                   </div>
