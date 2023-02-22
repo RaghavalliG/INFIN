@@ -110,7 +110,7 @@ img { max-width: 100%;}
     .admin-sidebar {
         width: 330px;
     }
-    .admin-content-area .admin-header { padding: 20px 38px; border-radius: 15px; }
+    .admin-content-area .admin-header { padding: 20px 15px; border-radius: 15px; }
     .admin-header .card-text { line-height: 1; }
     .admin-sidebar {
         padding: 40px 25px 30px;
@@ -124,7 +124,7 @@ img { max-width: 100%;}
         padding: 17px 5px;
     }
     .admin-card-wedget {
-        padding: 28px 37px;
+        padding: 28px 15px;
         border-radius: 16px;
     }
     .admin-card-wedget .card-image .mantine-Avatar-root {
@@ -144,6 +144,9 @@ img { max-width: 100%;}
         width: 5px;
     }
     .btn-light-blue .icon svg { width: 18px;}
+    .card-text { margin-bottom: 5px; }
+    .mantine-Button-root, .btn { --fs: 18px; --p: 16px 25px;}
+    .profile-info-details-card .btn .icon svg { width: 18px; height: 18px; }
 }
 
 @media screen and (max-width: 992px) {
