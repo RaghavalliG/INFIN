@@ -153,6 +153,5 @@ export default function ProfessionalAdminEdit() {
                 </div>
             </div>
         </div>
-        <Footer />
     </>
 }

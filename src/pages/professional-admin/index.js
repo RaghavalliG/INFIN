@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { handleLogout } from "store/actions/professionalAdminAction";
 import { useRouter } from "next/router";
+import { Avatar } from "@mantine/core";
+import HomeIcon from "@/components/icon/home-icon";
+import EditIcon from "@/components/icon/edit-icon";
 
 export default function ProfessionalAdminDetail() {
     const dispatch = useDispatch();
@@ -66,7 +69,7 @@ export default function ProfessionalAdminDetail() {
             </div>
             <div className="dashboard-content-area">
                 <div className="block-content-box bg-primary profile-info-card">
-                    <div className="avatar"></div>
+                    <div className="avatar" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80)'}}></div>
                     <div className="info">
                         <h2 className="card-title">{professionalAdmin_data.name}</h2>
                         <p className="card-text">CEO</p>
@@ -86,8 +89,8 @@ export default function ProfessionalAdminDetail() {
                         <div className="item"><span className="key">Contact address: </span><span className="val">{professionalAdmin_data.contactAddress}</span></div>
                     </div>
                     <div className="action">
-                        <a href="/" className="btn btn-primary-light">Back to Home</a>
-                        <a href="/change-password" className="btn btn-primary-light">Change Password</a>
+                        <a href="/" className="btn btn-primary-light"><span className="icon"><HomeIcon /></span> Back to Home</a>
+                        <a href="/change-password" className="btn btn-primary"><span className="icon"><EditIcon /></span> Change Password</a>
                     </div>
                 </div>
             </div>
