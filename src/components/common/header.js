@@ -18,14 +18,17 @@ export default function Header() {
   if (typeof window !== 'undefined') {
     var token = localStorage.getItem("token_key");
   }
+
+  //checking for logged user 
   useEffect(() => {
     if (!(token)) {
-      router.push('/login')
+      router.push('/login')     //routing to the login page fro unlogged user 
     }else{
       setIsLogin(true)
-      router.push('/')
+      router.push('/')    //routing to the home  page fro logged user 
     }
-  }, [token, router])
+  // }, [token, router])
+  }, [])
 
     return <>
     <Drawer
@@ -65,7 +68,7 @@ export default function Header() {
         </>
       )}
       
-      
+             {/* mobile view */}
       <a href="#" onClick={(e)=>{e.preventDefault(); setMenuOpened(true)} } className="btn menu-switch-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
   <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>

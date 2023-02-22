@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function Register() {
     // const dispatch = useDispatch();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();  //action dispatcher
     const form = useForm({
+
+        // initial values
         initialValues: {
             first_name: '',
             last_name: '',
@@ -18,6 +20,8 @@ export default function Register() {
             confirmPassword: ''
         },
 
+
+        //validate input field
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
             confirmPassword: (value, values) => value !== values.password ? 'Passwords did not match' : null,
@@ -39,9 +43,13 @@ export default function Register() {
                 <div className="col-lg-6 user-rorm-card">
                     <div className="form-wrap">
                         <h2 className="card-title">Registration</h2>
+
+                         {/* onsubmit function */}
                         <form onSubmit={form.onSubmit((values) => dispatch(handleSignup(values)))}>
                             <div className="row">
                                 <div className="col-lg-6">
+
+                                    {/* first name */}
                                     <TextInput
                                         withAsterisk
 
@@ -50,6 +58,7 @@ export default function Register() {
                                     />
 
                                 </div>
+                                {/* last_name */}
                                 <div className="col-lg-6">
                                     <TextInput
                                         withAsterisk
@@ -60,6 +69,7 @@ export default function Register() {
 
                                 </div>
                                 <div className="col-lg-12">
+                                    {/* contact_number */}
                                     <TextInput
                                         withAsterisk
 
@@ -67,10 +77,12 @@ export default function Register() {
                                         {...form.getInputProps('contact_number')}
                                     />
                                 </div>
+                                {/* Email */}
                                 <div className="col-lg-12">
                                     <TextInput placeholder="Email" {...form.getInputProps('email')} />
                                 </div>
                                 <div className="col-lg-12">
+                                {/* Membership number */}
                                     <TextInput
                                         withAsterisk
 
@@ -78,6 +90,7 @@ export default function Register() {
                                         {...form.getInputProps('membership_number')}
                                     />
                                 </div>
+                                {/* Contact Address */}
                                 <div className="col-lg-12">
                                     <TextInput
                                         withAsterisk
@@ -86,6 +99,7 @@ export default function Register() {
                                         {...form.getInputProps('contact_address')}
                                     />
                                 </div>
+                                {/* Create password */}
                                 <div className="col-lg-12">
                                     <PasswordInput
                                         placeholder="Create password"
@@ -93,6 +107,7 @@ export default function Register() {
                                         {...form.getInputProps('password')}
                                     />
                                 </div>
+                                {/* Confrm password */}
                                 <div className="col-lg-12">
                                     <PasswordInput
                                         placeholder="Confrm password"

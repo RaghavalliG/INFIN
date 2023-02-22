@@ -1,6 +1,7 @@
 import { Avatar } from "@mantine/core";
 
 export default function AdminHeader() {
+    // admin Header section
     return <div className="admin-header">
         <div className="container-fluid">
             <div className="row">

@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function SideMenu() {
     const dispatch = useDispatch();
-
+   
+    // dispatch logout funtion
     const logout = () => {
         console.log('logout');
         dispatch(handleLogout());
@@ -28,6 +29,7 @@ export default function SideMenu() {
         </NavLink>
         </div>
         <div className='admin-menu-bottom'>
+            {/* Logout */}
         <NavLink label="Logout" component='a' onClick={()=> logout()} icon={<Dashboard color="#000" />} />
         </div>
   </Box>

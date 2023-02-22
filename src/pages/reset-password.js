@@ -7,15 +7,16 @@ import { useRouter } from 'next/router'
 import { useDispatch } from "react-redux";
 
 export default function Reset() {
-    const dispatch = useDispatch();
-    const router = useRouter()
+    const dispatch = useDispatch(); //action dispatcher 
+    const router = useRouter()  //defining next route 
   console.log(router.query.token);
   const pwd_token = router.query.token;
     
 
     const form = useForm({
-        initialValues: { token: '', password: '' },
-
+        initialValues: { token: '', password: '' }, // initialize values
+         
+        //validation of confirmpassword
         validate: {
             confirmPassword: (value, values) => value !== values.password ? 'Passwords did not match' : null,
         },
@@ -48,12 +49,15 @@ export default function Reset() {
                                         <TextInput placeholder="Enter token" {...form.getInputProps('token')} />
                                     </div> */}
                                     <div className="col-lg-12">
+
+                                        {/* new password */}
                                         <PasswordInput 
                                         placeholder="Enter new password" 
                                         withAsterisk 
                                         {...form.getInputProps('password')} />
                                     </div>
                                     <div className="col-lg-12">
+                                        {/* confirm password */}
                                     <PasswordInput
                                         placeholder="Confrm password"
                                         withAsterisk
