@@ -1,4 +1,5 @@
 // import Footer from "@/components/common/footer";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Header from "../components/common/header";
@@ -12,9 +13,9 @@ export default function ComingSoon() {
             <div className="site-wrap">
              <Header />
                 <h3 style={{ margin: 150 }}>Coming Soon...</h3>
-                {/* <div className="action">
-                    <a href="/" className="btn btn-primary-light">Back to Home</a>
-                </div> */}
+                <div className="action">
+                    <Link href="/dashboard" className="btn btn-primary-light">Back to Home</Link>
+                </div>
 
             </div>
     

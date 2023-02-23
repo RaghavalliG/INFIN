@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-top">
             <div className="container">
                 <div className="row">
-                    <div className="footer-brand col-md-3"><a href=""><Image src="/logo.png" className="" /></a></div>
+                    <div className="footer-brand col-md-3"><a href=""><Image src="/logo.png" alt="" width={155} height={80} className="" /></a></div>
                     <div className="footer-brand col-md-9">
                         <ul className="footer-menu">                                        
                             <li><a href="">About</a></li>

@@ -4,6 +4,7 @@ import { useForm } from '@mantine/form';
 import { forgetPassword } from "store/actions/professionalAdminAction";
 
 import { useDispatch } from "react-redux";
+import Image from "next/image";
 
 export default function Email() {
     const dispatch = useDispatch();
@@ -25,11 +26,11 @@ export default function Email() {
                 <div className="row">
                     <div className="col-lg-6 user-auth-left-card">
                         <div className="card">
-                            <div className="brand"><a href=""><img src="/logo.png" alt="" /></a></div>
+                            <div className="brand"><a href=""><Image src="/logo.png" alt="" width={155} height={80} /></a></div>
                             <h1 className="card-title">All in one workspace</h1>
                             <p className="card-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
                             <div className="card-image">
-                                <img src="/login-left-bg.png" alt="" className="card-img" />
+                                <Image src="/login-left-bg.png" alt="" className="card-img" width={895} height={683} />
                             </div>
                         </div>
                     </div>

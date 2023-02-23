@@ -4,6 +4,7 @@ import Bag from './icon/bag';
 import { handleLogout } from 'store/actions/professionalAdminAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 
 export default function SideMenu() {
@@ -17,7 +18,7 @@ export default function SideMenu() {
         dispatch(handleLogout());
     }
     return <Box className="admin-sidebar">
-        <div className='brand-logo'><img src="/logo.png" alt='' /></div>
+        <div className='brand-logo'><Image src="/logo.png" alt='' width={155} height={80} /></div>
         <div className='admin-menus'>
         <NavLink className={path[1]=='dashboard'? 'active': ''} label="Dashboard" component='a' href= '/dashboard' icon={<Dashboard color="#000" />} />
         <NavLink label="Professional Admin" component='a' href= '/professional-admin' icon={<Bag color="#000" />} />

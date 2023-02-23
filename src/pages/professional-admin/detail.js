@@ -22,7 +22,7 @@ export default function ProfessionalAdminDetail() {
       <div className="container dashboard-container">
         <div className="sidebar">
           <div className="brand">
-            <Image src="/logo.png" alt="" className="" width="200" />
+            <Image src="/logo.png" alt="" className="" width={200} height={80} />
           </div>
           <div className="sidebar-menus-card">
             <SideMenu />

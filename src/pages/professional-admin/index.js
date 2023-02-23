@@ -29,9 +29,10 @@ export default function ProfessionalAdminDetail() {
     return <div className="dashboard-wrap">
         <div className="container dashboard-container">
             <div className="sidebar">
-                {/* <div className="brand">
-                    <img src="/logo.png" alt="" className="" width="200" />
-                </div> */}
+                {/*<div className="brand">
+                    <image src="/logo.png" alt="" className="" width={200} height={80} />
+                </div>
+*/} 
                 <div className="sidebar-menus-card">
                     <SideMenu />
                     {/* <ul>

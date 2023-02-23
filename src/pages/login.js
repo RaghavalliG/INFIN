@@ -24,16 +24,16 @@ export default function Login() {
             <div className="card">
               <div className="brand">
                 <Link href="">
-                  <Image src="/logo.png" alt="" />
+                  <Image src="/logo.png" alt="" width={155} height={80} />
                 </Link>
               </div>
-              <h1 className="card-title">All in one workspace</h1>
+              <h1 className="card-title">All in one <span className="highlited">workspace</span></h1>
               <p className="card-text">
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration.
               </p>
               <div className="card-image">
-                <Image src="../login-left-bg.png" alt="" className="card-img" />
+                <Image src="/login-left-bg.png" alt="" className="card-img" width={895} height={683} />
               </div>
             </div>
           </div>
