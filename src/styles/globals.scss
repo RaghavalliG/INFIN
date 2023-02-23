@@ -5,6 +5,7 @@
 @import 'partials/header';
 @import 'partials/footer';
 @import 'partials/components';
+img { max-width: 100%; height: auto;}
 .admin_root_wrap {background-color: #E5ECF2; min-height: 100vh;}
 a { color: #47B6F4; text-decoration: none;}
 a:hover {color: #2b93d0;}
@@ -12,7 +13,9 @@ a:hover {color: #2b93d0;}
 .admin-content-area { flex: 1;}
 .admin-sidebar { padding: 50px 35px 25px; background-color: #fff; border-radius: 15px; width: 400px; display: flex; flex-direction: column; text-align: center;
 }
-.admin-sidebar .brand-logo { max-width: 155px; margin: 0 auto 80px auto;}
+.admin-sidebar .brand-logo { max-width: 155px; margin: 0 auto 80px auto;
+    img { height: auto;}
+}
 .admin-menu-bottom { margin-top: auto;}
 
 .admin-menus .mantine-NavLink-root, .admin-menu-bottom .mantine-NavLink-root { text-align: center; justify-content: center; 
@@ -27,6 +30,17 @@ a:hover {color: #2b93d0;}
 .admin-menus .mantine-NavLink-root svg path { fill: #A8A8A8;}
 .admin-menus .mantine-NavLink-root:hover .mantine-NavLink-label { color: #fff;}
 .admin-menus .mantine-NavLink-root:hover svg path { fill: #fff;}
+
+.admin-menus {
+    .menu-link { display: flex; width: 100%; gap: 15px; text-align: center; justify-content: center;
+        margin: 20px 0; padding: 17px 5px; border-radius: 10px; color: #A8A8A8; transition: all .3s;
+        &.active, &:hover  {
+            background-color: #47B6F4; color: #fff;
+        }
+        .label {font-size: 22px;}
+        .icon svg path { fill: currentColor;} 
+    }
+}
 
 /* admin-content-area */
 .admin-content-area .admin-header { background-color: #47B6F4; border-radius: 20px; padding: 20px; margin-bottom: 20px;}

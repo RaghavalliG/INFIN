@@ -38,7 +38,7 @@ export default function Login() {
             </div>
           </div>
           <div className="col-lg-6 user-rorm-card">
-            <div className="form-wrap">
+            <div className="form-wrap my-auto">
               <h2 className="card-title">Login</h2>
               {/* dispath the login action */}
               <form
@@ -78,11 +78,12 @@ export default function Login() {
                     <p>
                       Don’t have an account? <Link href="register">Register</Link>
                     </p>
-                    <p>Privacy Policy and Terms of Service</p>
+                    
                   </div>
                 </div>
               </form>
             </div>
+            <div className="mt-auto card-text"><p><Link href="/">Privacy Policy</Link> and <Link href="/">Terms of Service</Link></p></div>
           </div>
         </div>
       </div>

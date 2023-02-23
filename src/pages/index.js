@@ -38,7 +38,7 @@ export default function Home() {
       </Head>
       <Layout>
       {/** Home hero section */}
-      <ContentBlock img="hero-image.png" imgpos="right" calssnames="home-page-banner">
+      <ContentBlock img="/hero-image.png" imgpos="right" calssnames="home-page-banner">
   <h1 className="primary-title fw-bold">
   We bring solutions to make life <span className="highlighted">Easier for our clients</span>
                 </h1>
@@ -60,7 +60,7 @@ export default function Home() {
                 </div>
     </ContentBlock>
     {/** second content block */}
-      <ContentBlock img="content-img-2.png" calssnames="bg-white mt-5 home-about-sec" >
+      <ContentBlock img="/content-img-2.png" calssnames="bg-white mt-5 home-about-sec" >
         <h2 className="secondary-title fw-bold">
           We make life Easier for our clients
         </h2>

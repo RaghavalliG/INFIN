@@ -1,11 +1,12 @@
 import React from "react";
 
-function HomeIcon() {
+function HomeIcon(props) {
+  
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
+      width={props.size ? props.size : 16}
+      height={props.size ? props.size : 16}
       fill="none"
       viewBox="0 0 30 30"
     >

@@ -2,7 +2,7 @@
 /* images blocks */
 
 .image-content-sec .actions .btn { display: flex; text-align: left; gap: 8px;}
-
+.image-content-sec .img-auto-fix { width: auto; height: auto; max-width: 100%;}
 .highlighted-process {
     --m:118px 0 0 0;
     --p:30px 50px;
@@ -111,7 +111,12 @@ padding: var(--p);
 
 /* login */
 /* Login */
-.user-auth-left-card { background: #E5ECF2; text-align: center; display: flex; align-items: center; justify-content: center;
+.user-auth-left-card { 
+    background: #E5ECF2; 
+    background-image: url('/bg-top-green.png'), url('/bg-bot-blue.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position: 100% 0, 0 100%;
+    text-align: center; display: flex; align-items: center; justify-content: center;
     min-height: 100vh;
 .card {
     --p:56px 0;
@@ -128,7 +133,7 @@ padding: var(--p);
 }
 
 .user-rorm-card {
-    padding: 25px 7vw; display: flex; align-items: center; justify-content: center;
+    padding: 25px 7vw; display: flex; align-items: center; justify-content: center; flex-direction: column;
     .form-wrap {margin: 0 auto; text-align: center; width: 100%;}
     .card-title {font-family: 'Nexa-Trial', 'Arial'; font-size: 32px;}
 }

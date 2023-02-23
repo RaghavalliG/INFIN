@@ -8,11 +8,12 @@ export default function ContentBlock(props) {
                 {props.img ? (
                     <div className="col-10 col-sm-8 col-lg-6 img-col">
                     <Image
-                    width={155} height={80}
                         src={props.img}
-                        className="d-block mx-lg-auto img-fluid"
+                        className="d-block mx-lg-auto img-fluid img-auto-fix"
                         alt="images"
                         loading="lazy"
+                        width={800}
+                        height={600}
                     />
                     </div>
                 ) :''}

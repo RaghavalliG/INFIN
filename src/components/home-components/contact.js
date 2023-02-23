@@ -1,5 +1,6 @@
 import { useForm } from '@mantine/form';
 import { NumberInput, TextInput, Button, Textarea  } from '@mantine/core';
+import Image from 'next/image';
 export default function Contact() {
     const form = useForm({
         initialValues: { name: '', email: '', message: '' },
@@ -44,7 +45,7 @@ export default function Contact() {
                 </div>
             </div>
             <div className="row home-contact-form-wrap mt-5">
-                <div className="col-lg-6"><img src="/contact-img.png" alt="" className='img-fluid' /></div>
+                <div className="col-lg-6"><Image src="/contact-img.png" alt="" className='img-fluid' width={805} height={633} /></div>
                 <div className="col-lg-6">
                     {/* onSubmit funciton */}
                 <form onSubmit={form.onSubmit(console.log)}>
