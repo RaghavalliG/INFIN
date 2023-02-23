@@ -115,7 +115,15 @@ border: none; margin-bottom: 20px;
 
 .home-page-banner { padding-top: 140px; z-index: 99; background-color: #E5ECF2; background-image: url(/header-bg-mask.png); background-position: 50% 0; background-repeat: no-repeat;}
 
-
+.mantine-InputWrapper-root {
+.mantine-Text-root.mantine-InputWrapper-error {
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 8px;
+    margin-top: -8px;
+}
+.mantine-Input-invalid {border-color: #fa5252}
+}
 
 
 @import 'partials/responsive';
