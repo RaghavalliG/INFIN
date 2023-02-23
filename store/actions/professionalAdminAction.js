@@ -405,6 +405,7 @@ export const updateProfessionalAdmin = (e) => async (dispatch) => {
 
 
 export const dashboardClientList = (e) => async (dispatch) => {
+  // toast.loading('Waiting...',{isLoading: false, autoClose: 0 });
   var token = localStorage.getItem('token_key')
   try {
     var config = {
@@ -419,8 +420,11 @@ export const dashboardClientList = (e) => async (dispatch) => {
     };
 
     const res = await axios(config);
+    
+  
     if (res.data) {
-      toast.error(res.data.message, {
+      // toast.update(id, );
+      toast.error(res.data.message, { 
         onClose: () => Router.push('/client')
       });
       dispatch({

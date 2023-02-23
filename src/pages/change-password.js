@@ -14,7 +14,7 @@ export default function ChangePassword() {
 
         // functions will be used to validate values at corresponding key
         validate: {
-            confirmPassword: (value, values) => { value !== values.newpassword ? 'Passwords did not match' : null},
+            confirmPassword: (value, values) => value != values.newPassword? "Your new password doesn't match" : null,
         },
 
     });
@@ -39,16 +39,26 @@ export default function ChangePassword() {
                             <h2 className="card-title">Change Password</h2>
                             {/* <p>Confirm your email address and we’ll send the instructions.</p> */}
 
-                            <form onSubmit={form.onSubmit((values) => dispatch(changePassword(values)))}>
+                            <form onSubmit={form.onSubmit((values) => dispatch(changePassword(values))
+                                )}>
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <PasswordInput placeholder="Old Password" {...form.getInputProps('oldPassword')} />
+                                        <PasswordInput 
+                                        placeholder="Old Password"
+                                        withAsterisk
+                                        {...form.getInputProps('oldPassword')} />
                                     </div>
                                     <div className="col-lg-12">
-                                        <PasswordInput placeholder="New Password" {...form.getInputProps('newPassword')} />
+                                        <PasswordInput 
+                                        placeholder="New Password" 
+                                        withAsterisk
+                                        {...form.getInputProps('newPassword')} />
                                     </div>
                                     <div className="col-lg-12">
-                                        <PasswordInput placeholder="Confirm Password" {...form.getInputProps('confirmPassword')} />
+                                        <PasswordInput 
+                                        placeholder="Confirm Password" 
+                                        withAsterisk
+                                        {...form.getInputProps('confirmPassword')} />
                                     </div>
 
                                 </div>

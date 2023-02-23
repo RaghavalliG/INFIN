@@ -5,34 +5,35 @@ import ClientAdminCard from "@/components/client-admin-card";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { dashboardClientList } from "store/actions/professionalAdminAction";
+import { toast } from "react-toastify";
+import Loading from "@/components/common/loading";
 
 
 export default function ClientList() {
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(dashboardClientList());
-},[])
-const result = useSelector((state) => state.dashboardClientlist.dashboardClientlist)
-const client_list = result.content;
-console.log(client_list,"=====");
-    return <>
+  }, [])
+  const result = useSelector((state) => state.dashboardClientlist.dashboardClientlist)
+  const client_list = result.content;
+  console.log(client_list, "=====");
+  // toast.loading('Waiting...', { isLoading: false, autoClose: 0 });
+  return <>
     <div className='admin_wrap container-fluid'>
-          <SideMenu />
-          <div className="admin-content-area">
-            <AdminHeader />
-            <div className="dashboard-widget-wrap">
-            {client_list?.map((item,key)=>{
-      return(
-        <ClientAdminCard key={`client-admin-${key}`} client_list = {item}/>
-      )
-    }
- )} 
-              
-              
-            </div>
-          </div>
-        </div>
-        <AdminFooter />
-    </>
-  }
+      <SideMenu />
+      <div className="admin-content-area">
+        <AdminHeader />
+        {client_list && client_list.length>0 ?<div className="dashboard-widget-wrap">
+          {client_list?.map((item, key) => {
+            return (
+              <ClientAdminCard key={`client-admin-${key}`} client_list={item} />
+            )
+          }
+          )}
+        </div>:<Loading />}
+      </div>
+    </div>
+    <AdminFooter />
+  </>
+}

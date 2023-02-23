@@ -94,7 +94,7 @@ export default function ProfessionalAdminDetail() {
                         <div className="item"><span className="key">Contact address: </span><span className="val">{professionalAdmin_data.contactAddress}</span></div>
                     </div>
                     <div className="action">
-                        <Link href="/dashboard" className="btn btn-primary-light"><span className="icon"><HomeIcon /></span> Back to Home</Link>
+                        <Link href="/" className="btn btn-primary-light"><span className="icon"><HomeIcon /></span> Back to Home</Link>
                         <Link href="/change-password" className="btn btn-primary"><span className="icon"><EditIcon /></span> Change Password</Link>
                     </div>
                 </div>

@@ -19,30 +19,30 @@ export default function Header() {
   }
 
   // //checking for logged user
-  // useEffect(() => {
-  //   if (!token ) {
-  //     router.push("/login"); //routing to the login page for unlogged user
-  //   } else {
-  //     setIsLogin(true);
-  //     router.push("/"); //routing to the home  page for logged user
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!token ) {
+      router.push("/"); //routing to the home page for unlogged user
+    } else {
+      setIsLogin(true);
+      router.push("/"); //routing to the home  page for logged user
+    }
+  }, []);
   
   // checking for logged user
-  useEffect(() => {
-    if (token && router.pathname == '/coming-soon' 
-    ) {
-      router.push('/coming-soon')
-      setIsLogin(true);
-    } else if(token){
-      router.push("/dashboard"); //routing to the login page for unlogged user
-      setIsLogin(true);
-    } else{
-      router.push("/login"); //routing to the home  page for logged user
+  // useEffect(() => {
+  //   if (token && router.pathname == '/coming-soon' 
+  //   ) {
+  //     router.push('/coming-soon')
+  //     setIsLogin(true);
+  //   } else if(token){
+  //     router.push("/dashboard"); //routing to the login page for unlogged user
+  //     setIsLogin(true);
+  //   } else{
+  //     router.push("/login"); //routing to the home  page for logged user
  
-    }
+  //   }
     
-  }, []);
+  // }, []);
 
   return (
     <>
@@ -77,7 +77,7 @@ export default function Header() {
       </button> */}
 
               <Link
-                      href={"/professional-admin/login"}
+                      href={"/login"}
                       className="btn btn-outline-primary me-2"
                     >
                       {" "}
@@ -87,7 +87,7 @@ export default function Header() {
         Sign up
       </button> */}
                     <Link
-                      href={"/professional-admin/register"}
+                      href={"/register"}
                       className="btn btn-primary outline"
                     >
                       {" "}

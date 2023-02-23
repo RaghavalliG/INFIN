@@ -22,7 +22,7 @@ export default function ComingSoon() {
                 <div className="card admin-card-wedget" style={{maxWidth: '800px', margin: '0 auto'}}>
                 <h3 className="mt-4 mb-5 text-center">Coming Soon...</h3>
                 <div className="action d-flex justify-content-center mb-4">
-                    <Link href="/dashboard" className="btn btn-primary-light"><span className="icon me-2"><HomeIcon size={16} /></span>Back to Home</Link>
+                    <Link href="/" className="btn btn-primary-light"><span className="icon me-2"><HomeIcon size={16} /></span>Back to Home</Link>
                 </div>
                 </div>
                 

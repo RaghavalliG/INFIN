@@ -13,7 +13,7 @@ export default function Login() {
     // functions will be used to validate values at corresponding key
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      password: (value) => (value.length < 2 ? 'Name must have at least 2 letters' : null),
+      password: (value) => (value.length < 4 ? 'Password must have at least 4 characters' : null),
     },
   });
 

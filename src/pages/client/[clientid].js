@@ -81,7 +81,7 @@ export default function ClientAdminDetail() {
                 <div className="item"><span className="key">Contact address: </span><span className="val">{clientlist.communicationAddress}</span></div>
                                   </div>
                                   <div className="action">
-                                    <Link href="/dashboard" className="btn btn-primary-light">Back to Home</Link>
+                                    <Link href="/" className="btn btn-primary-light">Back to Home</Link>
                                   </div>
             </div>
         </div>
