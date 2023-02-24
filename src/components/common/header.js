@@ -46,7 +46,6 @@ export default function Header() {
 
   return (
     <>
-   
       <Drawer
         opened={menuOpened}
         onClose={() => setMenuOpened(false)}
@@ -63,7 +62,13 @@ export default function Header() {
               href="/"
               className="d-flex align-items-center col-auto mb-2 mb-md-0 text-dark text-decoration-none brand"
             >
-              <Image src="/logo.png" className="logo" width={155} height={80} alt=""/>
+              <Image
+                src="/logo.png"
+                className="logo"
+                width={155}
+                height={80}
+                alt=""
+              />
             </Link>
             <Menu />
             <div className="col-auto text-end actions">

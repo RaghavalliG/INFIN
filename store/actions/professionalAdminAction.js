@@ -307,7 +307,7 @@ export const professionalAdminProfileDetails = (e) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error(error.response.data.message, {
+    toast.error(error, {
       onClose: () => location.reload(),
     });
     dispatch({
@@ -322,11 +322,12 @@ export const professionalAdminProfileDetails = (e) => async (dispatch) => {
 
 export const adminclientProfileDetails = (e) => async (dispatch) => {
   var token = localStorage.getItem('token_key');
-  let clientid = e.clientid;
+  console.log(e);
+  // let clientid = e.clientid;
   try {
     var config = {
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/client-admin-profile-detail/${clientid}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/client-admin-profile-detail/${e.clientid}`,
       headers: {
         "Content-Type": "application/json",
         // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
@@ -343,7 +344,7 @@ export const adminclientProfileDetails = (e) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error(error.response.data.message, {
+    toast.error(error, {
       onClose: () => location.reload(),
     });
     // console.log(error, "professional clinet details error");

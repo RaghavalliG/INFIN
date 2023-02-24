@@ -5,7 +5,7 @@ import { Button, NativeSelect, TextInput } from "@mantine/core";
 import { Dropzone } from "@mantine/dropzone";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { useForm } from '@mantine/form';
+import { isNotEmpty, useForm } from '@mantine/form';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { professionalAdminProfileDetails } from "store/actions/professionalAdminAction";
@@ -46,7 +46,18 @@ export default function ProfessionalAdminEdit() {
 
         // functions will be used to validate values at corresponding key
         validate: {
-            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+            fname: (value) =>
+            value.length ==null ? "First name is required" : null,
+          lname: (value) =>
+          value.length ==null  ? "Last Name is required" : null,
+          email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+          mobile: (value) =>
+            /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(value)
+              ? null
+              : "Please Check your number",
+    
+            //   contactAddress: isNotEmpty("Address cannot be empty"),
+            //   Designation: isNotEmpty("Designation cannot be empty"),
         },
 
     });
@@ -124,6 +135,7 @@ export default function ProfessionalAdminEdit() {
                                     <div className="col-lg-12">
                                         <TextInput
                                             placeholder="Designation"
+                                            {...form.getInputProps('Designation')}
 
                                         />
                                     </div>
