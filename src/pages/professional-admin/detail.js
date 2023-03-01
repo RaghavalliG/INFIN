@@ -5,10 +5,11 @@ import { handleLogout } from "store/actions/professionalAdminAction";
 import SideMenu from "@/components/sideMenu";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function ProfessionalAdminDetail() {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   useEffect(() => {
     dispatch(professionalAdminProfileDetails());
   }, []);
@@ -183,9 +184,9 @@ export default function ProfessionalAdminDetail() {
               </div>
             </div>
             <div className="action">
-              <Link href="/" className="btn btn-primary-light">
-                Back to Home
-              </Link>
+              <div onClick={(e) =>{e.preventDefault(); router.back()}} className="btn btn-primary-light">
+                Go Back
+              </div>
             </div>
           </div>
         </div>

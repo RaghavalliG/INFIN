@@ -54,7 +54,7 @@ export default function ProfessionalManagerDetail() {
                 <div className="item"><span className="key">Contact address: </span><span className="val"></span></div>
                                   </div>
                                   <div className="action">
-                                    <Link href="/" className="btn btn-primary-light">Back to Home</Link>
+                                    <div onClick={(e) =>{e.preventDefault(); router.back()}} className="btn btn-primary-light">Go Back</div>
                                   </div>
             </div>
         </div>

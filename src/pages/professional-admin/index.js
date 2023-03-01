@@ -13,6 +13,7 @@ import Image from "next/image";
 export default function ProfessionalAdminDetail() {
     const dispatch = useDispatch();
     const Router = useRouter();
+    // const router = useRouter();
     var path = Router.pathname.split('/');
     // console.log(path);
 
@@ -94,7 +95,7 @@ export default function ProfessionalAdminDetail() {
                         <div className="item"><span className="key">Contact address: </span><span className="val">{professionalAdmin_data.contactAddress}</span></div>
                     </div>
                     <div className="action">
-                        <Link href="/" className="btn btn-primary-light"><span className="icon"><HomeIcon /></span> Back to Home</Link>
+                        <div onClick={(e) =>{e.preventDefault(); Router.back()}} className="btn btn-primary-light"><span className="icon"><HomeIcon /></span> Go Back</div>
                         <Link href="/change-password" className="btn btn-primary"><span className="icon"><EditIcon /></span> Change Password</Link>
                     </div>
                 </div>

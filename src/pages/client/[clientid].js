@@ -82,7 +82,7 @@ export default function ClientAdminDetail() {
                 <div className="item"><span className="key">Contact address: </span><span className="val">{clientlist.communicationAddress}</span></div>
                                   </div>
                                   <div className="action">
-                                    <Link href="/" className="btn btn-primary-light">Back to Home</Link>
+                                    <div onClick={(e) =>{e.preventDefault(); Router.back()}} className="btn btn-primary-light">Go Back</div>
                                   </div>
             </div>
         </div>

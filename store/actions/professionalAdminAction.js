@@ -356,9 +356,7 @@ export const adminclientProfileDetails = (e) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error(error, {
-      onClose: () => location.reload(),
-    });
+    toast.error(error?.response?.data?.message);
     // console.log(error, "professional clinet details error");
     dispatch({
       type: ADMIN_CLIENT_DETAILS_ERRORS,
@@ -466,7 +464,7 @@ export const updateClientAdmin = (e) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error(error.response.data.message, {
+    toast.error(error?.response?.data?.message, {
       onClose: () => location.reload(),
     });
     // console.log(error, "professional admin edit error");
@@ -505,7 +503,7 @@ export const dashboardClientList = (e) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error(error.response.data.message, {
+    toast.error(error?.response?.data?.message, {
       onClose: () => location.reload(),
     });
     // console.log(error, "professional clinet details error");
@@ -597,7 +595,7 @@ export const addProfessionalManager = (e) => async (dispatch) => {
     }
   } catch (error) {
     console.log(error, "++++");
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
     dispatch({
       //for error occur at the time of register
       type: PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_MANAGER_ERRORS,
@@ -677,7 +675,7 @@ export const updateProfessionalManager = (e) => async (dispatch) => {
     }
   } catch (error) {
     console.log(error, "++++");
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
     dispatch({
       //for error occur at the time of register
       type: PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER_ERRORS,
