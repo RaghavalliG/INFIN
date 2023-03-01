@@ -19,37 +19,39 @@ export default function ProfessionalAdminEdit() {
     }, [])
     const professionalAdmin_data = useSelector((state) => state.professionalAdminData.professionalAdminData)
     // console.log(professionalAdmin_data, "=====");
-    if (professionalAdmin_data?.name !== '') {
-        let fullname = professionalAdmin_data.name;
-        // console.log(fullname);
-        var space = fullname?.indexOf(" ");
-        var fname = fullname?.substring(0, space);
-        var lname = fullname?.substring(space + 1);
-        // const name = fullname.split('');
-        // console.log(fname);
-        // const fname = name[0];
-        // // const lname_list = name.shift();
-        // // const lname = lname_list.join(" ");
-        // console.log(lname);
-    }
+    // if (professionalAdmin_data?.name !== '') {
+    //     let fullname = professionalAdmin_data.name;
+    //     // console.log(fullname);
+    //     var space = fullname?.indexOf(" ");
+    //     var fname = fullname?.substring(0, space);
+    //     var lname = fullname?.substring(space + 1);
+    //     // const name = fullname.split('');
+    //     // console.log(fname);
+    //     // const fname = name[0];
+    //     // // const lname_list = name.shift();
+    //     // // const lname = lname_list.join(" ");
+    //     // console.log(lname);
+    // }
     const form = useForm({
         //Set the Initial Values
         initialValues: {
             email: '',
-            fname: '',
-            lname: '',
+            // fname: '',
+            firstName:"",
+            lastName:"",
+            // lname: '',
             mobile: '',
             membershipNumber: '',
             contactAddress: '',
-            designation: '',
+            designation: "",
         },
 
         // functions will be used to validate values at corresponding key
         validate: {
             fname: (value) =>
-            value.length ==null ? "First name is required" : null,
+            value == '' ? "First name is required" : null,
           lname: (value) =>
-          value.length ==null  ? "Last Name is required" : null,
+          value == ''  ? "Last Name is required" : null,
           email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
           mobile: (value) =>
             /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(value)
@@ -65,7 +67,7 @@ export default function ProfessionalAdminEdit() {
     // professionalAdmin_data.fname =fname;
     // professionalAdmin_data.lname=lname;
     useEffect(() => {
-        form.setValues((prev) => ({ ...prev, ...professionalAdmin_data,fname,lname }));
+        form.setValues((prev) => ({ ...prev, ...professionalAdmin_data}));
         // form.setFieldValue('fname', fname);
         // form.setFieldValue('lname', lname);
     }, [professionalAdmin_data])
@@ -80,6 +82,7 @@ export default function ProfessionalAdminEdit() {
                 <div className="dashboard-widget-wrap">
                     <div className="card admin-card-wedget">
                         <form onSubmit={form.onSubmit((values) => {
+                            console.log(values);
                             values.professionalAdminDetailId = professionalAdmin_data.professionalAdminDetailId;
                             dispatch(updateProfessionalAdmin(values))
                         })}>
@@ -89,7 +92,7 @@ export default function ProfessionalAdminEdit() {
                                         <TextInput
                                             // value={professionalAdmin_data.fname}
                                             placeholder="First name"
-                                            {...form.getInputProps('fname')}
+                                            {...form.getInputProps('firstName')}
 
                                         />
                                     </div>
@@ -97,7 +100,7 @@ export default function ProfessionalAdminEdit() {
                                         <TextInput
                                             // value={professionalAdmin_data.lname}
                                             placeholder="Last name"
-                                            {...form.getInputProps('lname')}
+                                            {...form.getInputProps('lastName')}
 
                                         />
                                     </div>
@@ -135,7 +138,7 @@ export default function ProfessionalAdminEdit() {
                                     <div className="col-lg-12">
                                         <TextInput
                                             placeholder="Designation"
-                                            {...form.getInputProps('Designation')}
+                                            {...form.getInputProps('designation')}
 
                                         />
                                     </div>

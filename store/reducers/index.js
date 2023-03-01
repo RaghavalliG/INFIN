@@ -8,5 +8,8 @@ export default combineReducers({
     professionalAdminData: professionalAdminReducer,
     adminClientData: professionalAdminReducer,
     dashboardClientlist: professionalAdminReducer,
+    professionalManagerList: professionalAdminReducer,
+    professionalManagerData: professionalAdminReducer,
+
 
 });

@@ -4,22 +4,29 @@ import { handleSignup } from "store/actions/professionalAdminAction";
 import { useDispatch, useSelector } from 'react-redux';
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Register() {
     // const dispatch = useDispatch();
     const dispatch = useDispatch();  //action dispatcher
+    const router = useRouter()  //defining next route 
+    console.log(router.query.email);
+    const route_email = router.query.email;
+
     const form = useForm({
 
         // initial values
         initialValues: {
-            first_name: '',
-            last_name: '',
+            firstName: '',
+            lastName: '',
             contact_number: '',
             membership_number: '',
             contact_address: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            // role: ''
         },
 
 
@@ -29,6 +36,12 @@ export default function Register() {
             confirmPassword: (value, values) => value !== values.password ? 'Passwords did not match' : null,
         },
     });
+    useEffect(() => {
+        // form.setValues((prev) => ({ ...prev, ...professionalAdmin_data}));
+        form.setFieldValue('email', route_email);
+        // form.setFieldValue('role', 7);
+        // form.setFieldValue('lname', lname);
+    }, [route_email])
     return <div className="user-auth-pages">
         <div className="container-fluid">
             <div className="row">
@@ -46,8 +59,12 @@ export default function Register() {
                     <div className="form-wrap my-auto">
                         <h2 className="card-title">Registration</h2>
 
-                         {/* onsubmit function */}
-                        <form onSubmit={form.onSubmit((values) => dispatch(handleSignup(values)))}>
+                        {/* onsubmit function */}
+                        <form onSubmit={form.onSubmit((values) => {
+                            route_email ? values.role = 7 : values.role = 4;
+                            dispatch(handleSignup(values))
+                        }
+                        )}>
                             <div className="row">
                                 <div className="col-lg-6">
 
@@ -56,7 +73,7 @@ export default function Register() {
                                         withAsterisk
 
                                         placeholder="First name"
-                                        {...form.getInputProps('first_name')}
+                                        {...form.getInputProps('firstName')}
                                     />
 
                                 </div>
@@ -66,7 +83,7 @@ export default function Register() {
                                         withAsterisk
 
                                         placeholder="Last name"
-                                        {...form.getInputProps('last_name')}
+                                        {...form.getInputProps('lastName')}
                                     />
 
                                 </div>
@@ -81,10 +98,14 @@ export default function Register() {
                                 </div>
                                 {/* Email */}
                                 <div className="col-lg-12">
-                                    <TextInput placeholder="Email" {...form.getInputProps('email')} />
+                                    <TextInput placeholder="Email"
+                                        {...form.getInputProps('email')}
+                                        readOnly= { route_email ? "readonly": ''}
+                                        // 
+                                    />
                                 </div>
                                 <div className="col-lg-12">
-                                {/* Membership number */}
+                                    {/* Membership number */}
                                     <TextInput
                                         withAsterisk
 
@@ -125,11 +146,11 @@ export default function Register() {
                                         Register
                                     </Button>
                                     <p>Already have an account?  <a href="login">Login</a></p>
-                                    
+
                                 </div>
                             </div>
                         </form>
-                        
+
                     </div>
                     <div className="mt-auto card-text"><p><Link href="/">Privacy Policy</Link> and <Link href="/">Terms of Service</Link></p></div>
                 </div>

@@ -76,7 +76,7 @@ export default function ProfessionalAdminDetail() {
                 <div className="block-content-box bg-primary profile-info-card">
                     <div className="avatar" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80)'}}></div>
                     <div className="info">
-                        <h2 className="card-title">{professionalAdmin_data.name}</h2>
+                        <h2 className="card-title">{`${professionalAdmin_data.firstName}  ${professionalAdmin_data.lastName}`}</h2>
                         <p className="card-text">CEO</p>
                     </div>
                     <div className="col-auto ms-auto">

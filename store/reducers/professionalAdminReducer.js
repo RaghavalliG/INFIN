@@ -18,6 +18,18 @@ import {
   PROFESSIONAL_ADMIN_EDIT_ERRORS,
   CHANGE_PASSWORD,
   CHANGE_PASSWORD_ERROR,
+  ADMIN_CLIENT_DETAILS_UPDATE,
+  ADMIN_CLIENT_DETAILS_UPDATE_ERRORS,
+  PROFESSIONAL_ADMIN_MANAGER_LIST,
+  PROFESSIONAL_ADMIN_MANAGER_LIST_ERRORS,
+  PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_MANAGER,
+  PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_MANAGER_ERRORS,
+  PROFESSIONAL_MANAGER_DETAILS,
+  PROFESSIONAL_MANAGER_DETAILS_ERROR,
+  PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER,
+  PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER_ERRORS,
+  INVITE_CLIENT,
+  INVITE_CLIENT_ERROR
 } from "../types";
 
 //define window
@@ -36,6 +48,8 @@ const initialState = {
   authErrorMsg: "",
   loading: false,
   professionalAdminData: {},
+  professionalManagerList: {},
+  professionalManagerData: {},
   adminClientData: {},
   dashboardClientlist: {},
 };
@@ -101,24 +115,31 @@ export default function (state = initialState, action) {
     case PROFESSIONAL_ADMIN_EDIT:
       return {
         ...state,
-
-      }
-      case CHANGE_PASSWORD:
+      };
+    case CHANGE_PASSWORD:
       return {
         ...state,
-
-      }
-      case CHANGE_PASSWORD_ERROR:
-        return {
-          ...state,
-  
-        }
-      case PROFESSIONAL_ADMIN_EDIT_ERRORS:
+      };
+    case CHANGE_PASSWORD_ERROR:
+      return {
+        ...state,
+      };
+    case PROFESSIONAL_ADMIN_EDIT_ERRORS:
       return {
         ...state,
         loading: true,
-      }
-    
+      };
+    case ADMIN_CLIENT_DETAILS_UPDATE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case ADMIN_CLIENT_DETAILS_UPDATE_ERRORS:
+      return {
+        ...state,
+        loading: true,
+      };
+
     case ADMIN_CLIENT_DETAILS:
       return {
         ...state,
@@ -139,6 +160,33 @@ export default function (state = initialState, action) {
         dashboardClientlist: action.payload,
         loading: false,
       };
+    // reducer for professional Admin Manager list errrors
+    case PROFESSIONAL_ADMIN_MANAGER_LIST:
+      return {
+        ...state,
+        professionalManagerList: action.payload,
+        loading: false,
+      };
+    // reducer for professional Admin Manager list errrors
+    case PROFESSIONAL_ADMIN_MANAGER_LIST_ERRORS:
+      return {
+        ...state,
+        loading: true,
+      };
+    // reducer for professional Manager details error
+    case PROFESSIONAL_MANAGER_DETAILS:
+      return {
+        ...state,
+        professionalManagerData: action.payload,
+        loading: false,
+      };
+
+    // reducer for professional Manager details error
+    case PROFESSIONAL_MANAGER_DETAILS_ERROR:
+      return {
+        ...state,
+        loading: true,
+      };
 
     // reducer for professional admin errrors
     case DASHBOARD_CLIENT_LIST_ERRORS:
@@ -158,6 +206,40 @@ export default function (state = initialState, action) {
         ...state,
         authError: true,
         authErrorMsg: action.payload,
+      };
+    case PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_MANAGER:
+      return {
+        ...state,
+
+      };
+    case PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_MANAGER_ERRORS:
+      return {
+        ...state,
+        loading: true,
+
+      };
+    case PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER:
+      return {
+        ...state,
+
+      };
+    case PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER_ERRORS:
+      return {
+        ...state,
+        loading: true,
+
+      };
+      case INVITE_CLIENT:
+      return {
+        ...state,
+        loading: false,
+
+      };
+      case INVITE_CLIENT_ERROR:
+      return {
+        ...state,
+        loading: true,
+
       };
     default:
       return state;

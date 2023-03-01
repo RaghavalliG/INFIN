@@ -95,6 +95,13 @@ border: none; margin-bottom: 20px;
         color: #fff;
     }
 }
+div.btn-light-blue {
+    a { color: inherit; display: flex; gap: 15px; align-items: center;}
+}
+
+.btn-light-blue.solid { background-color: #47B6F4; color: #fff; min-height: 42px;
+    &:hover { background-color: #222222;}
+}
 
 .key-val-lists {
     gap:14px 0 !important; padding: 0 !important;
@@ -124,6 +131,9 @@ border: none; margin-bottom: 20px;
 }
 .mantine-Input-invalid {border-color: #fa5252}
 }
+
+.admin-filter-action .btn-light-blue { background-color: #222222; margin-right: 10px; color: #fff;}
+.admin-filter-action .btn.btn-light-blue .icon svg { margin-right: 0}
 
 
 @import 'partials/responsive';

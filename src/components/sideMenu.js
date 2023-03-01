@@ -33,7 +33,7 @@ export default function SideMenu() {
             </Link>
             <Link className={`menu-link ${path[1]=='professional-admin'? 'active': ''}`} href= '/professional-admin'>
                 <span className="icon"><Bag color="#000" size={25} /></span>
-                <span className="label">Professional Admin</span>
+                <span className="label">Professional Admin Profile</span>
             </Link>
             <Link className={`menu-link ${path[1]=='professional-manager'? 'active': ''}`} href= '/professional-manager'>
                 <span className="icon"><IconManager color="#000" /></span>

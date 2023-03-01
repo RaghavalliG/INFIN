@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   adminclientProfileDetails,
   professionalAdminProfileDetails,
+  updateClientAdmin,
 } from "store/actions/professionalAdminAction";
 import { updateProfessionalAdmin } from "store/actions/professionalAdminAction";
 import { useRouter } from "next/router";
@@ -20,21 +21,8 @@ import { toast } from "react-toastify";
 export default function ClientAdminEdit() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { edit } = router.query; //create dynamic id
-  // useEffect(() => {
-  //     dispatch(professionalAdminProfileDetails());
-  // }, [])
-  // const professionalAdmin_data = useSelector((state) => state.professionalAdminData.professionalAdminData)
-  // console.log(professionalAdmin_data, "=====");
-  // if (professionalAdmin_data?.name !== '') {
-  //     const fullname = professionalAdmin_data.name;
-  //     console.log(fullname);
-  //     // const name = fullname.split(" ");
-  //     // const fname = name[0];
-  //     // // const lname_list = name.shift();
-  //     // // const lname = lname_list.join(" ");
-  //     // console.log(name);
-  // }
+  const clientid = router.query.edit; //create dynamic id
+  console.log(clientid);
 
   const [image, setImage] = useState([]); //store files
 
@@ -51,31 +39,33 @@ export default function ClientAdminEdit() {
   //   );
   // })
 
+  useEffect(() => {
+    if (clientid && clientid != "") {
+      dispatch(adminclientProfileDetails({ clientid: clientid }));
+    }
+  }, [clientid, dispatch]);
+
   const adminClientData = useSelector(
     //access data from store
     (state) => state.adminClientData.adminClientData
   );
   console.log(adminClientData, "adminClient Data +++++++@@@@@");
-  useEffect(() => {
-    dispatch(adminclientProfileDetails(edit));
-  }, [edit]);
 
-  //split the full name to first name and last name
-  if (adminClientData?.name !== "") {
-    let fullname = adminClientData.name;
+  //split the full name to first name and last name not require as response is firstname and Lastname
+  // if (adminClientData?.name !== "") {
+  //   let fullname = adminClientData.name;
 
-    var split = fullname?.indexOf(" ");
-    var fname = fullname?.substring(0, split);
-    var lname = fullname?.substring(split + 1);
-  }
+  //   var split = fullname?.indexOf(" ");
+  // var firstName = 'john';
+  // var lastName = 'doe';
+  // }
 
   //set single user value to input field
   useEffect(() => {
     form.setValues((prev) => ({
       ...prev,
       ...adminClientData,
-      fname,
-      lname,
+
       image,
     }));
   }, [adminClientData]);
@@ -84,23 +74,25 @@ export default function ClientAdminEdit() {
     //Set the Initial Values
     initialValues: {
       email: "",
-      fname: "",
-      lname: "",
+      firstName: "",
+      lastName: "",
       mobile: "",
       membershipNumber: "",
       // contactAddress: "",
       communicationAddress: "",
       // designation: "",
       businessType: "",
+      gstNumber: "",
+      panNumber: "",
+      companyName: "",
       files: "",
     },
 
     // functions will be used to validate values at corresponding key
     validate: {
-      fname: (value) =>
-            value.length ==null ? "First name is required" : null,
-        lname: (value) =>
-        value.length ==null  ? "Last Name is required" : null,
+      firstName: (value) => (value == "" ? "First name is required" : null),
+      lastName: (value) => (value == "" ? "Last name is required" : null),
+      // lname: (value) => (value.length == null ? "Last Name is required" : null),
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
       mobile: (value) =>
         /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(value)
@@ -128,7 +120,7 @@ export default function ClientAdminEdit() {
                     values,
                     "edited Values ++++++++=========================="
                   );
-                  toast.success("Edited Successfully");
+                  dispatch(updateClientAdmin(values)); //calling the update action
                 })}
               >
                 <div className="card-body p-0">
@@ -136,13 +128,13 @@ export default function ClientAdminEdit() {
                     <div className="col-lg-6">
                       <TextInput
                         placeholder="First name"
-                        {...form.getInputProps("fname")}
+                        {...form.getInputProps("firstName")}
                       />
                     </div>
                     <div className="col-lg-6">
                       <TextInput
                         placeholder="Last name"
-                        {...form.getInputProps("lname")}
+                        {...form.getInputProps("lastName")}
                       />
                     </div>
                     <div className="col-lg-12">
@@ -175,12 +167,33 @@ export default function ClientAdminEdit() {
                     </div>
                     <div className="col-lg-12">
                       <TextInput
+                        // value={professionalAdmin_data.contactAddress}
+                        placeholder="Gst Number"
+                        {...form.getInputProps("gstNumber")}
+                      />
+                    </div>
+                    <div className="col-lg-12">
+                      <TextInput
+                        // value={professionalAdmin_data.contactAddress}
+                        placeholder="Pan Number"
+                        {...form.getInputProps("panNumber")}
+                      />
+                    </div>
+                    <div className="col-lg-12">
+                      <TextInput
+                        placeholder="Comapany name"
+                        {...form.getInputProps("companyName")}
+                      />
+                    </div>
+                    <div className="col-lg-12">
+                      <TextInput
                         placeholder="Designation"
                         {...form.getInputProps("businessType")}
                       />
                     </div>
-                    <div className="col-lg-12">
-                      {/* Files Upload */}
+                    {/* Files Upload */}
+                    {/* <div className="col-lg-12">
+                      
                       <Dropzone
                         openRef={openRef}
                         {...form.getInputProps("files")}
@@ -191,7 +204,7 @@ export default function ClientAdminEdit() {
                             image.push(item);
                           });
                         }}
-                        // accept={IMAGE_MIME_TYPE}
+                        accept={IMAGE_MIME_TYPE}
                         onReject={(files) =>
                           console.log("rejected files", files)
                         }
@@ -199,7 +212,7 @@ export default function ClientAdminEdit() {
                         className="file-select-input"
                         styles={{ inner: { pointerEvents: "all" } }}
                       >
-                        {/* {(status) => dropzoneChildren(status, theme)} */}
+                        {(status) => dropzoneChildren(status, theme)}
                         <button
                           onClick={() => openRef.current()}
                           className="file-load-btn"
@@ -229,7 +242,7 @@ export default function ClientAdminEdit() {
                           Upload documents/ID
                         </button>
                       </Dropzone>
-                    </div>
+                    </div> */}
                     <div className="col-lg-12">
                       <NativeSelect
                         data={[

@@ -14,7 +14,8 @@ export default function ClientAdminDetail() {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        if (clientid) {
+        if (clientid && clientid != 'edit') {
+            console.log(clientid)
         dispatch(adminclientProfileDetails({ clientid: clientid }));
         }
     },[clientid, dispatch])

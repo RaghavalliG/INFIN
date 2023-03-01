@@ -201,3 +201,8 @@ padding: var(--p);
     .actions { margin-top: 35px;}
     }
     .image-content-sec .actions .btn { font-size: 1.15em;}
+
+    /* admin filter  action */
+    .admin-filter-action { padding: 0 0 15px 0; display: flex; flex-wrap: wrap; justify-content: flex-end;}
+    .admin-filter-action .btn .icon svg{ margin-right: 10px; width: 18px; height: 18px;}
+    .admin-filter-action .btn:hover { background-color: #222; border-color: #222; color: #fff; }

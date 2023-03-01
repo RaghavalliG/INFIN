@@ -15,7 +15,7 @@ export default function ComingSoon() {
             <div className="site-wrap admin_wrap" style={{minHeight: '100vh', flexDirection:'column'}}>
              <div className="d-flex justify-content-center pt-5 pb-5">
                 <Link href="/">
-                    <Image src="/logo.png" className="logo" width={155} height={80} />
+                    <Image src="/logo.png" className="logo" width={155} height={80} alt='logo' />
                 </Link>
              </div>
              <main className="container" style={{marginTop: '0px'}}>

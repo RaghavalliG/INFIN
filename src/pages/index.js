@@ -27,7 +27,7 @@ export default function Home() {
     isLogin ? router.push('/dashboard') : router.push('/register')
   }
   return (
-    <>
+    <> 
       <Head>
         <title>Home Page</title>
         <meta name="description" content="infin" />

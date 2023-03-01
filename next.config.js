@@ -8,7 +8,7 @@ const nextConfig = {
   //   return [
   //     {
   //       source: '/api/:path*',
-  //       destination: 'https://infin.mydevfactory.com:8443/:path*',
+  //       destination: 'http://128.199.30.38:5000/:path*',
   //     },
   //   ]
   // },
