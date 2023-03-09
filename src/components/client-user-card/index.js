@@ -1,12 +1,10 @@
 import { Avatar, Menu } from "@mantine/core";
 import DownloadIcon from "@/components/icon/download";
 import VerticalDot from "@/components/icon/vertical-dot";
-import { clientAdminDelete } from "store/actions/professionalAdminAction";
-import { useDispatch } from "react-redux";
 
-export default function ClientAdminCard(props) {
+export default function ClientUserCard(props) {
   console.log(props.client_list);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <div className="card admin-card-wedget">
@@ -17,8 +15,8 @@ export default function ClientAdminCard(props) {
         {/* Serial number */}
         <div className="info">
           <p className="card-text mb-1">Serial Number: 1234 ABC 234</p>
-          <h3 className="card-title">{`${props.client_list.firstName}  ${props.client_list.lastName}`}</h3>
-          {/* <h3 className="card-title">{props.client_list.firstName} {props.client_list.lastName}</h3> */}
+          {/* <h3 className="card-title">{props.client_list.name}</h3> */}
+          <h3 className="card-title">Srinath Laha</h3>
         </div>
 
         {/* download detail */}
@@ -31,23 +29,28 @@ export default function ClientAdminCard(props) {
           </a>
         </div>
         <Menu shadow="md" width={200} classNames="threedot-drops-menu">
-        <Menu.Target>
-          <div className="three-dot-btn"><VerticalDot /></div>
-        </Menu.Target>
-        <Menu.Dropdown>
-          <Menu.Item component='a' href= {`/client-admin/${props.client_list.id}`} icon={<VerticalDot />}>View</Menu.Item>
-          <Menu.Item component='a' href= {`/client-admin/edit/${props.client_list.id}`} icon={<VerticalDot />}>Edit</Menu.Item>
-          <Menu.Item icon={<VerticalDot />} onClick={() => {
-              dispatch(clientAdminDelete(
-                {
-                  caid: props.client_list.id,
-                  cadid: props.client_list.clientAdminDetailId
-                }
-              ))
-            }}
-          >Delete</Menu.Item>
-
-        </Menu.Dropdown>
+          <Menu.Target>
+            <div className="three-dot-btn">
+              <VerticalDot />
+            </div>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item
+              component="a"
+              href={`/client-user/1`}
+              icon={<VerticalDot />}
+            >
+              View
+            </Menu.Item>
+            <Menu.Item
+              component="a"
+              href={`/client-user/edit/1`}
+              icon={<VerticalDot />}
+            >
+              Edit
+            </Menu.Item>
+            <Menu.Item icon={<VerticalDot />}>Delete</Menu.Item>
+          </Menu.Dropdown>
         </Menu>
       </div>
       <div className="card-body">
@@ -55,7 +58,8 @@ export default function ClientAdminCard(props) {
           {/* contact number */}
           <div className="item col-lg-6">
             <span className="key">Contact number: </span>
-            <span className="val">{props.client_list.mobile}</span>
+            {/* <span className="val">{props.client_list.mobile}</span>*/}
+            <span className="val">7845963214 </span>
           </div>
 
           {/* years of experience */}
@@ -67,7 +71,8 @@ export default function ClientAdminCard(props) {
           {/* Emal Id */}
           <div className="item col-lg-6">
             <span className="key">Email ID: </span>
-            <span className="val">{props.client_list.email}</span>
+            {/* <span className="val">{props.client_list.email}</span> */}
+            <span className="val">abc@gmail.com</span>
           </div>
 
           {/* Subscribed plan */}
@@ -88,7 +93,8 @@ export default function ClientAdminCard(props) {
             <span className="key">Contact Address: </span>
             <span className="val">
               {" "}
-              {props.client_list.communicationAddress}
+              {/* {props.client_list.communicationAddress}  */}
+              Kolkata
             </span>
           </div>
         </div>

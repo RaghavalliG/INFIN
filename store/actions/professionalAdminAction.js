@@ -29,8 +29,23 @@ import {
   PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER,
   PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER_ERRORS,
   INVITE_CLIENT,
-  INVITE_CLIENT_ERROR
-
+  INVITE_CLIENT_ERROR,
+  GET_USER_MAIL_DETAILS,
+  GET_USER_MAIL_DETAILS_ERROR,
+  PROFESSIONAL_ADMIN_PUSER_LIST,
+  PROFESSIONAL_ADMIN_PUSER_LIST_ERRORS,
+  PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_USER,
+  PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_USER_ERRORS,
+  PROFESSIONAL_USER_DETAILS,
+  PROFESSIONAL_USER_DETAILS_ERROR,
+  PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_USER,
+  PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_USER_ERRORS,
+  PROFESSIONAL_USER_DELETE,
+  PROFESSIONAL_USER_DELETE_ERROR,
+  PROFESSIONAL_MANAGER_DELETE,
+  PROFESSIONAL_MANAGER_DELETE_ERROR,
+  CLIENT_ADMIN_DELETE,
+  CLIENT_ADMIN_DELETE_ERROR,
 } from "../types";
 import axios from "axios";
 import Router from "next/router";
@@ -56,21 +71,24 @@ export const handleLogin = (e) => async (dispatch) => {
     };
     const res = await axios(config);
     const jwt = res.data;
-    // console.log(jwt);
-    if (res.data.success == false) {
-      toast.success(res.data.message, {
-        onClose: () => location.reload(),
-      });
-    }
+    console.log(jwt);
+
     if (jwt) {
-      localStorage.setItem("token_key", res.data.accessToken); //store the token to the localhost
-      localStorage.setItem("id", res.data.id);
-      // if (res.data.roles[0] == "ROLE_PROFESSIONAL_ADMIN") {
-      //   Router.push("/dashboard");
-      // }
-      toast.success("login successfull",{
-        onClose: Router.push("/dashboard")
-      });
+      if (res.data.success == false) {
+        toast.success(res.data.message);
+      } else {
+        localStorage.setItem("token_key", res.data.accessToken); //store the token to the localhost
+        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("firstname", res.data.firstName);
+        localStorage.setItem("lastname", res.data.lastName);
+        localStorage.setItem("userroles", res.data.roles);
+        // if (res.data.roles[0] == "ROLE_PROFESSIONAL_ADMIN") {
+        //   Router.push("/dashboard");
+        // }
+        toast.success("login successfull", {
+          onClose: Router.push("/dashboard"),
+        });
+      }
 
       dispatch({
         type: AUTH_LOGIN,
@@ -93,8 +111,8 @@ export const handleSignup = (e) => async (dispatch) => {
     contactAddress: e.contact_address,
   };
   const data = {
-    firstName:e.firstName,
-   lastName:e.lastName,
+    firstName: e.firstName,
+    lastName: e.lastName,
 
     email: e.email,
     password: e.password,
@@ -134,6 +152,90 @@ export const handleSignup = (e) => async (dispatch) => {
   }
 };
 
+// create action for client sign in
+export const handleClientSignup = (e) => async (dispatch) => {
+  const clientAdminDetail = {
+    companyName: e.companyName,
+    panNumber: e.panNumber,
+    gstNumber: e.gstNumber,
+    businessType: e.businessType,
+    communicationAddress: e.contact_address,
+  };
+  const data = {
+    firstName: e.firstName,
+    lastName: e.lastName,
+    email: e.email,
+    password: e.password,
+    mobile: e.contact_number,
+    role: e.role,
+    clientAdminDetail: clientAdminDetail,
+  };
+  // console.log(data);
+  try {
+    var config = {
+      method: "post",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/client-admin/signup`, //api calling
+      headers: {
+        "Content-Type": "application/json",
+        // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOCKEN}`,
+      },
+      data: data,
+    };
+    const res = await axios(config);
+    if (res.data) {
+      toast.success(res.data.message, {
+        onClose: () => Router.push("/login"),
+      });
+
+      dispatch({
+        type: PROFESSIONAL_ADMIN_SIGNUP,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "++++");
+    dispatch({
+      //for error occur at the time of register
+      type: PROFESSIONAL_ADMIN_SIGNUP_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+};
+
+// create action for getting details for register with email
+export const detailsWithEmail = (e) => async (dispatch) => {
+  var token = localStorage.getItem("token_key");
+  console.log(e);
+  try {
+    var config = {
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/invite/detail/${e}`,
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      // toast.success("Professional Admin profile detail"),
+      // });
+      dispatch({
+        type: GET_USER_MAIL_DETAILS,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    toast.error(error, {
+      onClose: () => location.reload(),
+    });
+    dispatch({
+      type: GET_USER_MAIL_DETAILS_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+};
 // create action for Log out
 
 export const handleLogout = (e) => async (dispatch) => {
@@ -379,7 +481,7 @@ export const updateProfessionalAdmin = (e) => async (dispatch) => {
     lastName: e.lastName,
     mobile: e.mobile,
     professionalAdminDetail: professionalAdminDetail,
-    role: 4
+    role: 4,
   };
   // console.log(data);
   try {
@@ -456,7 +558,7 @@ export const updateClientAdmin = (e) => async (dispatch) => {
     const res = await axios(config);
     if (res.data) {
       toast.success(res.data.message, {
-        onClose: () => Router.push("/client"),
+        onClose: () => Router.push("/client-admin"),
       });
       dispatch({
         type: ADMIN_CLIENT_DETAILS_UPDATE,
@@ -495,7 +597,7 @@ export const dashboardClientList = (e) => async (dispatch) => {
     if (res.data) {
       // toast.update(id, );
       toast.error(res.data.message, {
-        onClose: () => Router.push("/client"),
+        onClose: () => Router.push("/client-admin"),
       });
       dispatch({
         type: DASHBOARD_CLIENT_LIST,
@@ -514,71 +616,70 @@ export const dashboardClientList = (e) => async (dispatch) => {
   }
 };
 
-export const professionalAdminProfessionalManagerList = (e) => async (dispatch) => {
-  // toast.loading('Waiting...',{isLoading: false, autoClose: 0 });
-  var token = localStorage.getItem('token_key')
-  try {
-    var config = {
-      method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/professional-manager-list`,
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+export const professionalAdminProfessionalManagerList =
+  (e) => async (dispatch) => {
+    // toast.loading('Waiting...',{isLoading: false, autoClose: 0 });
+    var token = localStorage.getItem("token_key");
+    try {
+      var config = {
+        method: "GET",
+        url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/professional-manager-list`,
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
 
-        'Authorization': `Bearer ${token}`,
-      },
-    };
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-    const res = await axios(config);
+      const res = await axios(config);
 
-
-    if (res.data) {
-      // toast.update(id, );
-      toast.error(res.data.message, {
-        onClose: () => Router.push('/professional-manager')
+      if (res.data) {
+        // toast.update(id, );
+        toast.error(res.data.message, {
+          onClose: () => Router.push("/professional-manager"),
+        });
+        dispatch({
+          type: PROFESSIONAL_ADMIN_MANAGER_LIST,
+          payload: res.data,
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.message, {
+        onClose: () => location.reload(),
       });
+      // console.log(error, "professional clinet details error");
       dispatch({
-        type: PROFESSIONAL_ADMIN_MANAGER_LIST,
-        payload: res.data,
+        type: PROFESSIONAL_ADMIN_MANAGER_LIST_ERRORS,
+        payload: error?.response?.error?.message,
       });
     }
-  } catch (error) {
-    toast.error(error.response.data.message, {
-      onClose: () => location.reload(),
-    });
-    // console.log(error, "professional clinet details error");
-    dispatch({
-      type: PROFESSIONAL_ADMIN_MANAGER_LIST_ERRORS,
-      payload: error?.response?.error?.message,
-    });
-  }
-}
+  };
 
-export const addProfessionalManager = (e) => async (dispatch) => { 
+export const addProfessionalManager = (e) => async (dispatch) => {
+  console.log(e, "EEEEEEEEEEE===>>>");
+  var token = localStorage.getItem("token_key");
 
-  console.log(e,"EEEEEEEEEEE===>>>")
-  var token = localStorage.getItem('token_key')
- 
   const data = {
-    "firstName": e.firstName,
-    "lastName": e.lastName,
-    "email": e.email,
-    "password": "123456987",
-    "mobile": e.mobile,
-    "role": 5,
-    "isVerified": 1,
-    "professionalManagerRequest":
-    {
-      "validIdProof": "sdgsgdfgdfgdfgdffdhzdfmvgnv"
-    }
-  }
+    firstName: e.firstName,
+    lastName: e.lastName,
+    email: e.email,
+    password: "123456987",
+    mobile: e.mobile,
+    role: 5,
+    isVerified: 1,
+    professionalManagerRequest: {
+      validIdProof: "sdgsgdfgdfgdfgdffdhzdfmvgnv",
+      location: e.location,
+    },
+  };
   try {
     var config = {
       method: "POST",
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/create-professional-manager`, //api calling
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       data: data,
     };
@@ -605,7 +706,7 @@ export const addProfessionalManager = (e) => async (dispatch) => {
 };
 
 export const professionalManagerDetails = (e) => async (dispatch) => {
-  console.log(e,"EEEEEEEEEEEEEE")
+  console.log(e, "EEEEEEEEEEEEEE");
   var token = localStorage.getItem("token_key");
   try {
     var config = {
@@ -638,19 +739,19 @@ export const professionalManagerDetails = (e) => async (dispatch) => {
 };
 
 export const updateProfessionalManager = (e) => async (dispatch) => {
-  var token = localStorage.getItem('token_key')
+  var token = localStorage.getItem("token_key");
   console.log(e);
- 
+
   const data = {
-    "firstName": e.firstName,
-    "lastName": e.lastName,
-    "mobile": e.mobile,
-    "professionalManagerRequest":
-    {
-      "professionalManagerDetailId": e.professionalManagerDetailId,
-      "validIdProof": e.validIdProof
-    }
-  }
+    firstName: e.firstName,
+    lastName: e.lastName,
+    mobile: e.mobile,
+    professionalManagerRequest: {
+      professionalManagerDetailId: e.professionalManagerDetailId,
+      validIdProof: e.validIdProof,
+      location: e.location,
+    },
+  };
 
   try {
     var config = {
@@ -658,7 +759,7 @@ export const updateProfessionalManager = (e) => async (dispatch) => {
       url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/update-professional-manager-profile/${e.id}`, //api calling
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       data: data,
     };
@@ -685,13 +786,13 @@ export const updateProfessionalManager = (e) => async (dispatch) => {
 };
 
 export const inviteClient = (e) => async (dispatch) => {
-  var token = localStorage.getItem('token_key')
+  var token = localStorage.getItem("token_key");
   console.log(e);
- 
+
   const data = {
-   email: e.email,
-   roleId: 7,
-  }
+    email: e.email,
+    roleId: 7,
+  };
 
   try {
     var config = {
@@ -699,14 +800,14 @@ export const inviteClient = (e) => async (dispatch) => {
       url: `${process.env.NEXT_PUBLIC_API_URL}api/invite/send`, //api calling
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       data: data,
     };
     const res = await axios(config);
     if (res.data) {
       toast.success(res.data.message, {
-        onClose: () => Router.push("/client"),
+        onClose: () => Router.push("/client-admin"),
       });
 
       dispatch({
@@ -721,6 +822,269 @@ export const inviteClient = (e) => async (dispatch) => {
       //for error occur at the time of invitation
       type: INVITE_CLIENT_ERROR,
       payload: error?.response?.message,
+    });
+  }
+};
+
+export const clientAdminDelete = (e) => async (dispatch) => {
+  console.log(e, "EEEEEEEEEEEEEE");
+  var token = localStorage.getItem("token_key");
+  try {
+    var config = {
+      method: "DELETE",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/delete-client-admin/${e.caid}/${e.cadid}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      toast.success(res.data.message);
+      dispatch({
+        type: CLIENT_ADMIN_DELETE,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    toast.error(error?.response?.data?.message);
+    dispatch({
+      type: CLIENT_ADMIN_DELETE_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+};
+export const professionalManagerDelete = (e) => async (dispatch) => {
+  console.log(e, "EEEEEEEEEEEEEE");
+  var token = localStorage.getItem("token_key");
+  try {
+    var config = {
+      method: "DELETE",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/delete-professional-manager/${e.pmid}/${e.pmdid}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      toast.success(res.data.message, {
+        // onClose: () => location.reload()
+      });
+      dispatch({
+        type: PROFESSIONAL_MANAGER_DELETE,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    toast.error(error?.response?.data?.message);
+    dispatch({
+      type: PROFESSIONAL_MANAGER_DELETE_ERROR,
+      payload: error?.response,
+    });
+  }
+};
+
+// PROFESSIONAL ADMIN MANAGE PROFESSIONAL USER
+export const professionalAdminProfessionalUserList =
+  (e) => async (dispatch) => {
+    // toast.loading('Waiting...',{isLoading: false, autoClose: 0 });
+    var token = localStorage.getItem("token_key");
+    try {
+      var config = {
+        method: "GET",
+        url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/professional-user-list`,
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const res = await axios(config);
+
+      if (res.data) {
+        // toast.update(id, );
+        toast.error(res.data.message, {
+          onClose: () => Router.push("/professional-user"),
+        });
+        dispatch({
+          type: PROFESSIONAL_ADMIN_PUSER_LIST,
+          payload: res.data,
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.message, {
+        onClose: () => location.reload(),
+      });
+      // console.log(error, "professional clinet details error");
+      dispatch({
+        type: PROFESSIONAL_ADMIN_PUSER_LIST_ERRORS,
+        payload: error?.response?.error?.message,
+      });
+    }
+  };
+
+export const addProfessionalUser = (e) => async (dispatch) => {
+  console.log(e, "EEEEEEEEEEE===>>>");
+  var token = localStorage.getItem("token_key");
+
+  const data = {
+    firstName: e.firstName,
+    lastName: e.lastName,
+    email: e.email,
+    password: e.password,
+    mobile: e.mobile,
+    role: 6,
+    professionalUserRequest: {
+      validIdProof: "sdgsgdfgdfgdfgdffdhzdfmvgnv",
+    },
+  };
+  try {
+    var config = {
+      method: "POST",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/create-professional-user`, //api calling
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    };
+    const res = await axios(config);
+    if (res.data) {
+      toast.success(res.data.message, {
+        onClose: () => Router.push("/professional-user"),
+      });
+
+      dispatch({
+        type: PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_USER,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "++++");
+    toast.error(error?.response?.data?.message);
+    dispatch({
+      //for error occur at the time of register
+      type: PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_USER_ERRORS,
+      payload: error?.response?.message,
+    });
+  }
+};
+
+export const professionalUserDetails = (e) => async (dispatch) => {
+  console.log(e, "EEEEEEEEEEEEEE");
+  var token = localStorage.getItem("token_key");
+  try {
+    var config = {
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/professional-user-profile-detail/${e.userId}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      // toast.success("Professional Admin profile detail",{
+      // onClose: () => Router.push("/professional-admin"),
+      // });
+      dispatch({
+        type: PROFESSIONAL_USER_DETAILS,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    toast.error(error.response.data.message);
+    dispatch({
+      type: PROFESSIONAL_USER_DETAILS_ERROR,
+      payload: error?.response?.error?.message,
+    });
+  }
+};
+
+export const updateProfessionalUser = (e) => async (dispatch) => {
+  var token = localStorage.getItem("token_key");
+  console.log(e);
+
+  const data = {
+    firstName: e.firstName,
+    lastName: e.lastName,
+    mobile: e.mobile,
+    professionalUserRequest: {
+      professionalUserDetailId: e.professionalUserDetailId,
+      validIdProof: "sdfsdfgd",
+    },
+  };
+
+  try {
+    var config = {
+      method: "PUT",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/update-professional-user-profile/${e.id}`, //api calling
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    };
+    const res = await axios(config);
+    if (res.data) {
+      toast.success(res.data.message, {
+        onClose: () => Router.push("/professional-user"),
+      });
+
+      dispatch({
+        type: PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_USER,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log(error, "++++");
+    toast.error(error?.response?.data?.message);
+    dispatch({
+      //for error occur at the time of register
+      type: PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_USER_ERRORS,
+      payload: error?.response?.message,
+    });
+  }
+};
+
+export const professionalUserDelete = (e) => async (dispatch) => {
+  console.log(e, "EEEEEEEEEEEEEE");
+  var token = localStorage.getItem("token_key");
+  try {
+    var config = {
+      method: "DELETE",
+      url: `${process.env.NEXT_PUBLIC_API_URL}api/professional-admin/delete-professional-user/${e.puid}/${e.pudid}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjc2NDc5OTc1LCJleHAiOjE2NzcwODQ3NzV9.uxzVeuxLY7KyRrE24f4hE0g1aD2kQjGreVHg4AQ8ARsWw97dnoCyeq4MAKhksiQPfvnOHJvJsLvAJGnq8B_yoQ`
+      },
+    };
+
+    const res = await axios(config);
+    if (res.data) {
+      toast.success(res.data.message, {
+        onClose: () => location.reload(),
+      });
+      dispatch({
+        type: PROFESSIONAL_USER_DELETE,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    toast.error(error?.response?.data?.message);
+    dispatch({
+      type: PROFESSIONAL_USER_DELETE_ERROR,
+      payload: error?.response?.error?.message,
     });
   }
 };

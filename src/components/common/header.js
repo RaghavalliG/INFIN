@@ -73,7 +73,7 @@ export default function Header() {
             <Menu />
             <div className="col-auto text-end actions">
               {isLogin ? (
-                <Avatar radius="xl" />
+                <Avatar radius="xl" size={40} color="blue" variant="filled">RR</Avatar>
               ) : (
                 <>
                   <div className="header-login-btns">

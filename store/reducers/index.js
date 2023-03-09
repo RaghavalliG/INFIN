@@ -10,6 +10,9 @@ export default combineReducers({
     dashboardClientlist: professionalAdminReducer,
     professionalManagerList: professionalAdminReducer,
     professionalManagerData: professionalAdminReducer,
+    userMailData: professionalAdminReducer,
+    professionalUserList: professionalAdminReducer,
+    professionalUserData: professionalAdminReducer,
 
 
 });

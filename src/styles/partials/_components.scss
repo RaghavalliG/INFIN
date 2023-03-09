@@ -188,8 +188,8 @@ padding: var(--p);
     .profile-info-card { display: flex; gap: 15px; align-items: center;}
     .profile-info-details-card {
         .action {  margin-top: 25px; display: flex; flex-wrap: wrap; gap: 15px 15px;}
-        .item { border-bottom: 1px solid #EDEDED; padding: 15px 0;
-        .key { color:#363636 ; font-weight: 600;}
+        .item { border-bottom: 1px solid #EDEDED; padding: 15px 0; display: flex; font-size: 17px;
+        .key { color:#363636 ; font-weight: 600; min-width: 200px;}
         }
         .btn .icon { margin-right: 5px;}
     }
@@ -203,6 +203,6 @@ padding: var(--p);
     .image-content-sec .actions .btn { font-size: 1.15em;}
 
     /* admin filter  action */
-    .admin-filter-action { padding: 0 0 15px 0; display: flex; flex-wrap: wrap; justify-content: flex-end;}
+    .admin-filter-action { padding: 0 0 15px 0; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 15px;}
     .admin-filter-action .btn .icon svg{ margin-right: 10px; width: 18px; height: 18px;}
     .admin-filter-action .btn:hover { background-color: #222; border-color: #222; color: #fff; }

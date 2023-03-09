@@ -12,6 +12,7 @@ a:hover {color: #2b93d0;}
 .admin_wrap { display: flex; gap: 15px; gap: 15px; padding: 52px 72px;}
 .admin-content-area { flex: 1;}
 .admin-sidebar { padding: 50px 35px 25px; background-color: #fff; border-radius: 15px; width: 400px; display: flex; flex-direction: column; text-align: center;
+margin-bottom: auto;
 }
 .admin-sidebar .brand-logo { max-width: 155px; margin: 0 auto 80px auto;
     img { height: auto;}
@@ -33,11 +34,12 @@ a:hover {color: #2b93d0;}
 
 .admin-menus {
     .menu-link { display: flex; width: 100%; gap: 15px; text-align: center; justify-content: center;
-        margin: 20px 0; padding: 17px 5px; border-radius: 10px; color: #A8A8A8; transition: all .3s;
+        margin: 15px 0; padding: 15px 5px; border-radius: 10px; color: #A8A8A8; transition: all .3s;
         &.active, &:hover  {
             background-color: #47B6F4; color: #fff;
         }
         .label {font-size: 22px;}
+        
         .icon svg path { fill: currentColor;} 
     }
 }
@@ -132,9 +134,12 @@ div.btn-light-blue {
 .mantine-Input-invalid {border-color: #fa5252}
 }
 
-.admin-filter-action .btn-light-blue { background-color: #222222; margin-right: 10px; color: #fff;}
+.admin-filter-action .btn-light-blue { background-color: #222222; margin-right: 0; color: #fff;}
 .admin-filter-action .btn.btn-light-blue .icon svg { margin-right: 0}
-
+.admin-filter-action .btn{--fs: 16px; --p: 8px 20px; border-radius: 8px;}
+.key-val-lists .item .key {min-width: 200px;}
+.key-val-lists .item { display: flex;}
+.admin-card-wedget .key-val-lists .item { flex: 1 1 50%}
 
 @import 'partials/responsive';
 

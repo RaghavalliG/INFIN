@@ -29,7 +29,23 @@ import {
   PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER,
   PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER_ERRORS,
   INVITE_CLIENT,
-  INVITE_CLIENT_ERROR
+  INVITE_CLIENT_ERROR,
+  GET_USER_MAIL_DETAILS,
+  GET_USER_MAIL_DETAILS_ERROR,
+  PROFESSIONAL_ADMIN_PUSER_LIST,
+  PROFESSIONAL_ADMIN_PUSER_LIST_ERRORS,
+  PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_USER,
+  PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_USER_ERRORS,
+  PROFESSIONAL_USER_DETAILS,
+  PROFESSIONAL_USER_DETAILS_ERROR,
+  PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_USER,
+  PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_USER_ERRORS,
+  PROFESSIONAL_USER_DELETE,
+  PROFESSIONAL_USER_DELETE_ERROR,
+  PROFESSIONAL_MANAGER_DELETE,
+  PROFESSIONAL_MANAGER_DELETE_ERROR,
+  CLIENT_ADMIN_DELETE,
+  CLIENT_ADMIN_DELETE_ERROR
 } from "../types";
 
 //define window
@@ -52,6 +68,9 @@ const initialState = {
   professionalManagerData: {},
   adminClientData: {},
   dashboardClientlist: {},
+  userMailData: {},
+  professionalUserList: {},
+  professionalUserData: {},
 };
 
 export default function (state = initialState, action) {
@@ -112,6 +131,20 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };
+      case GET_USER_MAIL_DETAILS:
+        return {
+          ...state,
+          userMailData: action.payload,
+          loading: false,
+        };
+  
+      // reducer for professional admin details error
+      case GET_USER_MAIL_DETAILS_ERROR:
+        return {
+          ...state,
+          loading: true,
+        };
+      
     case PROFESSIONAL_ADMIN_EDIT:
       return {
         ...state,
@@ -187,6 +220,21 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };
+      // reducer for professional User details error
+    case PROFESSIONAL_USER_DETAILS:
+      return {
+        ...state,
+        professionalUserData: action.payload,
+        loading: false,
+      };
+
+    // reducer for professional User details error
+    case PROFESSIONAL_USER_DETAILS_ERROR:
+      return {
+        ...state,
+        loading: true,
+      };
+
 
     // reducer for professional admin errrors
     case DASHBOARD_CLIENT_LIST_ERRORS:
@@ -218,12 +266,34 @@ export default function (state = initialState, action) {
         loading: true,
 
       };
+      case PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_USER:
+      return {
+        ...state,
+
+      };
+    case PROFESSIONAL_ADMIN_ADD_PROFESSIONAL_USER_ERRORS:
+      return {
+        ...state,
+        loading: true,
+
+      };
     case PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER:
       return {
         ...state,
 
       };
     case PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_MANAGER_ERRORS:
+      return {
+        ...state,
+        loading: true,
+
+      };
+      case PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_USER:
+      return {
+        ...state,
+
+      };
+    case PROFESSIONAL_ADMIN_UPDATE_PROFESSIONAL_USER_ERRORS:
       return {
         ...state,
         loading: true,
@@ -240,6 +310,50 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
 
+      };
+      // reducer for professional Admin User list errrors
+    case PROFESSIONAL_ADMIN_PUSER_LIST:
+      return {
+        ...state,
+        professionalUserList: action.payload,
+        loading: false,
+      };
+    // reducer for professional Admin User list errrors
+    case PROFESSIONAL_ADMIN_PUSER_LIST_ERRORS:
+      return {
+        ...state,
+        loading: true,
+      };
+
+      case PROFESSIONAL_USER_DELETE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case PROFESSIONAL_USER_DELETE_ERROR:
+      return {
+        ...state,
+        loading: true,
+      };
+      case PROFESSIONAL_MANAGER_DELETE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case PROFESSIONAL_MANAGER_DELETE_ERROR:
+      return {
+        ...state,
+        loading: true,
+      };
+      case CLIENT_ADMIN_DELETE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case CLIENT_ADMIN_DELETE_ERROR:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;

@@ -89,7 +89,7 @@ export default function ProfessionalAdminDetail() {
                 </div>
                 <div className="block-content-box profile-info-details-card">
                     <div className="key-val-items">
-                        <div className="item"><span className="key">Contact Number: </span><span className="val">{professionalAdmin_data.mobile}</span></div>
+                        <div className="item pt-0"><span className="key">Contact Number: </span><span className="val">{professionalAdmin_data.mobile}</span></div>
                         <div className="item"><span className="key">Email address: </span><span className="val">{professionalAdmin_data.email}</span></div>
                         <div className="item"><span className="key">Membership number: </span><span className="val">{professionalAdmin_data.membershipNumber}</span></div>
                         <div className="item"><span className="key">Contact address: </span><span className="val">{professionalAdmin_data.contactAddress}</span></div>

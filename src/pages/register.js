@@ -1,6 +1,6 @@
 import { Button, Checkbox, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from '@mantine/form';
-import { handleSignup } from "store/actions/professionalAdminAction";
+import { handleSignup, handleClientSignup,detailsWithEmail } from "store/actions/professionalAdminAction";
 import { useDispatch, useSelector } from 'react-redux';
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,14 @@ export default function Register() {
     const router = useRouter()  //defining next route 
     console.log(router.query.email);
     const route_email = router.query.email;
+
+    useEffect(() => {
+        route_email?
+        dispatch(detailsWithEmail(route_email)):''
+    }, [route_email]);
+
+    const user_details = useSelector(state => state.userMailData.userMailData)
+    console.log(user_details)
 
     const form = useForm({
 
@@ -61,8 +69,14 @@ export default function Register() {
 
                         {/* onsubmit function */}
                         <form onSubmit={form.onSubmit((values) => {
-                            route_email ? values.role = 7 : values.role = 4;
-                            dispatch(handleSignup(values))
+                            if (route_email) {
+                                values.role = 7
+                                dispatch(handleClientSignup(values))
+                            } else {
+                                values.role = 4
+                                dispatch(handleSignup(values))
+                            }
+
                         }
                         )}>
                             <div className="row">
@@ -100,28 +114,11 @@ export default function Register() {
                                 <div className="col-lg-12">
                                     <TextInput placeholder="Email"
                                         {...form.getInputProps('email')}
-                                        readOnly= { route_email ? "readonly": ''}
-                                        // 
+                                        readOnly={route_email ? "readonly" : ''}
+                                    // 
                                     />
                                 </div>
-                                <div className="col-lg-12">
-                                    {/* Membership number */}
-                                    <TextInput
-                                        withAsterisk
 
-                                        placeholder="Membership number"
-                                        {...form.getInputProps('membership_number')}
-                                    />
-                                </div>
-                                {/* Contact Address */}
-                                <div className="col-lg-12">
-                                    <TextInput
-                                        withAsterisk
-
-                                        placeholder="Contact Address"
-                                        {...form.getInputProps('contact_address')}
-                                    />
-                                </div>
                                 {/* Create password */}
                                 <div className="col-lg-12">
                                     <PasswordInput
@@ -138,7 +135,71 @@ export default function Register() {
                                         {...form.getInputProps('confirmPassword')}
                                     />
                                 </div>
+                                {/* Contact Address */}
+                                <div className="col-lg-12">
+                                    <TextInput
+                                        withAsterisk
+
+                                        placeholder="Contact Address"
+                                        {...form.getInputProps('contact_address')}
+                                    />
+                                </div>
+                                {(route_email) ?
+                                    <div className="client-Admin-detail">
+                                        <div className="col-lg-12">
+                                            {/* Membership number */}
+                                            <TextInput
+                                                withAsterisk
+                                                placeholder="Company Name"
+                                                {...form.getInputProps('companyName')}
+                                            />
+                                        </div>
+                                        <div className="col-lg-12">
+                                            {/* Membership number */}
+                                            <TextInput
+                                                withAsterisk
+                                                placeholder="PAN Number"
+                                                {...form.getInputProps('panNumber')}
+                                            />
+                                        </div>
+                                        <div className="col-lg-12">
+                                            {/* Membership number */}
+                                            <TextInput
+                                                withAsterisk
+                                                placeholder="GST Number"
+                                                {...form.getInputProps('gstNumber')}
+                                            />
+                                        </div>
+                                        <div className="col-lg-12">
+                                            {/* Membership number */}
+                                            <TextInput
+                                                withAsterisk
+                                                placeholder="Business Type"
+                                                {...form.getInputProps('businessType')}
+                                            />
+                                        </div>
+
+                                    </div>
+                                    :
+                                    <div className="professional-Admin-detail">
+                                        <div className="col-lg-12">
+                                            {/* Membership number */}
+                                            <TextInput
+                                                withAsterisk
+
+                                                placeholder="Membership number"
+                                                {...form.getInputProps('membership_number')}
+                                            />
+                                        </div>
+
+                                    </div>
+                                }
                             </div>
+
+
+
+
+
 
                             <div className="row actions mt-5">
                                 <div className="col">

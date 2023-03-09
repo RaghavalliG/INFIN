@@ -1,31 +1,18 @@
 import { Avatar, Menu } from "@mantine/core";
 import VerticalDot from "@/components/icon/vertical-dot";
 import CSVDownload from "../common/CSVDownload";
-import { professionalManagerDelete } from "store/actions/professionalAdminAction";
 import { useDispatch } from "react-redux";
-
+import { professionalUserDelete } from "store/actions/professionalAdminAction";
 
 export default function ProfessionalManagerCard(props) {
-  const dispatch = useDispatch();
-  console.log(props);
+  const dispatch = useDispatch()
   let headers = [
-    // { label: "FirstName", key: props.firstName },
-    // { label: "LastName", key: props.lastName },
     { label: "First Name", key: "firstName" },
     { label: "Last Name", key: "lastName" },
     { label: "ContactNumber", key: "mobile" },
     { label: "Email", key: "email" },
   ];
-  let data = [
-    {
-      firstName: `${props.firstName}`,
-      lastName: `${props.lastName}`,
-      //  name: `${props.firstName} ${props.lastName}`,
-      mobile: `${props.mobile}`,
-      email: `${props.email}`,
-      // contactNumber: `${props.contactNumber}`,
-    },
-  ];
+
   return (
     <div className="card admin-card-wedget">
       <div className="card-head">
@@ -35,8 +22,8 @@ export default function ProfessionalManagerCard(props) {
         <div className="info">
           <p className="card-text mb-1">Serial Number: 1234 ABC 234</p>
           <h3 className="card-title">
-            {props.professionalManager_list.firstName}{" "}
-            {props.professionalManager_list.lastName}
+            {props.professionalUser_list.firstName}{" "}
+            {props.professionalUser_list.lastName}
           </h3>
         </div>
         <div className="btns ms-auto">
@@ -45,9 +32,9 @@ export default function ProfessionalManagerCard(props) {
           <div className="btn btn-sm btn-light-blue" >
             {props ? (
               <CSVDownload
-                data={[props.professionalManager_list]}
+                data={[props.professionalUser_list]}
                 headers={headers}
-                filename={"professional Manager Detail"}
+                filename={"professional User Detail"}
               />
             ) : (
               ""
@@ -80,27 +67,26 @@ export default function ProfessionalManagerCard(props) {
           <Menu.Dropdown>
             <Menu.Item
               component="a"
-              href={`/professional-manager/${props.professionalManager_list.id}`}
+              href={`/professional-user/${props.professionalUser_list.id}`}
               icon={<VerticalDot />}
             >
               View
             </Menu.Item>
             <Menu.Item
               component="a"
-              href={`/professional-manager/edit/${props.professionalManager_list.id}`}
+              href={`/professional-user/edit/${props.professionalUser_list.id}`}
               icon={<VerticalDot />}
             >
               Edit
             </Menu.Item>
             <Menu.Item icon={<VerticalDot />} onClick={() => {
-              dispatch(professionalManagerDelete(
+              dispatch(professionalUserDelete(
                 {
-                  pmid: props.professionalManager_list.id,
-                  pmdid: props.professionalManager_list.professionalManagerDetailId
+                  puid: props.professionalUser_list.id,
+                  pudid: props.professionalUser_list.professionalUserDetailId
                 }
               ))
-            }}
-            >Delete</Menu.Item>
+            }}>Delete</Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </div>
@@ -108,20 +94,13 @@ export default function ProfessionalManagerCard(props) {
         <div className="key-val-lists row">
           <div className="item">
             <span className="key">Contact number: </span>
-            <span className="val">{props.professionalManager_list.mobile}</span>
+            <span className="val">{props.professionalUser_list.mobile}</span>
           </div>
           <div className="item">
             <span className="key">Email ID: </span>
-            <span className="val">{props.professionalManager_list.email}</span>
+            <span className="val">{props.professionalUser_list.email}</span>
           </div>
-          <div className="item">
-            <span className="key">Status: </span>
-            <span className="val"> FCA</span>
-          </div>
-          <div className="item ">
-            <span className="key">Contact Address: </span>
-            <span className="val"> Nulla St.Mankato Mississippi 96522</span>
-          </div>
+
           <div className="item">
             <span className="key">Years of experience: </span>
             <span className="val">10 years +</span>
@@ -132,17 +111,16 @@ export default function ProfessionalManagerCard(props) {
               <span className="pill pill-light-blue">Professional</span>
             </span>
           </div>
+          <div className="item">
+            <span className="key">Status: </span>
+            <span className="val"> FCA</span>
+          </div>
+          <div className="item ">
+            <span className="key">Contact Address: </span>
+            <span className="val"> Nulla St.Mankato Mississippi 96522</span>
+          </div>
         </div>
-        {/* 
-        <div className="item col-lg-12">
-          <span className="key">Status: </span>
-          <span className="val"> FCA</span>
-        </div>
-        <div className="item col-lg-12">
-          <span className="key">Contact Address: </span>
-          <span className="val"> Nulla St.Mankato Mississippi 9652233</span>
-        </div>
-        */}
+
       </div>
     </div>
   );
