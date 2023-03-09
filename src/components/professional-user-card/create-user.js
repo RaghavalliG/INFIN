@@ -189,19 +189,19 @@ export default function CreateUser(props) {
                             withAsterisk
                         />
                     </div> */}
-                    <div className="col-lg-12 actions place-center mt-5">
-                        <Button type="submit">
+                    <div className="col-lg-12 actions place-center mt-5 btn-groups">
+                        <Button type="submit" className="btn">
                             {(userId && isNotEmpty(userId)) ? 'Edit Professional User' :
                                 'Add Professional User'}
 
 
                         </Button>
 
-                        <Button type="submit">
+                        <Button type="submit" className="btn">
                             Save
                         </Button>
 
-                        <Button type="submit">
+                        <Button type="submit" className="btn">
                             Cancle
                         </Button>
 

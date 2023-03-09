@@ -162,8 +162,8 @@ ul{
         height: var(--height);
         transition: all .3s;
         font-size: var(--fs);
-        &:hover {
-            background: var(--bgh);
+        &:hover, &:active, &:focus {
+            background: var(--bgh) !important;
         color: var(--colorh);
         border: var(--borderh);
         }
@@ -218,3 +218,7 @@ border-radius: 10px; min-height: 220px; display: flex; align-items: center; just
 
 /* drawer */
 .mantine-Drawer-root { z-index: 998; }
+
+.btn-groups { gap: 10px 15px; display: flex; flex-wrap: wrap;
+    &.place-center { justify-content: center;}
+}
